@@ -8,9 +8,9 @@ class TraineeProfile {
 }
 
 @Component({
-  selector: 'app-trainee-profile',
-  templateUrl: './trainee-profile.component.html',
-  styleUrls: ['./trainee-profile.component.css']
+  selector: 'app-trainer-profile',
+  templateUrl: './trainer-profile.component.html',
+  styleUrls: ['./trainer-profile.component.css']
 })
 export class TraineeProfileComponent implements OnInit {
   createProfile: FormGroup = new FormGroup({

@@ -1,0 +1,147 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "FinalProject": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/final-project",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "tsconfig.app.json",
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/Home/css/bootstrap.min.css",
+              "src/assets/Home/css/animate.min.css",
+              "src/assets/Home/css/owl.carousel.min.css",
+              "src/assets/Home/css/owl.theme.default.min.css",
+              "src/assets/Home/css/jquery.fancybox.min.css",
+              "src/assets/Home/fonts/icomoon/style.css",
+              "src/assets/Home/fonts/flaticon/font/flaticon.css",
+              "src/assets/Home/css/aos.css",
+              "src/assets/Home/css/style.css",
+              "src/assets/Admin/vendor/bootstrap/css/bootstrap.min.css",
+              "src/assets/Admin/vendor/bootstrap-icons/bootstrap-icons.css",
+              "src/assets/Admin/vendor/boxicons/css/boxicons.min.css",
+              "src/assets/Admin/vendor/quill/quill.snow.css",
+              "src/assets/Admin/vendor/quill/quill.bubble.css",
+              "src/assets/Admin/vendor/remixicon/remixicon.css",
+              "src/assets/Admin/vendor/simple-datatables/style.css",
+              "src/assets/Admin/css/style.css",
+              "node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css",
+              "node_modules/admin-lte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css",
+              "node_modules/admin-lte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css",
+              "node_modules/admin-lte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css",
+              "node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
+              "node_modules/admin-lte/dist/css/adminlte.min.css",
+              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
+            ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/assets/Home/js/jquery-3.4.1.min.js",
+              "src/assets/Home/js/popper.min.js",
+              "src/assets/Home/js/bootstrap.min.js",
+              "src/assets/Home/js/owl.carousel.min.js",
+              "src/assets/Home/js/jquery.animateNumber.min.js",
+              "src/assets/Home/js/jquery.waypoints.min.js",
+              "src/assets/Home/js/jquery.fancybox.min.js",
+              "src/assets/Home/js/jquery.sticky.js",
+              "src/assets/Home/js/aos.js",
+              "src/assets/Home/js/custom.js",
+              "src/assets/Admin/vendor/apexcharts/apexcharts.min.js",
+              "src/assets/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/Admin/vendor/chart.js/chart.umd.js",
+              "src/assets/Admin/vendor/echarts/echarts.min.js",
+              "src/assets/Admin/vendor/quill/quill.js",
+              "src/assets/Admin/vendor/simple-datatables/simple-datatables.js",
+              "src/assets/Admin/vendor/tinymce/tinymce.min.js",
+              "src/assets/Admin/vendor/php-email-form/validate.js",
+              "src/assets/Admin/js/main.js",
+              "node_modules/admin-lte/plugins/jquery/jquery.min.js",
+              "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js",
+              "node_modules/admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
+              "node_modules/admin-lte/dist/js/adminlte.js",
+              "node_modules/admin-lte/plugins/jquery-mousewheel/jquery.mousewheel.js",
+              "node_modules/admin-lte/plugins/raphael/raphael.min.js",
+              "node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.min.js",
+              "node_modules/admin-lte/plugins/jquery-mapael/maps/usa_states.min.js",
+              "node_modules/admin-lte/plugins/chart.js/Chart.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "FinalProject:build:production"
+            },
+            "development": {
+              "browserTarget": "FinalProject:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "FinalProject:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "f27775f6-24b4-4567-bfc2-444233907c62"
+  }
+}

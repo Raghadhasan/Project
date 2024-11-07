@@ -1,0 +1,8 @@
+<div *ngFor="let trainee of trainees" class="trainee-card">
+  <h3>{{ trainee.name }}</h3>
+  <label>
+    <input type="checkbox" [(ngModel)]="trainee.present" (change)="toggleAttendance(trainee)" />
+    Present
+  </label>
+</div>
+<button (click)="submitAttendance()">Submit Attendance</button>

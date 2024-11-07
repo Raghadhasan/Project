@@ -1,0 +1,14 @@
+aside {
+  overflow: hidden;
+}
+
+.sidebar {
+  background: #343a40 !important;
+}
+
+.nav-link {
+  display: flex;
+  gap: 12px;
+  font-size: 18px;
+  align-items: center;
+}

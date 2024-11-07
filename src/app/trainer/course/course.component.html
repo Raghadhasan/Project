@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">My Courses</div>
+      <div class="card-body">
+        <div class="container-fluid">
+          <div class="row justify-content-start">
+            <div
+              class="col-md-4 col-lg-3 col-xl-2 mb-4"
+              *ngFor="let course of courses.length > 0 ? courses : mockCourses"
+            >
+              <div class="card h-100">
+                <div class="card-header d-flex align-items-center">
+                  <div
+                    class="rounded-circle bg-secondary me-3"
+                    style="width: 40px; height: 40px"
+                  ></div>
+                  <h5 class="card-title mb-0 text-lowercase">
+                    {{ course.coursename }}
+                  </h5>
+                </div>
+
+                <div class="card-body">
+                  <p class="card-text">
+                    This section starts at:
+                    {{ course.coursestartdate | date : "shortDate" }}<br />
+                    This section ends in:
+                    {{ course.courseenddate | date : "shortDate" }}<br />
+                    This section starts on:
+                    {{ course.coursestartdate | date : "shortTime" }}
+                  </p>
+                </div>
+
+                <div class="card-footer">
+                  <button class="btn btn-primary me-2">LIKE</button>
+                  <button class="btn btn-secondary me-2">ATTACHMENT</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

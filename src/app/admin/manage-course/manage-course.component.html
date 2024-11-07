@@ -1,0 +1,146 @@
+<app-sidebar></app-sidebar>
+
+
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+            <img src="../../../assets/img/logo.png" alt="">
+            <span class="d-none d-lg-block">NiceAdmin</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
+            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+    </div><!-- End Search Bar -->
+</header>
+<div id="BodyDashBorad">
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <div class="container-fluid" style="padding-top: 525px;">
+            <div class="row">
+                <div class="col-lg-4 d-flex align-items-stretch">
+                </div>
+
+                <div class="col-lg-8 d-flex align-items-stretch" style="margin-right:200px;">
+                    <div class="card w-100">
+
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-semibold mb-4">All Course</h5>
+                            <div class="table-responsive">
+                                <table class="table text-nowrap mb-0 align-middle">
+                                    <thead class="text-dark fs-4">
+                                        <button mat-button color="primary" (click)="openCreateDailog()">Create
+                                            New</button>
+                                        <tr>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1" style="padding: 20px;">Course Id</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Course Name</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Course MeetingLink</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Course StartTime</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Course EndTime </h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Category ID</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1 ">operation </h2>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let obj of home.Courses">
+                                            <td>{{obj.COURSEID}}"</td>
+                                            <td>{{obj.COURSENAME}}</td>
+                                            <td>{{obj.COURSEMEETINGLINK}}</td>
+                                            <td>{{obj.COURSESTARTTIME|date}}</td>
+                                            <td>{{obj.COURSEENDTIME|date}}</td>
+                                            <td>{{obj.CATEGORYNAME}}</td>
+                                            <td>{{obj.CATEGORYID}}</td>
+                                            <td>
+                                                <button mat-button color="warn"
+                                                    (click)="openDeleteDailog(obj.COURSEID)">Delete</button>
+                                                <button mat-button color="primary"
+                                                    (click)="openUpdateDailog(obj)">Update</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #callDeleteDailog>
+                <h1 mat-dialog-title>Delete Course</h1>
+                <div mat-dialog-content>Are you sure you went to delete this item ? </div>
+                <div mat-dialog-actions>
+                    <button mat-button mat-dialog-close="yes">Yes</button>
+                    <button mat-button mat-dialog-close="No">No</button>
+                </div>
+            </ng-template>
+            <ng-template #callupdateDailog>
+                <h2 mat-dialog-title>Update Course</h2>
+                <mat-dialog-content class="mat-typography">
+                    <form [formGroup]="updateCourse">
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>Course Name</mat-label>
+                                <input type="text" matInput formControlName="COURSENAME" required
+                                    [(ngModel)]="pData.coursename">
+                                <mat-error *ngIf="updateCourse.controls['COURSENAME'].hasError('required')">
+                                    Course name is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>Course MeetingLink</mat-label>
+                                <input type="url" matInput formControlName="COURSEMEETINGLINK"
+                                    placeholder="Enter meeting link" required [(ngModel)]="pData.coursemeetingLink">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>Course StartTime</mat-label>
+                                <input type="time" matInput formControlName="COURSESTARTTIME"
+                                    [(ngModel)]="pData.courseStartTime ">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>Course EndTime</mat-label>
+                                <input type="time" matInput formControlName="COURSEENDTIME"
+                                    [(ngModel)]="pData.courseEndTime">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>CATEGORYID</mat-label>
+                                <input type="number" matInput formControlName="CATEGORYID"
+                                    [(ngModel)]="pData.CATEGORYID">
+                            </mat-form-field>
+                        </div>
+                    </form>
+
+                </mat-dialog-content>
+                <mat-dialog-actions align="end">
+                    <button mat-button mat-dialog-close>Cancel</button>
+                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+                </mat-dialog-actions>
+            </ng-template>
+        </div>
+    </div>
+</div>

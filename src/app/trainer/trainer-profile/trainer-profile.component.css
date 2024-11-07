@@ -1,0 +1,14 @@
+/* src/app/components/profile/profile-display.component.css */
+.profile-display {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: right; /* لمحاذاة النص إلى اليمين */
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}

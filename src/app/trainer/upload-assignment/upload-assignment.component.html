@@ -1,0 +1,5 @@
+<div class="upload-container">
+  <h3>Upload Assignment (PDF)</h3>
+  <input type="file" (change)="onFileSelect($event)" accept=".pdf" />
+  <button *ngIf="selectedFile" class="submit-button" (click)="uploadAssignment()">Submit</button>
+</div>

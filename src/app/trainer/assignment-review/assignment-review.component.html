@@ -1,0 +1,8 @@
+<div *ngFor="let solution of solutions; let i = index">
+  <h4>Solution from Trainee ID: {{ solution.traineeId }}</h4>
+  <p>{{ solution.solution }}</p>
+  <label [for]="'mark-' + i">Enter Mark:</label>
+  <input type="number" [(ngModel)]="solution.mark" [id]="'mark-' + i">
+  <button (click)="updateMark(solution.id, solution.mark)">Submit Mark</button>
+  <hr>
+</div>

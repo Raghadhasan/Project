@@ -1,0 +1,4 @@
+<div *ngFor="let trainee of trainees.controls; let i = index" class="trainee-card">
+  <h3>{{ trainee.get('name')?.value }}</h3>
+  <p>{{ trainee.get('solution')?.value }}</p>
+</div>

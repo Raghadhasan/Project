@@ -1,0 +1,162 @@
+<!--
+<div class="sidebar">
+    <div class="logo-details">
+      <i class='bx bxl-c-plus-plus'></i>
+      <span class="logo_name">CodingLab</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#" class="active">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-box' ></i>
+            <span class="links_name">Product</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-list-ul' ></i>
+            <span class="links_name">Order list</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-pie-chart-alt-2' ></i>
+            <span class="links_name">Analytics</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-coin-stack' ></i>
+            <span class="links_name">Stock</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-book-alt' ></i>
+            <span class="links_name">Total order</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-user' ></i>
+            <span class="links_name">Team</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-message' ></i>
+            <span class="links_name">Messages</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-heart' ></i>
+            <span class="links_name">Favrorites</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Setting</span>
+          </a>
+        </li>
+        <li class="log_out">
+          <a href="#">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div> -->
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
+  <a href="index3.html" class="brand-link">
+    <span class="brand-text font-weight-light">Courses</span>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul
+        class="nav nav-pills nav-sidebar flex-column"
+        data-widget="treeview"
+        role="menu"
+        data-accordion="false"
+      >
+        <li class="nav-item">
+          <a
+            [routerLink]="['/trainer/dashboard/courses']"
+            class="nav-link"
+            [routerLinkActive]="'active'"
+          >
+            <i class="bx bx-grid-alt nav-icon"></i>
+            <span class="links_name">Courses</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            [routerLink]="['/trainer/dashboard/my-courses']"
+            class="nav-link"
+            [routerLinkActive]="'active'"
+          >
+            <i class="bx bx-list-ul nav-icon"></i>
+            <span class="links_name">My list</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            [routerLink]="['/trainer/dashboard/codingLab']"
+            class="nav-link"
+            [routerLinkActive]="'active'"
+          >
+            <i class="bx bxl-c-plus-plus nav-icon"></i>
+            <span class="logo_name">CodingLab</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            [routerLink]="['/trainer/dashboard/product']"
+            class="nav-link"
+            [routerLinkActive]="'active'"
+          >
+            <i class="bx bx-box nav-icon"></i>
+            <span class="links_name">Product</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            [routerLink]="['/trainer/dashboard/analytics']"
+            class="nav-link"
+            [routerLinkActive]="'active'"
+          >
+            <i class="bx bx-pie-chart-alt-2 nav-icon"></i>
+            <span class="links_name">Analytics</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            [routerLink]="['/trainer/dashboard/stock']"
+            class="nav-link"
+            [routerLinkActive]="'active'"
+          >
+            <i class="bx bx-log-out nav-icon"></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+  </div>
+  <!-- /.sidebar -->
+</aside>

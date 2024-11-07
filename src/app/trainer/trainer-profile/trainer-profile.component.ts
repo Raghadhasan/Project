@@ -1,8 +1,11 @@
-// src/app/trainee-profile/trainee-profile.component.ts
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { TraineeProfile } from '../trainee-profile.model';
-import { TraineeProfileService } from '../trainee-profile.service';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {TraineeService} from "../services/trainee.service";
+import {Profile} from "../profile";
+
+
+class TraineeProfile {
+}
 
 @Component({
   selector: 'app-trainee-profile',
@@ -21,16 +24,17 @@ export class TraineeProfileComponent implements OnInit {
   isLoading: boolean = true;
   errorMessage: string | null = null;
 
-  constructor(private profileService: TraineeProfileService) {}
+  constructor(private profileService: TraineeService) {
+  }
 
   ngOnInit(): void {
     this.loadProfile();
   }
 
   loadProfile(): void {
-    const traineeId = 1; // Replace with the appropriate trainee ID
+    const traineeId = 1;
     this.profileService.getProfile(traineeId).subscribe(
-      (data: { id: any; name: any; email: any; phone: any; address: any; }) => {
+      (data: Profile) => {
         this.createProfile.setValue({
           id: data.id,
           name: data.name,

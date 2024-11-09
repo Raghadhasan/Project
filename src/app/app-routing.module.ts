@@ -42,6 +42,16 @@ const routes: Routes = [
     path: 'trainer/security',
     loadChildren: () => AuthtrainerModule
   },
+  {
+    path: 'trainee',
+    loadChildren: () => AdminModule
+  
+  },
+  {
+    path: 'uploadmaterial',
+    loadChildren: () =>TrainerModule
+  
+  },
 ];
 
 @NgModule({

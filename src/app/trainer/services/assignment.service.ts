@@ -13,7 +13,7 @@ export interface AssignmentSolution {
   providedIn: 'root'
 })
 export class AssignmentService {
-  private apiUrl = 'http://your-api-url/api'; 
+  private apiUrl = 'https://localhost:7276/api/Assignment';
 
   constructor(private http: HttpClient) { }
 
@@ -24,5 +24,8 @@ export class AssignmentService {
 
   updateMark(solutionId: number, mark: number): Observable<any> {
     return this.http.put(`${this.apiUrl}/UpdateMark/${solutionId}`, { mark });
+  }
+  submitAssignment(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/CreateAssignment`, data);
   }
 }

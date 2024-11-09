@@ -2,7 +2,7 @@
 .profile-display {
     max-width: 600px;
     margin: 0 auto;
-    text-align: right; /* لمحاذاة النص إلى اليمين */
+    text-align: right; 
 }
 
 .profile-image {

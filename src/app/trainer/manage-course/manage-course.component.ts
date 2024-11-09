@@ -12,14 +12,14 @@ export class ManageCourseComponent {
   constructor(private courseService: CourseService) {}
 
   ngOnInit(): void {
-    this.courseService.getAllCourses().subscribe(
-      (data: Course[]) => {
-        this.courses = data;
-      },
-      (error) => {
-        console.error('Error fetching courses:', error);
-      }
-    );
+    // this.courseService.getAllCourses().subscribe(
+    //   (data: Course[]) => {
+    //     this.courses = data;
+    //   },
+    //   (error) => {
+    //     console.error('Error fetching courses:', error);
+    //   }
+    // );
   }
 
   addToTrainer(course: any) {}

@@ -15,6 +15,7 @@ import {ButtonModule} from 'primeng/button';
 import {TraineeSolutionsComponent} from './trainee-solutions/trainee-solutions.component';
 import {TraineeMarksComponent} from './trainee-marks/trainee-marks.component';
 import {TraineeAttendanceComponent} from './attendance/AttendanceComponent';
+import { ContentmaterialComponent } from './contentmaterial/contentmaterial.component';
 
 ;
 
@@ -30,7 +31,8 @@ import {TraineeAttendanceComponent} from './attendance/AttendanceComponent';
     AssignmentReviewComponent,
     TraineeSolutionsComponent,
     TraineeMarksComponent,
-    TraineeAttendanceComponent
+    TraineeAttendanceComponent,
+    ContentmaterialComponent
   ],
   imports: [
     CommonModule,

@@ -5,16 +5,10 @@
       <div class="card-body">
         <div class="container-fluid">
           <div class="row justify-content-start">
-            <div
-              class="col-md-4 col-lg-3 col-xl-2 mb-4"
-              *ngFor="let course of courses"
-            >
+            <div class="col-md-4 col-lg-4 col-xl-4 mb-4" *ngFor="let course of courses">
               <div class="card h-100">
                 <div class="card-header d-flex align-items-center">
-                  <div
-                    class="rounded-circle bg-secondary me-3"
-                    style="width: 40px; height: 40px"
-                  ></div>
+                  <div class="rounded-circle bg-secondary me-3" style="width: 40px; height: 40px"></div>
                   <h5 class="card-title mb-0 text-lowercase">
                     {{ course.coursename }}
                   </h5>
@@ -32,8 +26,9 @@
                 </div>
 
                 <div class="card-footer">
-                  <button class="btn btn-primary me-2">LIKE</button>
-                  <button class="btn btn-secondary me-2">ATTACHMENT</button>
+                  <!-- <button class="btn btn-primary me-2">LIKE</button>
+                  <button class="btn btn-secondary me-2">ATTACHMENT</button> -->
+                  <button class="btn btn-primary me-2">Add Course</button>
                 </div>
               </div>
             </div>

@@ -18,4 +18,7 @@ export class ExamsectionService {
   getExamLink(id: number): Observable<ExamLink> {
     return this.http.get<ExamLink>(`${this.apiUrl}/GetExamLink/${id}`);
   }
+  createExam(exam: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/CreateExam`, exam);
+  }
 }

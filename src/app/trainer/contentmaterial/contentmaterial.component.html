@@ -1,0 +1,140 @@
+<div *ngIf="course">
+    <!-- Course Material Upload Section -->
+    <div class="card" style="width: 100%">
+        <div class="card-body">
+            <h5 class="card-title">Welcome to {{ course.coursename }} !</h5>
+            <div *ngIf="course.alltraineefile">
+                <p class="card-text">Download Course Material</p>
+                <a href="{{ course.alltraineefile }}" download>Download PDF</a>
+            </div>
+
+            <div>
+                <label for="courseMaterialUpload">Upload Course Material (PDF)</label>
+                <input type="file" id="courseMaterialUpload" (change)="onCourseMaterialUpload($event)" accept=".pdf" />
+            </div>
+
+            <div *ngIf="uploadError" class="alert alert-danger">
+                {{ uploadError }}
+            </div>
+            <div *ngIf="uploadSuccess" class="alert alert-success">
+                {{ uploadSuccess }}
+            </div>
+        </div>
+
+        <div class="card-footer text-end">
+            <button class="btn btn-primary me-2" (click)="SaveCourseMaterial()">Save</button>
+        </div>
+    </div>
+    <!-- done -->
+
+    <!-- Attendance Section -->
+    <div class="card" style="width: 100%" *ngIf="course.sectionstarttime && course.sectionendtime">
+        <div class="card-body">
+            <h5 class="card-title">Attendance</h5>
+            <p class="card-text">The section starts at: {{ course.sectionstarttime | date: 'shortTime' }}<br />
+                The section ends at: {{ course.sectionendtime | date: 'shortTime' }}</p>
+            <button class="btn btn-secondary" (click)="openTakeAttendanceModal(course.tsid)">Take Attendance</button>
+        </div>
+    </div>
+
+    <!-- Assignment and Exam Upload Section -->
+    <div class="card" style="width: 100%">
+        <div class="card-body">
+            <h5 class="card-title">Exams and Assignments</h5>
+            <div>
+                <label for="assignmentUpload">Upload Assignment (PDF)</label>
+                <button (click)="openAssignmentModal()">Add Assignments</button>
+            </div>
+            <!-- <div>
+                <label for="examUpload">Upload Exam (PDF)</label>
+                <input type="file" id="examUpload" (change)="onExamUpload($event)" accept=".pdf" />
+            </div> -->
+            <div>
+                <label for="examUpload">Upload Exam (PDF)</label>
+                <button (click)="onExamUploadModal()">Add Exam</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal for uploading multiple assignments -->
+<div *ngIf="isModalOpen" class="modal">
+    <div class="modal-content">
+        <h2>Upload Assignments</h2>
+        <label for="trainerCourseId">Trainer Course ID</label>
+        <input type="number" [disabled]="true" [(ngModel)]="trainerCourseId" id="trainerCourseId" />
+
+        <label for="assignmentMark">Assignment Mark</label>
+        <input type="number" [(ngModel)]="assignmentMark" id="assignmentMark" />
+
+        <label for="assignmentDuration">Assignment Duration</label>
+        <input type="date" [(ngModel)]="assignmentDuration" id="assignmentDuration" />
+
+        <label for="assignmentUpload">Upload Assignment (PDF)</label>
+        <input type="file" id="assignmentUpload" (change)="onAssignmentUpload($event)" accept=".pdf" multiple />
+
+        <button (click)="submitAssignments()">Upload</button>
+        <button (click)="closeAssignmentModal()">Cancel</button>
+    </div>
+</div>
+<div *ngIf="isModalExamOpen" class="modal">
+    <div class="modal-content">
+        <h2>Upload Assignments</h2>
+        <label for="trainerCourseId">Trainer Course ID</label>
+        <input type="text" [disabled]="true" [(ngModel)]="trainerCourseId" id="trainerCourseId" />
+
+        <label for="ExamMark">Exam link</label>
+        <input type="text" [(ngModel)]="Examlink" id="Examlink" />
+
+        <label for="Exammark">Exam mark</label>
+        <input type="number" [(ngModel)]="Exammark" id="Exammark" />
+        <label for="Examstarttime">Exam start time</label>
+        <input type="datetime-local" [(ngModel)]="Examstarttime" id="Examstarttime" />
+        <label for="Examendtime">Exam end time</label>
+        <input type="datetime-local" [(ngModel)]="Examendtime" id="Examendtime" />
+
+        <button (click)="submitExam()">Upload</button>
+        <button (click)="closeModalExamModal()">Cancel</button>
+    </div>
+</div>
+
+<div *ngIf="isModalAttendanceOpen" class="modal">
+    <div class="modal-content-Attendance">
+        <h2>Upload Attendance</h2>
+
+        <div class="container mt-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>UserId</th>
+                        <th>Name</th>
+                        <th hidden></th>
+
+                        <th>Attend</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of sectionAttendance">
+                        <td>{{ user.userId }}</td>
+                        <td>{{ user.userName }}</td>
+                        <td hidden>
+                            <input type="hidden" [value]="user.seat">
+
+                        </td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" [(ngModel)]="user.status"
+                                    (change)="updateStatus(user)" />
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end">
+            <button (click)="saveAttendance()">Save</button>
+        </div>
+        <button (click)="closeModalAttendanceModal()">Cancel</button>
+    </div>
+</div>

@@ -4,12 +4,14 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { HomeService } from 'src/app/services/home.service';
 import { CreateCourseComponent } from '../create-course/create-course.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 
 @Component({
   selector: 'app-manage-course',
   templateUrl: './manage-course.component.html',
-  styleUrls: ['./manage-course.component.css']
+  styleUrls: ['./manage-course.component.css'],
+  // imports: [SidebarComponent]
 })
 export class ManageCourseComponent implements OnInit {
   @ViewChild('callDeleteDailog') deleteDailog !: TemplateRef<any>;

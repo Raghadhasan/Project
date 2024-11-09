@@ -86,70 +86,18 @@
 
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul
-        class="nav nav-pills nav-sidebar flex-column"
-        data-widget="treeview"
-        role="menu"
-        data-accordion="false"
-      >
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+       
         <li class="nav-item">
-          <a
-            [routerLink]="['/trainer/dashboard/courses']"
-            class="nav-link"
-            [routerLinkActive]="'active'"
-          >
-            <i class="bx bx-grid-alt nav-icon"></i>
+          <a [routerLink]="['/trainer/dashboard/my-courses']" class="nav-link" [routerLinkActive]="'active'">
+            <i class="bx bx-list-ul nav-icon"></i>
             <span class="links_name">Courses</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a
-            [routerLink]="['/trainer/dashboard/my-courses']"
-            class="nav-link"
-            [routerLinkActive]="'active'"
-          >
-            <i class="bx bx-list-ul nav-icon"></i>
-            <span class="links_name">My list</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            [routerLink]="['/trainer/dashboard/codingLab']"
-            class="nav-link"
-            [routerLinkActive]="'active'"
-          >
-            <i class="bx bxl-c-plus-plus nav-icon"></i>
-            <span class="logo_name">CodingLab</span>
-          </a>
-        </li>
+    
 
         <li class="nav-item">
-          <a
-            [routerLink]="['/trainer/dashboard/product']"
-            class="nav-link"
-            [routerLinkActive]="'active'"
-          >
-            <i class="bx bx-box nav-icon"></i>
-            <span class="links_name">Product</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a
-            [routerLink]="['/trainer/dashboard/analytics']"
-            class="nav-link"
-            [routerLinkActive]="'active'"
-          >
-            <i class="bx bx-pie-chart-alt-2 nav-icon"></i>
-            <span class="links_name">Analytics</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            [routerLink]="['/trainer/dashboard/stock']"
-            class="nav-link"
-            [routerLinkActive]="'active'"
-          >
+          <a [routerLink]="['/trainer/dashboard/stock']" class="nav-link" [routerLinkActive]="'active'">
             <i class="bx bx-log-out nav-icon"></i>
             <span class="links_name">Log out</span>
           </a>

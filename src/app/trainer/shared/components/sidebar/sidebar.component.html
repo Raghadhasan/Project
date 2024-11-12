@@ -74,37 +74,68 @@
       </ul>
   </div> -->
 
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-  <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
-    <span class="brand-text font-weight-light">Courses</span>
-  </a>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <!-- Sidebar user panel (optional) -->
-
-    <!-- Sidebar Menu -->
-    <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-       
-        <li class="nav-item">
-          <a [routerLink]="['/trainer/dashboard/my-courses']" class="nav-link" [routerLinkActive]="'active'">
-            <i class="bx bx-list-ul nav-icon"></i>
-            <span class="links_name">Courses</span>
-          </a>
-        </li>
-    
-
-        <li class="nav-item">
-          <a [routerLink]="['/trainer/dashboard/stock']" class="nav-link" [routerLinkActive]="'active'">
-            <i class="bx bx-log-out nav-icon"></i>
-            <span class="links_name">Log out</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <!-- /.sidebar-menu -->
-  </div>
-  <!-- /.sidebar -->
-</aside>
+  <aside class="main-sidebar custom-sidebar">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link text-center">
+      <span class="brand-text">Trainer Dashboard</span>
+    </a>
+  
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <nav class="mt-3">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          
+          <li class="nav-item">
+            <a [routerLink]="['/trainer/dashboard/my-courses']" class="nav-link custom-nav-link" [routerLinkActive]="'active'">
+              <i class="bx bx-book nav-icon"></i>
+              <span class="links_name">Courses</span>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a [routerLink]="['/trainer/dashboard/upload-material']" class="nav-link custom-nav-link" [routerLinkActive]="'active'">
+              <i class="bx bx-upload nav-icon"></i>
+              <span class="links_name">Upload Material</span>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a [routerLink]="['/trainer/dashboard/attendance']" class="nav-link custom-nav-link" [routerLinkActive]="'active'">
+              <i class="bx bx-calendar-check nav-icon"></i>
+              <span class="links_name">Attendance</span>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a [routerLink]="['/trainer/dashboard/assignments']" class="nav-link custom-nav-link" [routerLinkActive]="'active'">
+              <i class="bx bx-task nav-icon"></i>
+              <span class="links_name">Assignments</span>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a [routerLink]="['/trainer/dashboard/exam-link']" class="nav-link custom-nav-link" [routerLinkActive]="'active'">
+              <i class="bx bx-link nav-icon"></i>
+              <span class="links_name">Exam Link</span>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a [routerLink]="['/trainer/dashboard/profile']" class="nav-link custom-nav-link" [routerLinkActive]="'active'">
+              <i class="bx bx-user nav-icon"></i>
+              <span class="links_name">Profile</span>
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a [routerLink]="['/logout']" class="nav-link custom-nav-link logout-link" [routerLinkActive]="'active'">
+              <i class="bx bx-log-out nav-icon"></i>
+              <span class="links_name">Log Out</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </aside>
+  

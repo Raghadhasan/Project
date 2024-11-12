@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
               // this.router.navigate(['trainee/dashboard']);
             }
 
+
           } catch (error) {
             console.error('Error decoding the token:', error);
           }

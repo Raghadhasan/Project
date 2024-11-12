@@ -52,6 +52,11 @@ const routes: Routes = [
     loadChildren: () =>TrainerModule
   
   },
+  {
+    path: 'uploadmaterial',
+    loadChildren: () =>TrainerModule
+  
+  },
 ];
 
 @NgModule({

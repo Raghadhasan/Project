@@ -14,7 +14,7 @@ import { ExcelesheetComponent } from './excelesheet/excelesheet.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { trainerRoutingModule } from './trainer/trainer-routing.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
-import { TraineeProfileComponent } from "./trainer/trainer-profile/trainer-profile.component";
+
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { TraineeProfileComponent } from "./trainer/trainer-profile/trainer-profi
     ContactComponent,
     ManageAboutComponent,
     ExcelesheetComponent,
-
+    
 
   ],
   imports: [
@@ -36,7 +36,7 @@ import { TraineeProfileComponent } from "./trainer/trainer-profile/trainer-profi
     AdminRoutingModule,
     BrowserAnimationsModule,
     trainerRoutingModule,
-    ToastrModule.forRoot(
+    ToastrModule.forRoot(  
  
     ),
     ReactiveFormsModule,

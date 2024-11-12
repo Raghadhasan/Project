@@ -7,6 +7,13 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   showdropdown: boolean = false;
+   showProfile: boolean = false; // للتحكم في عرض نموذج "My Profile"
+  profileData = {
+    name: 'Kevin Anderson',
+    email: 'kevin@example.com',
+    position: 'Web Designer',
+    phone: '123-456-7890'
+  };
 
   sidebarToggle(){
     // this.menustatus=!this.menustatus;
@@ -24,4 +31,6 @@ export class NavbarComponent {
   logout() {
     console.log("logout")
   }
+
+  
 }

@@ -96,7 +96,7 @@ export class ContentmaterialComponent {
     this.courseService.uploadCourseMaterial(TSID, formData).subscribe(
       (response: string) => {
         console.log('File upload response:', response);
-        this.toastr.success(response, 'Success');
+        this.toastr.success(response, 'Success',);
         this.course!.alltraineefile = response;
       },
       (error: any) => {

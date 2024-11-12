@@ -1,4 +1,4 @@
-aside {
+/* aside {
   overflow: hidden;
 }
 
@@ -11,4 +11,81 @@ aside {
   gap: 12px;
   font-size: 18px;
   align-items: center;
+} */
+
+/* تنسيقات السايد بار */
+/* تنسيق Sidebar */
+/* تصميم الخلفية للـ Sidebar */
+/* خلفية السايد بار */
+/* تعديل العنوان Brand Link */
+/* خلفية السايد بار */
+/* تعديل السايد بار */
+.custom-sidebar {
+  background-color: #214bdf; /* خلفية زرقاء فاتحة */
+  color: #333333; /* لون نص غامق */
+  width: 250px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #dddddd;
+  padding-top: 1rem; /* تباعد علوي لجعل التصميم متنفس */
+}
+
+
+/* تصميم شعار العلامة */
+.brand-link {
+  background-color: rgb(43, 64, 226);
+  color: #f4f5f7;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 1.2rem 0;
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: -4rem;/* زيادة التباعد أسفل العنوان */
+}
+
+/* تصميم روابط القائمة */
+.custom-nav-link {
+  color: #555;
+  background-color: #e7e8ec; /* لون خلفية الزر */
+  margin: 0.4rem 0; /* المسافة بين الأزرار */
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.6rem; /* زوايا دائرية خفيفة */
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.custom-nav-link:hover {
+  background-color: #d4d5da;
+  color: #000;
+  transform: scale(1.05); /* تأثير تكبير خفيف */
+}
+
+/* تصميم الأيقونات */
+.nav-icon {
+  font-size: 1.3rem;
+  margin-right: 0.8rem;
+  color: #666;
+}
+
+/* لون النص داخل الأزرار */
+.links_name {
+  font-size: 1.1rem;
+}
+
+/* تصميم زر Log Out */
+.logout-link {
+  background-color: #ff6666;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.logout-link:hover {
+  background-color: #ff4d4d;
+}
+
+/* لون الزر النشط */
+.custom-nav-link.active {
+  background-color: #c8c9cd;
+  color: #333;
 }

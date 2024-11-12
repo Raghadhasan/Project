@@ -1,62 +1,123 @@
+
+
 <div *ngIf="course">
     <!-- Course Material Upload Section -->
-    <div class="card" style="width: 100%">
-        <div class="card-body">
-            <h5 class="card-title">Welcome to {{ course.coursename }} !</h5>
+    <div class="card shadow-lg" style="width: 100%; border: 1px solid #e0e0e0; border-radius: 0.5rem; box-shadow: 0px 4px 10px rgba(255, 193, 7, 0.5);">
+        <div class="card-body" style="display: grid; gap: 1.5rem; position: relative;">
+            <!-- عنوان بتصميم ترحيبي مميز جدا -->
+            <h5 class="card-title"
+                style="color: #b58900; font-size: 2.2rem; font-weight: bold; text-align: center; background-color: #fff8e1; padding: 1rem 2rem; border-radius: 50px; box-shadow: 0px 8px 15px rgba(255, 193, 7, 0.4); display: inline-block;">
+                <i class="fas fa-smile-beam" style="color: #ffb300; font-size: 2.5rem; margin-right: 0.5rem;"></i>
+                Welcome to {{ course.coursename }}!
+            </h5>
+            <!-- تأثير إضاءة دائري حول العنوان لإبراز التصميم -->
+            <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 120%; height: 120%; background: radial-gradient(circle at center, rgba(255, 229, 100, 0.4), transparent); border-radius: 50px; pointer-events: none;"></div>
+    
             <div *ngIf="course.alltraineefile">
-                <p class="card-text">Download Course Material</p>
-                <a [href]="getFilePath()" target="_blank">Download PDF</a>
+                <p class="card-text" style="color: #343a40; font-size: 1.2rem; font-weight: 600;">
+                    <i class="bi bi-file-earmark-text-fill"></i> Upload Course Material
+                </p>
+                Uncomment below to activate download link
+                <a [href]="getFilePath()" target="_blank" class="btn btn-outline-secondary mt-2" style="font-size: 1.1rem; font-weight: 600;">
+                    <i class="bi bi-download"></i> Download PDF
+                </a>
             </div>
-
-            <div>
-                <label for="courseMaterialUpload">Upload Course Material (PDF)</label>
-                <input type="file" id="courseMaterialUpload" (change)="onCourseMaterialUpload($event)" accept=".pdf" />
+            
+            <div class="mt-4">
+                <label for="courseMaterialUpload" class="form-label fw-semibold text-dark" style="font-size: 1.2rem; font-weight: 600;">
+                    Upload Course Material (PDF)
+                </label>
+                <input type="file" id="courseMaterialUpload" class="form-control" (change)="onCourseMaterialUpload($event)" accept=".pdf" />
             </div>
-        </div>
+            
 
-        <div class="card-footer text-end">
-            <button class="btn btn-primary me-2" (click)="SaveCourseMaterial()">Save</button>
+        <div class="card-footer bg-transparent text-end">
+            <button class="btn btn-success px-4 py-2" (click)="SaveCourseMaterial()">
+                <i class="bi bi-save"></i> Save
+            </button>
         </div>
     </div>
+
+
     <!-- done -->
 
     <!-- Attendance Section -->
-    <div class="card" style="width: 100%" *ngIf="course.sectionstarttime && course.sectionendtime">
-        <div class="card-body">
-            <h5 class="card-title">Attendance</h5>
-            <p class="card-text">The section starts at: {{ course.sectionstarttime | date: 'shortTime' }}<br />
-                The section ends at: {{ course.sectionendtime | date: 'shortTime' }}</p>
-            <button class="btn btn-secondary" (click)="openTakeAttendanceModal(course.tsid)">Take Attendance</button>
+    <div class="card shadow-lg" style="width: 100%; border: 1px solid #e0e0e0; border-radius: 0.8rem; box-shadow: 0px 8px 15px rgba(40, 167, 69, 0.2);">
+        <div class="card-body" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+            <!-- العنوان بتصميم ترحيبي -->
+            <h5 class="card-title"
+                style="color: #28a745; font-size: 2rem; font-weight: bold; text-align: center; background-color: #e6f9ec; padding: 1rem; border-radius: 1.5rem; box-shadow: 0px 4px 10px rgba(40, 167, 69, 0.3); width: fit-content;">
+                <i class="fas fa-calendar-check" style="color: #28a745; margin-right: 0.5rem;"></i> Attendance
+            </h5>
+    
+        
+        <!-- النص بمحاذاة لليسار -->
+        <div style="margin-top: 1.5rem; font-size: 1.3rem; color: #000000; font-weight: 600;">
+            <p style="display: flex; align-items: center; gap: 0.5rem; margin: 0;">
+                <i class="fas fa-clock" style="color: #28a745;"></i>
+                The section starts at: {{ course.sectionstarttime | date: 'shortTime' }}
+            </p>
+            <p style="display: flex; align-items: center; gap: 0.5rem; margin: 0; margin-top: 0.5rem;">
+                <i class="fas fa-clock" style="color: #28a745;"></i>
+                The section ends at: {{ course.sectionendtime | date: 'shortTime' }}
+            </p>
         </div>
-    </div>
-
-    <!-- Assignment  Upload Section -->
-    <div class="card" style="width: 100%">
-        <div class="card-body" style="
-        display: grid;
-    ">
-            <h5 class="card-title">Assignments</h5>
-            <div>
-                <label for="assignmentUpload">Upload Assignment (PDF)</label>
-                <button (click)="openAssignmentModal()">Add Assignments</button>
-            </div>
-        </div>
-    </div>
-    <!-- Exam Upload Section -->
-
-    <div class="card" style="width: 100%">
-        <div class="card-body" style="
-        display: grid;
-    ">
-            <h5 class="card-title">Exams </h5>
-            <div>
-                <label for="examUpload">Upload Exam (PDF)</label>
-                <button (click)="onExamUploadModal()">Add Exam</button>
-            </div>
-
+        
+        
+        <!-- زر الحضور بمحاذاة لليسار -->
+        <div style="text-align: left;">
+            <button class="btn" style="background-color: #28a745; color: white; border: none; padding: 0.5rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 0.3rem; box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);" (click)="openTakeAttendanceModal(course.tsid)">
+                <i class="fas fa-check-circle"></i> Take Attendance
+            </button>
         </div>
     </div>
 </div>
+
+
+    <!-- Assignment  Upload Section -->
+    <div class="card shadow-lg" style="width: 100%; border: 1px solid #e0e0e0; border-radius: 0.5rem;">
+        <div class="card-body" style="display: grid; gap: 1.5rem;">
+            <!-- العنوان بتنسيق مميز بدون خط سفلي -->
+            <h5 class="card-title"
+                style="color: #e91e63; font-size: 1.8rem; font-weight: bold; text-align: center; background-color: #fce4ec; padding: 0.5rem; border-radius: 0.3rem;">
+                <i class="fas fa-tasks"></i> Assignments
+            </h5>
+
+            <!-- محتوى الكارد -->
+            <div style="display: flex; flex-direction: column; align-items: start; gap: 0.8rem;">
+                <label for="assignmentUpload"
+                    style="font-size: 1.2rem; color: #555; font-weight: bold; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-file-pdf" style="color: #e91e63;"></i> Upload Assignment (PDF)
+                </label>
+                <button (click)="openAssignmentModal()"
+                    style="background-color: #e91e63; color: white; font-size: 1rem; padding: 0.5rem 1.2rem; border: none; border-radius: 0.3rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 8px rgba(233, 30, 99, 0.2); transition: transform 0.2s;">
+                    <i class="fas fa-upload"></i> Add Assignments
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exam Upload Section -->
+
+    <div class="card shadow-lg" style="width: 100%; border: 1px solid #e0e0e0; border-radius: 0.5rem;">
+        <div class="card-body" style="display: grid; gap: 1.5rem;">
+            <!-- عنوان Exams بتنسيق جذاب ولون بنفسجي -->
+            <h5 class="card-title text-center" style="color: #6f42c1; font-size: 1.8rem; font-weight: bold; background-color: #f3e5f5; padding: 0.5rem; border-radius: 0.3rem;">
+                <i class="fas fa-file-alt"></i> Exams
+            </h5>
+            
+            <!-- قسم رفع الامتحان -->
+            <div class="text-center">
+                <label for="examUpload" style="font-size: 1.1rem; color: #333; font-weight: bold; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-file-pdf" style="color: #6f42c1;"></i> Upload Exam (PDF)
+                </label>
+                <button (click)="onExamUploadModal()" style="background-color: #6f42c1; color: white; font-size: 1rem; padding: 0.5rem 1.2rem; border: none; border-radius: 0.3rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-upload"></i> Add Exam
+                </button>
+            </div>
+        </div>
+    </div>
+    
 <!-- Modal for uploading multiple assignments -->
 <div *ngIf="isModalOpen" class="modal">
     <div class="modal-content">

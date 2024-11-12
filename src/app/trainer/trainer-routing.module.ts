@@ -5,7 +5,6 @@ import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { CourseComponent } from './course/course.component';
 import { UploadMaterialComponent } from './upload-material/upload-material.component';
 import { UploadAssignmentComponent } from './upload-assignment/upload-assignment.component';
-import { TraineeProfileComponent } from './trainer-profile/trainer-profile.component';
 import {TraineeSolutionsComponent} from './trainee-solutions/trainee-solutions.component';
 import { TraineeMarksComponent } from './trainee-marks/trainee-marks.component';
 
@@ -39,11 +38,12 @@ const routes: Routes = [
         component: TraineeMarksComponent,
 
       },
-      {
-        path: 'trainer-profile',
-        component: TraineeProfileComponent,
+      // {
+      //   path: 'trainer-profile',
+      //   component: Trainerprofilecomponent
 
-      },
+      // },
+      
       {
         path: 'trainee-solutions',
         component: TraineeSolutionsComponent,

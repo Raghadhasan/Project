@@ -1,14 +1,22 @@
-/* src/app/components/profile/profile-display.component.css */
-.profile-display {
+.container {
     max-width: 600px;
-    margin: 0 auto;
-    text-align: right; 
-}
-
-.profile-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-}
+  }
+  
+  .card-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .btn-outline-primary {
+    font-size: 0.9rem;
+  }
+  
+  .form-control {
+    border-radius: 0.5rem;
+  }
+  
+  button[type="submit"] {
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+  }
+  

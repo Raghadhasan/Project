@@ -5,19 +5,12 @@
             <h5 class="card-title">Welcome to {{ course.coursename }} !</h5>
             <div *ngIf="course.alltraineefile">
                 <p class="card-text">Download Course Material</p>
-                <a href="{{ course.alltraineefile }}" download>Download PDF</a>
+                <a [href]="getFilePath()" target="_blank">Download PDF</a>
             </div>
 
             <div>
                 <label for="courseMaterialUpload">Upload Course Material (PDF)</label>
                 <input type="file" id="courseMaterialUpload" (change)="onCourseMaterialUpload($event)" accept=".pdf" />
-            </div>
-
-            <div *ngIf="uploadError" class="alert alert-danger">
-                {{ uploadError }}
-            </div>
-            <div *ngIf="uploadSuccess" class="alert alert-success">
-                {{ uploadSuccess }}
             </div>
         </div>
 
@@ -37,18 +30,25 @@
         </div>
     </div>
 
-    <!-- Assignment and Exam Upload Section -->
+    <!-- Assignment  Upload Section -->
     <div class="card" style="width: 100%">
-        <div class="card-body">
-            <h5 class="card-title">Exams and Assignments</h5>
+        <div class="card-body" style="
+        display: grid;
+    ">
+            <h5 class="card-title">Assignments</h5>
             <div>
                 <label for="assignmentUpload">Upload Assignment (PDF)</label>
                 <button (click)="openAssignmentModal()">Add Assignments</button>
             </div>
-            <!-- <div>
-                <label for="examUpload">Upload Exam (PDF)</label>
-                <input type="file" id="examUpload" (change)="onExamUpload($event)" accept=".pdf" />
-            </div> -->
+        </div>
+    </div>
+    <!-- Exam Upload Section -->
+
+    <div class="card" style="width: 100%">
+        <div class="card-body" style="
+        display: grid;
+    ">
+            <h5 class="card-title">Exams </h5>
             <div>
                 <label for="examUpload">Upload Exam (PDF)</label>
                 <button (click)="onExamUploadModal()">Add Exam</button>
@@ -109,7 +109,6 @@
                         <th>UserId</th>
                         <th>Name</th>
                         <th hidden></th>
-
                         <th>Attend</th>
                     </tr>
                 </thead>
@@ -119,12 +118,11 @@
                         <td>{{ user.userName }}</td>
                         <td hidden>
                             <input type="hidden" [value]="user.seat">
-
                         </td>
                         <td>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" [(ngModel)]="user.status"
-                                    (change)="updateStatus(user)" />
+                                <input class="form-check-input" type="checkbox" [ngModel]="isUserPresent(user)"
+                                    (ngModelChange)="updateStatus(user, $event)" />
                             </div>
                         </td>
                     </tr>
@@ -133,8 +131,9 @@
         </div>
 
         <div class="text-end">
-            <button (click)="saveAttendance()">Save</button>
+            <button (click)="saveAttendance()">Submit Attendance</button>
+            <button (click)="closeModalAttendanceModal()">Cancel</button>
+
         </div>
-        <button (click)="closeModalAttendanceModal()">Cancel</button>
     </div>
 </div>

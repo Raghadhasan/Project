@@ -33,18 +33,18 @@ export class CourseService {
 
   constructor(private http: HttpClient) { }
 
-  // getAllCourses(): Observable<Course[]> {
-  //   return this.http.get<Course[]>(this.baseUrl); // Correct API call
-  // }
-  // getAllUserCourses(): Observable<UserCoursesResponse[]> {
-  //   return;  
-  // }
+  getAllCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(this.baseUrl); // Correct API call
+  }
+
   getAllUserCourses(): Observable<any> {
     let User_Id = localStorage.getItem('User_Id')
 
     return this.http.get<any>(`https://localhost:7276/api/Course/GetCourseByUserId/${User_Id}`)
   }
-  uploadCourseMaterial(TSID: number, formData: FormData): Observable<any> {
-    return this.http.post<any>(`https://localhost:7276/api/Course/UploadCourseMaterial/${TSID}`, formData);
+  uploadCourseMaterial(TSID: number, formData: FormData): Observable<string> {
+    return this.http.post(`https://localhost:7276/api/Course/UploadCourseMaterial/${TSID}`, formData, {
+      responseType: 'text'
+    });
   }
 }

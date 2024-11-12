@@ -5,6 +5,7 @@ import { AssignmentService } from '../services/assignment.service';
 import { saveAs } from 'file-saver';
 import { ExamsectionService } from '../services/examsection.service';
 import { AttendanceService, UserAttendanceDTO } from '../services/attendance.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contentmaterial',
@@ -40,7 +41,7 @@ export class ContentmaterialComponent {
     private assignmentService: AssignmentService,
     private examService: ExamsectionService,
     private attendanceService: AttendanceService,
-
+    private toastr: ToastrService
   ) { }
 
 
@@ -54,53 +55,56 @@ export class ContentmaterialComponent {
     const file = event.target.files[0];
     if (file && file.type === 'application/pdf') {
     } else {
-      alert('Please upload a valid PDF file');
+      this.toastr.error('Please upload a valid PDF file', 'Error');
+
     }
+  }
+  getFilePath() {
+    if (this.course!.alltraineefile) {
+      return this.course!.alltraineefile.replace('D:\\Project\\src\\', '');
+    }
+    return '';
   }
 
 
-
   onCourseMaterialUpload(event: any) {
-    debugger
     const file = event.target.files[0];
     if (file && file.type === 'application/pdf') {
       this.selectedFile = file;
-      this.uploadSuccess = '';
-      this.uploadError = '';
     } else {
-      alert('Please upload a valid PDF file');
+      this.toastr.error('Please upload a valid PDF file', 'Error');
+
     }
   }
 
   SaveCourseMaterial() {
-    debugger
     if (!this.selectedFile) {
-      this.uploadError = 'Please attach a file before saving.';
+      this.toastr.error('Please attach a file before saving.', 'Error');
+
       return;
     }
 
-    // Call the upload API
     this.uploadFile(this.selectedFile);
   }
 
   uploadFile(file: File) {
-    debugger
     const formData = new FormData();
     formData.append('file', file, file.name);
 
-    const TSID = this.course?.tsid || 0; // Assuming TSID is available in the course object
+    const TSID = this.course?.tsid || 0;
 
     this.courseService.uploadCourseMaterial(TSID, formData).subscribe(
-      (response) => {
-        this.uploadSuccess = 'File uploaded successfully!';
-        this.uploadError = '';
-        this.course!.alltraineefile = response.fileUrl;
+      (response: string) => {
+        console.log('File upload response:', response);
+        this.toastr.success(response, 'Success');
+        this.course!.alltraineefile = response;
       },
-      (error) => {
-        this.uploadError = 'Failed to upload the file. Please try again later.';
-        this.uploadSuccess = '';
+      (error: any) => {
+        console.error('Upload error:', error);
+        this.toastr.error('File upload failed!', 'Error');
       }
     );
+
   }
   openAssignmentModal() {
     this.isModalOpen = true;
@@ -134,14 +138,14 @@ export class ContentmaterialComponent {
         this.selectedFiles.push(file);
         this.selectedFilePaths.push(`D:\\FinalProject_(0)\\FinalProject\\src\\assets\\AssignmentFile\\assignmentFile${i}.pdf`);
       } else {
-        alert('Please upload valid PDF files only');
+        this.toastr.error('Please upload valid PDF files only.', 'Error');
+
       }
     }
   }
 
 
   submitAssignments() {
-    debugger
     if (this.trainerCourseId && this.assignmentMark && this.assignmentDuration && this.selectedFilePaths.length > 0) {
       const assignmentData = {
         trainercourse: this.trainerCourseId,
@@ -152,20 +156,23 @@ export class ContentmaterialComponent {
 
       this.assignmentService.submitAssignment(assignmentData).subscribe({
         next: (response) => {
-          this.uploadSuccess = 'Assignments uploaded successfully!';
-          const file = this.selectedFilePaths[0]; // Assuming this is the file object from the input
+          this.toastr.success('Assignments uploaded successfully!', 'Success');
+
+          const file = this.selectedFilePaths[0];
           const fileName = 'assignmentFile.pdf';
           saveAs(file, fileName);
 
           this.closeAssignmentModal();
         },
         error: (error) => {
-          this.uploadError = 'Failed to upload assignments.';
+          this.toastr.error('Failed to upload assignments.', 'Error');
+
           console.error(error);
         }
       });
     } else {
-      alert('Please fill out all fields and select files');
+      this.toastr.error('Please fill out all fields and select files.', 'Error');
+
     }
   }
   submitExam() {
@@ -176,20 +183,19 @@ export class ContentmaterialComponent {
       Examstarttime: this.Examstarttime ? new Date(this.Examstarttime).toISOString() : null,
       Examendtime: this.Examendtime ? new Date(this.Examendtime).toISOString() : null
     };
-    debugger
     this.examService.createExam(examData).subscribe(
       response => {
-        console.log('Exam created successfully:', response);
+        this.toastr.success('Exam created successfully!', 'Success');
+
         this.closeModalExamModal();
       },
       error => {
-        console.error('Error creating exam:', error);
+        this.toastr.error('Error creating exam.', 'Error');
+
       }
     );
   }
-  submitAttendance() {
 
-  }
   closeModalAttendanceModal() {
     this.isModalAttendanceOpen = false;
 
@@ -210,23 +216,34 @@ export class ContentmaterialComponent {
     );
   }
   saveAttendance() {
-    const currentDateTime = new Date();  // Get the current date and time
-    debugger
-    // Loop through the sectionAttendance array and log the data
-    this.sectionAttendance.forEach(user => {
-      const attendanceData = {
-        Seat: user.seat,
-        Tsid: this.course!.tsid,
-        Traineeid: user.userId,
-        Attendancedate: currentDateTime.toISOString(),  // Format as ISO string (e.g., '2024-11-09T14:30:00.000Z')
-        Status: user.status
+    const attendanceData: UserAttendanceDTO[] = this.sectionAttendance.map(user => {
+      return {
+        userId: user.userId,
+        userName: user.userName,
+        seat: user.seat,
+        status: user.status == null ? 'Absent' : user.status,
       };
-      console.log(attendanceData);
     });
+
+    this.attendanceService.submitAttendance(attendanceData).subscribe(
+      response => {
+        this.isModalAttendanceOpen = false;
+        this.toastr.success('Attendance submitted successfully', 'Success');
+      },
+      error => {
+        this.toastr.error('Error submitting attendance.', 'Error');
+      }
+    );
   }
-  updateStatus(user: any) {
-    user.status = user.status == true ? 'Present' : 'Absent';
+
+  isUserPresent(user: any): boolean {
+    return user.status === 'Present';
   }
+
+  updateStatus(user: any, isPresent: boolean): void {
+    user.status = isPresent ? 'Present' : 'Absent';
+  }
+
 }
 
 

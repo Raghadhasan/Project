@@ -13,10 +13,10 @@ import { AttendanceService } from '../services/attendance.service';
   styleUrls: ['./attendance.component.css']
 })
 export class TraineeAttendanceComponent implements OnInit {
-  trainees: {id:number, name: string, solution:string, present:boolean}[] = [
+  trainees: { id: number, name: string, solution: string, present: boolean }[] = [
     { id: 1, name: 'Trainee 1', solution: '', present: false },
     { id: 2, name: 'Trainee 2', solution: '', present: false },
-  
+
   ];
 
   attendanceForm: FormGroup = new FormGroup({
@@ -34,17 +34,17 @@ export class TraineeAttendanceComponent implements OnInit {
     trainee.present = !trainee.present;
   }
 
-  submitAttendance(): void {
+  // submitAttendance(): void {
 
-    this.attendanceService.submitAttendance(this.trainees).subscribe({
-      next: (response: any) => {
-        console.log('Attendance submitted successfully:', response);
-        
-      },
-      error: (error: any) => {
-        console.error('Error submitting attendance:', error);
-        }
-      }
-    );
-  }
+  //   this.attendanceService.submitAttendance(this.trainees).subscribe({
+  //     next: (response: any) => {
+  //       console.log('Attendance submitted successfully:', response);
+
+  //     },
+  //     error: (error: any) => {
+  //       console.error('Error submitting attendance:', error);
+  //       }
+  //     }
+  //   );
+  // }
 }

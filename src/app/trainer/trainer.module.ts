@@ -16,6 +16,7 @@ import {TraineeSolutionsComponent} from './trainee-solutions/trainee-solutions.c
 import {TraineeMarksComponent} from './trainee-marks/trainee-marks.component';
 import {TraineeAttendanceComponent} from './attendance/AttendanceComponent';
 import { ContentmaterialComponent } from './contentmaterial/contentmaterial.component';
+import { ProfileComponent } from './profile/profile.component';
 
 ;
 
@@ -32,7 +33,8 @@ import { ContentmaterialComponent } from './contentmaterial/contentmaterial.comp
     TraineeSolutionsComponent,
     TraineeMarksComponent,
     TraineeAttendanceComponent,
-    ContentmaterialComponent
+    ContentmaterialComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

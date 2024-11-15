@@ -8,6 +8,25 @@ export interface AssignmentSolution {
   solution: string; 
   mark?: any; 
 }
+export class Assignment {
+  asec: number;
+  trainercourse: number;
+  assignmentfile: string;
+  assignmentmark: number;
+  assignmentduration: string;
+  trainercourseNavigation: any;
+  traineeassignmentsolutions: any[];
+
+  constructor(data: any) {
+    this.asec = data.asec;
+    this.trainercourse = data.trainercourse;
+    this.assignmentfile = data.assignmentfile;
+    this.assignmentmark = data.assignmentmark;
+    this.assignmentduration = data.assignmentduration;
+    this.trainercourseNavigation = data.trainercourseNavigation;
+    this.traineeassignmentsolutions = data.traineeassignmentsolutions;
+  }
+}
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +38,10 @@ export class AssignmentService {
 
   getAssignmentSolutions(): Observable<AssignmentSolution[]> {
     return this.http.get<AssignmentSolution[]>(`${this.apiUrl}/GetAssignmentSolutions`);
-  }
+  };
+  GetAllAssignmentByCoursid(Trainercourse : number): Observable<AssignmentSolution[]> {
+    return this.http.get<AssignmentSolution[]>(`${this.apiUrl}/GetAllAssignment?Trainercourse=${Trainercourse}`);
+  };
 
 
   updateMark(solutionId: number, mark: number): Observable<any> {

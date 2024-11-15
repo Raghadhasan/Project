@@ -1,0 +1,104 @@
+/* تصميم النافبار */
+.header {
+    background-color: #fdf3e3; /* خلفية كريمية */
+    color: #6d4c41; /* لون النص عسلي */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo span {
+    color: #a67c52; /* لون النص للعنوان الرئيسي */
+    font-weight: bold;
+  }
+  
+  .toggle-sidebar-btn {
+    color: #6d4c41; /* لون الزر لتوافق مع الألوان */
+  }
+  
+  .search-bar input[type="text"] {
+    background-color: #f5e4d3; /* خلفية كريمية خفيفة */
+    border: 1px solid #d3c4aa;
+    color: #6d4c41;
+  }
+  
+  .search-bar button {
+    background-color: #a67c52; /* زر البحث بلون عسلي */
+    color: #fff;
+  }
+  
+  .search-bar button:hover {
+    background-color: #8b5e3c; /* لون أغمق عند التمرير */
+  }
+  
+  /* تصميم أيقونات التنبيهات والرسائل */
+  .header-nav .nav-link.nav-icon {
+    color: #6d4c41; /* لون عسلي للأيقونات */
+  }
+  
+  .header-nav .nav-link.nav-icon:hover {
+    color: #a67c52; /* لون أغمق عند التمرير */
+  }
+  
+  .header-nav .badge {
+    background-color: #b58663; /* لون عسلي للبادجات */
+    color: #fff;
+  }
+  
+  /* تصميم القائمة المنسدلة للتنبيهات والرسائل */
+  .dropdown-menu.notifications,
+  .dropdown-menu.messages {
+    background-color: #fdf3e3; /* خلفية كريمية للقائمة */
+    border-color: #d3c4aa;
+    color: #6d4c41;
+  }
+  
+  .dropdown-menu .dropdown-header,
+  .dropdown-menu .dropdown-footer a {
+    color: #a67c52; /* لون النص في العناوين والفوتر */
+  }
+  
+  .dropdown-menu .notification-item i,
+  .dropdown-menu .message-item img {
+    color: #a67c52; /* لون الأيقونات والصور داخل القوائم */
+  }
+  
+  /* تصميم الروابط في القائمة المنسدلة */
+  .dropdown-menu .dropdown-item {
+    color: #6d4c41;
+  }
+  
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #e6d9c3; /* لون كريمي أغمق عند التمرير */
+    color: #a67c52;
+  }
+  
+  /* تصميم زر الملف الشخصي */
+  .nav-profile img {
+    border: 2px solid #a67c52; /* حد للصورة بلون عسلي */
+  }
+  
+  .nav-profile span {
+    color: #6d4c41;
+  }
+  
+  /* تصميم القائمة المنسدلة للملف الشخصي */
+  .profile .dropdown-header {
+    color: #6d4c41;
+  }
+  
+  .profile .dropdown-item i {
+    color: #a67c52;
+  }
+  
+  .profile .dropdown-item:hover {
+    background-color: #e6d9c3;
+    color: #a67c52;
+  }
+  
+  nav.mt-3 {
+    background-color:#fbd9c3; /* خلفية كريمية */
+    color: #6d4c41; /* لون نص عسلي */
+    padding: 1rem;
+    border-radius: 0.5rem; /* يمكنك تعديل الزوايا إذا أردت */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* ظل خفيف لإبراز التصميم */
+  }
+  

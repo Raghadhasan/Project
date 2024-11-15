@@ -14,7 +14,9 @@ import { ExcelesheetComponent } from './excelesheet/excelesheet.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { trainerRoutingModule } from './trainer/trainer-routing.module';
 import { AdminRoutingModule } from './admin/admin-routing.module';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatOptionModule } from '@angular/material/core';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
     AdminRoutingModule,
     BrowserAnimationsModule,
     trainerRoutingModule,
-    ToastrModule.forRoot(  
+    MatCardModule,
+    ToastrModule.forRoot(
+
  
     ),
     ReactiveFormsModule,

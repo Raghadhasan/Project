@@ -1,54 +1,34 @@
-/* aside {
-  overflow: hidden;
-}
-
-.sidebar {
-  background: #343a40 !important;
-}
-
-.nav-link {
-  display: flex;
-  gap: 12px;
-  font-size: 18px;
-  align-items: center;
-} */
-
-/* تنسيقات السايد بار */
-/* تنسيق Sidebar */
-/* تصميم الخلفية للـ Sidebar */
-/* خلفية السايد بار */
-/* تعديل العنوان Brand Link */
-/* خلفية السايد بار */
-/* تعديل السايد بار */
+/* تصميم السايد بار */
+/* تصميم السايد بار */
 .custom-sidebar {
-  background-color: #214bdf; /* خلفية زرقاء فاتحة */
-  color: #333333; /* لون نص غامق */
+  background: linear-gradient(135deg, #fdf3e3, #f5e4d3) !important; /* خلفية كريمية متدرجة */
+  color: #6d4c41 !important; /* لون نص عسلي */
   width: 250px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border-right: 1px solid #dddddd;
-  padding-top: 1rem; /* تباعد علوي لجعل التصميم متنفس */
+  border-right: 1px solid #d3c4aa; /* لون كريمي أغمق قليلاً للحدود */
+  padding-top: 1rem;
+  min-height: 100vh; /* لضمان تغطية السايدبار بالكامل */
 }
-
 
 /* تصميم شعار العلامة */
 .brand-link {
-  background-color: rgb(43, 64, 226);
-  color: #f4f5f7;
+  background-color: #a67c52; /* لون عسلي غامق */
+  color: #fff;
   font-size: 1.3rem;
   font-weight: bold;
   padding: 1.2rem 0;
   text-align: center;
   letter-spacing: 1px;
-  margin-bottom: -4rem;/* زيادة التباعد أسفل العنوان */
+  margin-bottom: -4rem;
 }
 
 /* تصميم روابط القائمة */
 .custom-nav-link {
-  color: #555;
-  background-color: #e7e8ec; /* لون خلفية الزر */
-  margin: 0.4rem 0; /* المسافة بين الأزرار */
+  color: #6d4c41; /* لون نص عسلي */
+  background-color: #f0e2c9; /* لون خلفية كريمية أفتح قليلاً */
+  margin: 0.4rem 0;
   padding: 0.8rem 1.2rem;
-  border-radius: 0.6rem; /* زوايا دائرية خفيفة */
+  border-radius: 0.6rem;
   transition: all 0.3s;
   display: flex;
   align-items: center;
@@ -56,36 +36,42 @@
 }
 
 .custom-nav-link:hover {
-  background-color: #d4d5da;
-  color: #000;
-  transform: scale(1.05); /* تأثير تكبير خفيف */
+  background-color: #e0d3b8; /* لون كريمي أغمق قليلاً عند التمرير */
+  color: #a67c52; /* لون نص عسلي غامق */
+  transform: scale(1.05);
 }
 
 /* تصميم الأيقونات */
 .nav-icon {
   font-size: 1.3rem;
   margin-right: 0.8rem;
-  color: #666;
+  color: #a67c52; /* لون عسلي للأيقونات */
 }
 
-/* لون النص داخل الأزرار */
+/* لون النص داخل الروابط */
 .links_name {
   font-size: 1.1rem;
+  color: #6d4c41; /* لون نص عسلي */
 }
 
 /* تصميم زر Log Out */
 .logout-link {
-  background-color: #ff6666;
+  background: linear-gradient(135deg, #b58663, #c69b76); /* تدرج عسلي فاتح */
   color: #fff;
   margin-top: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.6rem;
+  text-align: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .logout-link:hover {
-  background-color: #ff4d4d;
+  background: linear-gradient(135deg, #a67c52, #8b5e3c); /* لون عسلي أغمق عند التمرير */
+  box-shadow: 0px 8px 18px rgba(166, 124, 82, 0.5);
 }
 
-/* لون الزر النشط */
+/* لون الرابط النشط */
 .custom-nav-link.active {
-  background-color: #c8c9cd;
-  color: #333;
+  background-color: #e0d3b8; /* لون كريمي أغمق */
+  color: #6d4c41; /* لون نص عسلي غامق */
 }

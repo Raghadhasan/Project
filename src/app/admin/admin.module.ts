@@ -6,6 +6,7 @@ import { DashbordComponent } from './dashbord/dashbord.component';
 import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { SharedModule } from '../shared/shared.module';
+import { SectionComponent } from './section/section.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SharedModule } from '../shared/shared.module';
     SidebarComponent,
     DashbordComponent,
     ManageCourseComponent,
-    CreateCourseComponent
+    CreateCourseComponent,
+    SectionComponent
    
   ],
   imports: [

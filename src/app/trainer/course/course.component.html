@@ -9,7 +9,13 @@
               <div class="col-md-4 col-lg-4 col-xl-4 mb-4" *ngFor="let course of userCourses">
                 <div class="card h-100">
                   <div class="card-header d-flex align-items-center">
-                    <div class="rounded-circle bg-secondary me-3" style="width: 40px; height: 40px"></div>
+                    <div class="rounded-circle bg-secondary me-3">
+                      <img [src]="'assets/Images/' + course.courseimage" alt="" style="
+                      width: 50px;
+                      height: 50px;
+                      border-radius: 50%;
+                      ">
+                    </div>
                     <div>
                       <div>{{ course.coursename }}</div>
                       <a href="{{course.sectionlink}}" target="_blank">
@@ -41,6 +47,10 @@
     </div>
   </div>
 </div>
+
+
+
+
 <!-- <div *ngIf="!showContent">
   <div class="container-fluid">
     <div class="row justify-content-start">

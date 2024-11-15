@@ -1,0 +1,46 @@
+<div class="container">
+    <button mat-button color="primary" (click)="openCreateCourseDialog()">Create New Course</button>
+    <input type="text"  placeholder="Filter Courses"> 
+  
+    <div class="course-list">
+      <h3>All Courses</h3>
+      <ul>
+        <li *ngFor="let course of filteredCourses">
+          {{ course.coursename }}
+          <button mat-button color="primary" (click)="openCreateSectionDialog(course)">Add Section</button>
+          <button mat-button color="accent" (click)="openSectionsDialog(course)">View Sections</button>
+        </li>
+      </ul>
+    </div>
+  
+    <!-- نموذج إنشاء دورة جديدة -->
+    <ng-template #createCourseDialog>
+      <h2 mat-dialog-title>Create New Course</h2>
+      <mat-dialog-content class="mat-typography">
+        <form [formGroup]="courseForm">
+          <mat-form-field>
+            <mat-label>Course Name</mat-label>
+            <input type="text" matInput formControlName="coursename">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Price</mat-label>
+            <input type="number" matInput formControlName="price">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Start Date</mat-label>
+            <input type="date" matInput formControlName="startDate">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>End Date</mat-label>
+            <input type="date" matInput formControlName="endDate">
+          </mat-form-field><input type="file" formControlName="imagename" (change)="onImageChange($event)">
+
+        </form>
+      </mat-dialog-content>
+      <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button (click)="saveCourse()">Save</button>
+      </mat-dialog-actions>
+    </ng-template>
+  </div>
+  

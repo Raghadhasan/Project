@@ -5,8 +5,9 @@ import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { CourseComponent } from './course/course.component';
 import { UploadMaterialComponent } from './upload-material/upload-material.component';
 import { UploadAssignmentComponent } from './upload-assignment/upload-assignment.component';
-import {TraineeSolutionsComponent} from './trainee-solutions/trainee-solutions.component';
+import { TraineeSolutionsComponent } from './trainee-solutions/trainee-solutions.component';
 import { TraineeMarksComponent } from './trainee-marks/trainee-marks.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,14 @@ const routes: Routes = [
         path: 'courses',
         component: ManageCourseComponent,
       },
+
+
+      {
+        path: '',
+        component: CourseComponent,
+      },
+
+
       {
         path: 'my-courses',
         component: CourseComponent,
@@ -38,12 +47,10 @@ const routes: Routes = [
         component: TraineeMarksComponent,
 
       },
-      // {
-      //   path: 'trainer-profile',
-      //   component: Trainerprofilecomponent
-
-      // },
-      
+      {
+        path: 'profile/:id',
+        component: ProfileComponent
+      },
       {
         path: 'trainee-solutions',
         component: TraineeSolutionsComponent,

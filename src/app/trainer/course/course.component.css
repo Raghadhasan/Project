@@ -1,0 +1,38 @@
+/* رأس البطاقة بلون أزرق مختلف */
+.card-header {
+  background-color: #007acc;
+  /* لون أزرق غامق */
+  color: #ffffff;
+  font-weight: bold;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 12px 20px;
+  font-size: 1.2rem;
+}
+
+/* تصميم الزر الرئيسي بلون أزرق مختلف */
+.btn-primary {
+  background: linear-gradient(135deg, #005ea6, #006fbf);
+  /* تدرج أزرق غامق */
+  color: #fff;
+  border: none;
+  padding: 10px 25px;
+  font-size: 1rem;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #004b8c, #005e99);
+  /* لون أزرق غامق أكثر عند التمرير */
+  box-shadow: 0px 8px 18px rgba(0, 94, 166, 0.5);
+}
+
+/* نصوص البطاقة */
+.card-body {
+  font-size: 1rem;
+  color: #005074;
+  /* لون أزرق داكن للنص */
+  padding: 15px 20px;
+  line-height: 1.6;
+}

@@ -44,13 +44,11 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['trainer/dashboard']).then(() => {
                 window.location.reload();
               });
-              // this.router.navigate(['trainer/dashboard']);
             }
             else if (decodedToken.Role === '3') { // trinaee
               this.router.navigate(['trainee/dashboard']).then(() => {
                 window.location.reload();
               });
-              // this.router.navigate(['trainee/dashboard']);
             }
 
 

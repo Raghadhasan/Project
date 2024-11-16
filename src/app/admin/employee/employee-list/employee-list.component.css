@@ -1,0 +1,28 @@
+#BodyDashBorademp {
+    width: 125%;
+    position: relative;
+    left: 18.1rem;
+    bottom: 29.2rem;
+}
+
+.dialog-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.form-field {
+    flex: 1 1 45%;
+}
+
+@media (max-width: 600px) {
+    .form-field {
+        flex: 1 1 100%;
+    }
+}

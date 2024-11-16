@@ -17,11 +17,24 @@ export class ManageCourseComponent implements OnInit {
   @ViewChild('callDeleteDailog') deleteDailog !: TemplateRef<any>;
   @ViewChild('callupdateDailog') updateDailog !: TemplateRef<any>;
   courseid: number | undefined;
-  constructor(public home: HomeService, public dialog: MatDialog) { }
+  sortBy: string = 'courseid'; 
+  sortOrder: 'asc' | 'desc' = 'asc'; 
+  searchTerm: string = '';
+
+  constructor(public home: HomeService, public dialog: MatDialog) {}
+
   ngOnInit(): void {
     this.home.getAllCourses();
   }
 
+  onSortChange(sortBy: string): void {
+    if (this.sortBy === sortBy) {
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortBy = sortBy;
+      this.sortOrder = 'asc';
+    }
+  }
 
   openDeleteDailog(id: any) {
     console.log(id);

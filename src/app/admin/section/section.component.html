@@ -38,90 +38,122 @@
                                             New</button>
                                         <tr>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1" style="padding: 20px;">Course Id</h2>
+                                                <h2 class="fw-semibold mb-1" style="padding: 20px;">TS ID</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Trainer Name</h2>
                                             </th>
                                             <th class="border-bottom-0">
                                                 <h2 class="fw-semibold mb-1">Course Name</h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">Course StartTime</h2>
+                                                <h2 class="fw-semibold mb-1">Section link </h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">Course EndTime </h2>
+                                                <h2 class="fw-semibold mb-1">Section Start Time</h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">Image</h2>
+                                                <h2 class="fw-semibold mb-1">Section End Time</h2>
+                                            </th>
+
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Actions</h2>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let obj of sectionService.TrainerSections">
-                                            <td>{{obj.courseid}}"</td>
-                                            <td>{{obj.coursename}}</td>
-                                            <td>{{obj.coursestartdate|date}}</td>
-                                            <td>{{obj.courseenddate|date}}</td>
-                                            <td><img src="../../../assets/Images/{{obj.courseimage}}"
-                                                    alt="{{ obj.courseimage }}" style="width: 100px; height: auto;" />
+                                            <td>{{ obj.tsid }}</td>
+                                            <td hidden>{{ obj.courseid }}</td>
+                                            <td hidden>{{ obj.userid }}</td>
+                                            <td>{{ obj.username }}</td>
+                                            <td>{{ obj.coursename }}</td>
+                                            <td>
+                                                <button mat-button color="accent"
+                                                    (click)="openLink(obj.sectionlink)">Open Link</button>
                                             </td>
+                                            <td>{{ obj.sectionstarttime | date }}</td>
+                                            <td>{{ obj.sectionendtime | date }}</td>
+
                                             <td>
                                                 <button mat-button color="warn"
-                                                    (click)="openDeleteDailog(obj.courseid)">Delete</button>
+                                                (click)="openDeleteDailog(obj.tsid)">Section details</button>
+                                                <button mat-button color="warn"
+                                                    (click)="openDeleteDailog(obj.tsid)">Delete</button>
                                                 <button mat-button color="primary"
                                                     (click)="openUpdateDailog(obj)">Update</button>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <ng-template #callcreateDailog>
-                <h2 mat-dialog-title>Create Trainer Section </h2>
-                <mat-dialog-content class="mat-typography">
-                    <form [formGroup]="sectionForm">
-                        <div class="example-container">
-                            <mat-form-field>
-                                <mat-label>Course Name</mat-label>
+                <div class="dialog-container">
+                    <h2 mat-dialog-title class="dialog-title">Create Trainer Section</h2>
+                    <mat-dialog-content class="mat-typography">
+                        <form [formGroup]="sectionForm" class="form-horizontal">
+                            <!-- Row 1: Section Name and Trainer -->
+                            <div class="form-row">
+                                <mat-form-field class="form-field">
+                                    <mat-label>Select from Courses</mat-label>
+                                    <select matNativeControl formControlName="courseid">
+                                        <option value="0" disabled selected>-- Please Select --</option>
+                                        <option *ngFor="let course of courses" [value]="course.courseid">
+                                            {{ course.coursename }}
+                                        </option>
+                                    </select>
+                                </mat-form-field>
 
-                                <select class="form-control" formControlName="courseid">
-                                    <option *ngFor="let course of courses" [value]="course.courseid">{{
-                                        course.coursename }}</option>
-                                </select>
-                            </mat-form-field>
-                        </div>
-                        <div class="example-container">
-                            <mat-form-field>
-                                <mat-label>Trainer Name</mat-label>
+                                <mat-form-field class="form-field">
+                                    <mat-label>Select Trainer</mat-label>
+                                    <select matNativeControl formControlName="userid">
+                                        <option value="0" disabled selected>-- Please Select --</option>
+                                        <option *ngFor="let trainer of trainers" [value]="trainer.userid">
+                                            {{ trainer.username }}
+                                        </option>
+                                    </select>
+                                </mat-form-field>
+                            </div>
 
-                                <select class="form-control" formControlName="userid">
-                                    <option *ngFor="let trainer of trainers" [value]="trainer.userid">{{
-                                        trainer.username }}</option>
-                                </select>
-                            </mat-form-field>
-                        </div>
-                        <div class="example-container">
-                            <mat-form-field>
-                                <mat-label>Section Start Time</mat-label>
-                                <input type="date" matInput formControlName="sectionstarttime"
-                                    [(ngModel)]="pData.sectionstarttime">
-                            </mat-form-field>
-                        </div>
-                        <div class="example-container">
-                            <mat-form-field>
-                                <mat-label>Section End Time</mat-label>
-                                <input type="date" matInput formControlName="sectionendtime"
-                                    [(ngModel)]="pData.sectionendtime">
-                            </mat-form-field>
-                        </div>
-                    </form>
-                </mat-dialog-content>
-                <mat-dialog-actions align="end">
-                    <button mat-button mat-dialog-close>Cancel</button>
-                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
-                </mat-dialog-actions>
+                            <!-- Row 2: Meeting Link -->
+                            <div class="form-row">
+                                <mat-form-field class="form-field full-width">
+                                    <mat-label>Meeting Link</mat-label>
+                                    <input matInput type="text" formControlName="sectionlink"
+                                        [(ngModel)]="pData.sectionlink" />
+                                </mat-form-field>
+                            </div>
+
+                            <!-- Row 3: Start Time and End Time -->
+                            <div class="form-row">
+                                <mat-form-field class="form-field">
+                                    <mat-label>Section Start Time</mat-label>
+                                    <input matInput type="date" formControlName="sectionstarttime"
+                                        [(ngModel)]="pData.sectionstarttime" />
+                                </mat-form-field>
+
+                                <mat-form-field class="form-field">
+                                    <mat-label>Section End Time</mat-label>
+                                    <input matInput type="date" formControlName="sectionendtime"
+                                        [(ngModel)]="pData.sectionendtime" />
+                                </mat-form-field>
+                            </div>
+                        </form>
+                    </mat-dialog-content>
+
+                    <mat-dialog-actions align="end" class="dialog-actions">
+                        <button mat-button mat-dialog-close class="btn-cancel">Cancel</button>
+                        <button mat-raised-button color="primary" [mat-dialog-close]="true"
+                            (click)="save()">Save</button>
+                    </mat-dialog-actions>
+                </div>
             </ng-template>
+
             <ng-template #callDeleteDailog>
                 <h1 mat-dialog-title>Delete Course</h1>
                 <div mat-dialog-content>Are you sure you went to delete this item ? </div>
@@ -133,41 +165,55 @@
             <ng-template #callupdateDailog>
                 <h2 mat-dialog-title>Update Course</h2>
                 <mat-dialog-content class="mat-typography">
-                    <form [formGroup]="updateCourse">
+                    <form [formGroup]="updateCourse" class="form-horizontal">
                         <div class="example-container">
-                            <mat-form-field>
-                                <mat-label>Course Name</mat-label>
-                                <input type="text" matInput formControlName="coursename" required
-                                    [(ngModel)]="pData.coursename">
-                                <mat-error *ngIf="updateCourse.controls['coursename'].hasError('required')">
-                                    Course name is required
-                                </mat-error>
+                            <mat-form-field class="form-field">
+                                <mat-label>Select from Courses</mat-label>
+                                <select matNativeControl formControlName="courseid">
+                                    <option value="0" disabled selected>-- Please Select --</option>
+                                    <option *ngFor="let course of courses" [value]="course.courseid">
+                                        {{ course.coursename }}
+                                    </option>
+                                </select>
+                                <input type="hidden" formControlName="tsid">
+                            </mat-form-field>
+
+                            <mat-form-field class="form-field">
+                                <mat-label>Select Trainer</mat-label>
+                                <select matNativeControl formControlName="userid">
+                                    <option value="0" disabled selected>-- Please Select --</option>
+                                    <option *ngFor="let trainer of trainers" [value]="trainer.userid">
+                                        {{ trainer.username }}
+                                    </option>
+                                </select>
                             </mat-form-field>
                         </div>
-                        <div class="example-container">
-                            <mat-form-field>
-                                <mat-label>Course StartTime</mat-label>
-                                <input type="date" matInput formControlName="coursestartdate"
-                                    [(ngModel)]="pData.coursestartdate ">
+
+                        <div class="form-row">
+                            <mat-form-field class="form-field full-width">
+                                <mat-label>Meeting Link</mat-label>
+                                <input matInput type="text" formControlName="sectionlink" />
                             </mat-form-field>
                         </div>
-                        <div class="example-container">
-                            <mat-form-field>
-                                <mat-label>Course EndTime</mat-label>
-                                <input type="date" matInput formControlName="courseenddate"
-                                    [(ngModel)]="pData.courseenddate">
+
+
+                        <div class="form-row">
+                            <mat-form-field class="form-field">
+                                <mat-label>Section Start Time</mat-label>
+                                <input matInput type="date" formControlName="sectionstarttime" />
                             </mat-form-field>
-                        </div>
-                        <div class="example-container">
-                            <mat-label>Course Image</mat-label>
-                            <input type="file" #file formControleName="courseimage" (change)="uploadImage(file.files)">
+
+                            <mat-form-field class="form-field">
+                                <mat-label>Section End Time</mat-label>
+                                <input matInput type="date" formControlName="sectionendtime" />
+                            </mat-form-field>
                         </div>
                     </form>
-
                 </mat-dialog-content>
+
                 <mat-dialog-actions align="end">
                     <button mat-button mat-dialog-close>Cancel</button>
-                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="ExecUpdate()">Save</button>
                 </mat-dialog-actions>
             </ng-template>
         </div>

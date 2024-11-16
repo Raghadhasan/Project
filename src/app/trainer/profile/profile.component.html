@@ -21,15 +21,33 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <label class="labels">Email ID</label>
+                            <label class="labels">Email</label>
                             <input type="text" class="form-control" placeholder="Enter email id"
                                 formControlName="userEmail" />
                         </div>
                     </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="labels">Password</label>
+                            <div class="input-group">
+                                <input [type]="passwordVisible ? 'text' : 'password'" class="form-control"
+                                    placeholder="Enter password" formControlName="passwordd" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        (click)="togglePasswordVisibility()">
+                                        <i [class]="passwordVisible ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <label class="labels">Phone Number</label>
-                            <input type="text" class="form-control" placeholder="Enter phone number" formControlName="phone" />
+                            <input type="text" class="form-control" placeholder="Enter phone number"
+                                formControlName="phone" />
                         </div>
                     </div>
                     <div class="row mt-3">

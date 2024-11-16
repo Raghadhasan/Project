@@ -32,22 +32,48 @@
                         <div class="card-body p-4">
                             <h5 class="card-title fw-semibold mb-4">All Course</h5>
                             <div class="table-responsive">
+                                <input type="text" [(ngModel)]="searchTerm" placeholder="Search courses..." />
+
                                 <table class="table text-nowrap mb-0 align-middle">
                                     <thead class="text-dark fs-4">
                                         <button mat-button color="primary" (click)="openCreateDailog()">Create
                                             New</button>
                                         <tr>
-                                            <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1" style="padding: 20px;">Course Id</h2>
+                                            <th class="border-bottom-0" (click)="onSortChange('courseid')">
+                                                <h2 class="fw-semibold mb-1" style="padding: 20px;">
+                                                    Course Id
+                                                    <mat-icon
+                                                        *ngIf="sortBy === 'courseid' && sortOrder === 'asc'">arrow_upward</mat-icon>
+                                                    <mat-icon
+                                                        *ngIf="sortBy === 'courseid' && sortOrder === 'desc'">arrow_downward</mat-icon>
+                                                </h2>
                                             </th>
-                                            <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">Course Name</h2>
+                                            <th class="border-bottom-0" (click)="onSortChange('coursename')">
+                                                <h2 class="fw-semibold mb-1">
+                                                    Course Name
+                                                    <mat-icon
+                                                        *ngIf="sortBy === 'coursename' && sortOrder === 'asc'">arrow_upward</mat-icon>
+                                                    <mat-icon
+                                                        *ngIf="sortBy === 'coursename' && sortOrder === 'desc'">arrow_downward</mat-icon>
+                                                </h2>
                                             </th>
-                                            <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">Course StartTime</h2>
+                                            <th class="border-bottom-0" (click)="onSortChange('coursestartdate')">
+                                                <h2 class="fw-semibold mb-1">
+                                                    Course StartTime
+                                                    <mat-icon
+                                                        *ngIf="sortBy === 'coursestartdate' && sortOrder === 'asc'">arrow_upward</mat-icon>
+                                                    <mat-icon
+                                                        *ngIf="sortBy === 'coursestartdate' && sortOrder === 'desc'">arrow_downward</mat-icon>
+                                                </h2>
                                             </th>
-                                            <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">Course EndTime </h2>
+                                            <th class="border-bottom-0" (click)="onSortChange('courseenddate')">
+                                                <h2 class="fw-semibold mb-1">
+                                                    Course EndTime
+                                                    <mat-icon
+                                                        *ngIf="sortBy === 'courseenddate' && sortOrder === 'asc'">arrow_upward</mat-icon>
+                                                    <mat-icon
+                                                        *ngIf="sortBy === 'courseenddate' && sortOrder === 'desc'">arrow_downward</mat-icon>
+                                                </h2>
                                             </th>
                                             <th class="border-bottom-0">
                                                 <h2 class="fw-semibold mb-1">Image</h2>
@@ -55,13 +81,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let obj of home.Courses">
-                                            <td>{{obj.courseid}}"</td>
-                                            <td>{{obj.coursename}}</td>
-                                            <td>{{obj.coursestartdate|date}}</td>
-                                            <td>{{obj.courseenddate|date}}</td>
-                                            <td><img src="../../../assets/Images/{{obj.courseimage}}"
-                                                    alt="{{ obj.courseimage }}" style="width: 100px; height: auto;" />
+                                        <tr *ngFor="let obj of home.Courses | courseFilter:searchTerm:sortBy:sortOrder">
+                                            <td>{{ obj.courseid }}</td>
+                                            <td>{{ obj.coursename }}</td>
+                                            <td>{{ obj.coursestartdate | date }}</td>
+                                            <td>{{ obj.courseenddate | date }}</td>
+                                            <td><img src="../../../assets/Images/{{ obj.courseimage }}"
+                                                    alt="{{ obj.courseimage }}" width="50" height="50" loading="lazy" />
                                             </td>
                                             <td>
                                                 <button mat-button color="warn"
@@ -72,6 +98,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>

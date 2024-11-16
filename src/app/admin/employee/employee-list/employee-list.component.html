@@ -1,0 +1,201 @@
+<app-sidebar></app-sidebar>
+
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+            <img src="../../../assets/img/logo.png" alt="">
+            <span class="d-none d-lg-block">NiceAdmin</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div>
+    <div class="search-bar">
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
+            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+    </div>
+</header>
+
+<div id="BodyDashBorademp">
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <div class="container-fluid" style="padding-top: 525px;">
+            <div class="row">
+                <div class="col-lg-4 d-flex align-items-stretch"></div>
+
+                <div class="col-lg-8 d-flex align-items-stretch" style="margin-right:200px;">
+                    <div class="card w-100">
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-semibold mb-4">All Employees</h5>
+                            <div class="table-responsive">
+                                <button mat-raised-button color="primary"
+                                    (click)="openCreateEmpDialog(callcreateDailog)">
+                                    Add Employee
+                                </button>
+                                <table class="table text-nowrap mb-0 align-middle">
+                                    <thead class="text-dark fs-4">
+                                        <tr>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">USERID</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">USER NAME</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">ADDRESS</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">GENDER</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">COUNTRY</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">PHONE</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">USEREMAIL</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Action</h2>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let employee of employees">
+                                            <td>{{ employee.userid }}</td>
+                                            <td>{{ employee.username }}</td>
+                                            <td>{{ employee.addres }}</td>
+                                            <td>{{ employee.gender }}</td>
+                                            <td>{{ employee.country }}</td>
+                                            <td>{{ employee.phone }}</td>
+                                            <td>{{ employee.useremail }}</td>
+                                            <td> <button
+                                                    (click)="openUpdateEmpDialog(callUpdateDialog, employee)">Update</button>
+                                                <button (click)="deleteEmployee(employee.userid)">Delete</button>
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <ng-template #callcreateDailog>
+                <div class="dialog-container">
+                    <h2 mat-dialog-title class="dialog-title">Create Employee</h2>
+                    <mat-dialog-content class="mat-typography">
+                        <form [formGroup]="employeeForm" class="form-horizontal">
+                            <div class="form-row">
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>User Name</mat-label>
+                                    <input matInput type="text" formControlName="username"
+                                        placeholder="Enter User Name" />
+                                </mat-form-field>
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>Phone</mat-label>
+                                    <input matInput type="tel" formControlName="phone"
+                                        placeholder="Enter Phone Number" />
+                                </mat-form-field>
+                            </div>
+                            <div class="form-row">
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>Address</mat-label>
+                                    <textarea matInput formControlName="addres" placeholder="Enter Address"></textarea>
+                                </mat-form-field>
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>User Email</mat-label>
+                                    <input matInput type="email" formControlName="useremail"
+                                        placeholder="Enter User Email" />
+                                </mat-form-field>
+                            </div>
+                            <div class="form-row">
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>Gender</mat-label>
+                                    <select matNativeControl formControlName="gender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </mat-form-field>
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>Country</mat-label>
+                                    <input matInput type="tel" formControlName="country" placeholder="Enter Country" />
+                                </mat-form-field>
+                            </div>
+                        </form>
+                    </mat-dialog-content>
+                    <mat-dialog-actions align="end" class="dialog-actions">
+                        <button mat-button mat-dialog-close class="btn-cancel">Cancel</button>
+                        <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="saveEmployee()">
+                            Save
+                        </button>
+                    </mat-dialog-actions>
+                </div>
+            </ng-template>
+            <ng-template #callUpdateDialog>
+                <div class="dialog-container">
+                    <h2 mat-dialog-title class="dialog-title">Update Employee</h2>
+                    <mat-dialog-content class="mat-typography">
+                        <form [formGroup]="employeeForm" class="form-horizontal">
+                            <div class="form-row">
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>User Name</mat-label>
+                                    <input matInput type="text" formControlName="username"
+                                        placeholder="Enter User Name" />
+                                </mat-form-field>
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>Phone</mat-label>
+                                    <input matInput type="tel" formControlName="phone"
+                                        placeholder="Enter Phone Number" />
+                                </mat-form-field>
+                            </div>
+                            <div class="form-row">
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>Address</mat-label>
+                                    <textarea matInput formControlName="addres" placeholder="Enter Address"></textarea>
+                                </mat-form-field>
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>User Email</mat-label>
+                                    <input matInput type="email" formControlName="useremail"
+                                        placeholder="Enter User Email" />
+                                </mat-form-field>
+                            </div>
+                            <div class="form-row">
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>Gender</mat-label>
+                                    <select matNativeControl formControlName="gender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </mat-form-field>
+                                <mat-form-field class="form-field flex-item">
+                                    <mat-label>Country</mat-label>
+                                    <input matInput type="tel" formControlName="country" placeholder="Enter Country" />
+                                </mat-form-field>
+                            </div>
+                        </form>
+                    </mat-dialog-content>
+                    <mat-dialog-actions align="end" class="dialog-actions">
+                        <button mat-button mat-dialog-close class="btn-cancel">Cancel</button>
+                        <button mat-raised-button color="primary" [mat-dialog-close]="true" (click)="updateEmployee()">
+                            Save Changes
+                        </button>
+                    </mat-dialog-actions>
+                </div>
+            </ng-template>
+            <ng-template #callDeleteDailog>
+                <h1 mat-dialog-title>Delete Employee</h1>
+                <div mat-dialog-content>Are you sure you went to delete this Employee ? </div>
+                <div mat-dialog-actions>
+                    <button mat-button mat-dialog-close="yes">Yes</button>
+                    <button mat-button mat-dialog-close="No">No</button>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

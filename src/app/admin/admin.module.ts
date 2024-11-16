@@ -7,6 +7,11 @@ import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
 import { SharedModule } from '../shared/shared.module';
 import { SectionComponent } from './section/section.component';
+import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
+import { CourseFilterPipe } from '../Pipe/course-filter-pipe-.pipe';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { ProfileComponent } from './profile/profile/profile.component';
 
 
 @NgModule({
@@ -15,14 +20,19 @@ import { SectionComponent } from './section/section.component';
     DashbordComponent,
     ManageCourseComponent,
     CreateCourseComponent,
-    SectionComponent
-   
+    SectionComponent,
+    EmployeeListComponent,
+    CourseFilterPipe,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-   SharedModule
-  
+    SharedModule,
+    FormsModule,
+    MatIconModule, // Add MatIconModule to imports
+
+
   ]
 })
 export class AdminModule { }

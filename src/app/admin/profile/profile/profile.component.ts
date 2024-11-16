@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from '../services/profile.service';
-import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ProfileService } from 'src/app/trainer/services/profile.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit  {
   id: any;
   profile: any;
   profileForm!: FormGroup;
@@ -16,7 +16,6 @@ export class ProfileComponent implements OnInit {
   imageUrl: string | ArrayBuffer | null | undefined = null;
   selectedImageName: string | undefined = undefined;
   selectedFile: File | null = null;
-
   constructor(
     private service: ProfileService,
     private route: ActivatedRoute,
@@ -98,5 +97,4 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
 }

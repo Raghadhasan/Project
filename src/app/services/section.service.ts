@@ -36,6 +36,7 @@ export class SectionService {
     debugger;
     this.http.post(`${this.apiUrl}/CreateTSection`, section).subscribe(
       (response) => {
+        this.getAllTrainerSections();
         return response;
       }, (error) => {
         return error;
@@ -49,10 +50,11 @@ export class SectionService {
   // تحديث قسم معين
   updateSection(section: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/UpdateTSection`, section);
+
   }
 
   // حذف قسم معين من دورة
   deleteSection(trainerSectionId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/sections/${trainerSectionId}`);
+    return this.http.delete(`https://localhost:7276/api/Trainer/DeleteTsection/${trainerSectionId}`);
   }
 }

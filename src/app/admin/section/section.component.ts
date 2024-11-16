@@ -4,6 +4,7 @@ import { SectionService } from 'src/app/services/section.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from 'src/app/trainer/services/course.service';
 import { UserService } from 'src/app/trainer/services/user.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
   selector: 'app-section',
@@ -24,6 +25,8 @@ export class SectionComponent implements OnInit {
 
   constructor(
     public sectionService: SectionService,
+    public employeeService: EmployeeService,
+
     public course: CourseService,
     public dialog: MatDialog,
     public user: UserService
@@ -31,6 +34,7 @@ export class SectionComponent implements OnInit {
     this.sectionForm = new FormGroup({
       courseid: new FormControl(0, Validators.required),
       userid: new FormControl(0, Validators.required),
+      sectionlink: new FormControl(''),
       sectionstarttime: new FormControl(''),
       sectionendtime: new FormControl(''),
     });
@@ -40,7 +44,7 @@ export class SectionComponent implements OnInit {
     this.course.getAllCourses().subscribe(res => {
       this.courses = res;
     });
-    this.user.getAllUsers().subscribe(res => {
+    this.employeeService.getAllUsersTrainer().subscribe(res => {
       this.trainers = res;
     });
   }
@@ -48,13 +52,21 @@ export class SectionComponent implements OnInit {
 
   openDeleteDailog(id: any) {
     console.log(id);
+    debugger
     const dialogRef = this.dialog.open(this.deleteDailog).afterClosed().subscribe((result) => {
       if (result != undefined) {
-        if (result == 'yes')
-          this.sectionService.deleteSection(id);
+        if (result == 'yes') {
+          console.log("Deleting section with ID:", id);
+          this.sectionService.deleteSection(id).subscribe({
+            next: (response) => this.sectionService.getAllTrainerSections(),
+            error: (err) => console.error("Delete error:", err),
+          });
+        }
 
-        else if (result == 'No')
+        else if (result == 'No') {
           console.log('thank you')
+
+        }
       }
     })
   }
@@ -66,23 +78,37 @@ export class SectionComponent implements OnInit {
   }
 
   updateCourse: FormGroup = new FormGroup({
-    coursename: new FormControl('', Validators.required),
-    coursestartdate: new FormControl(''),
-    courseenddate: new FormControl(''),
-    courseimage: new FormControl(null, Validators.required),
-    courseid: new FormControl('')
+    userid: new FormControl(0, Validators.required),
+    sectionlink: new FormControl(''),
+    courseid: new FormControl(''),
+    tsid: new FormControl(''),
+    sectionstarttime: new FormControl(''),
+    sectionendtime: new FormControl(''),
   });
 
   pData: any = {};
   openUpdateDailog(obj: any) {
     debugger;
     this.pData = obj;
-    console.log(this.pData);
-    this.pData.coursestartdate = this.formatDate(this.pData.coursestartdate);
-    this.pData.courseenddate = this.formatDate(this.pData.courseenddate);
-    this.updateCourse.controls['courseid'].setValue(this.pData.courseid)
+
+    // Format date to yyyy-MM-dd
+    const formatDate = (dateString: string) => {
+      return new Date(dateString).toISOString().split('T')[0];
+    };
+
+    this.updateCourse.patchValue({
+      tsid: obj.tsid,
+
+      courseid: obj.courseid,
+      userid: obj.userid,
+      sectionlink: obj.sectionlink,
+      sectionstarttime: formatDate(obj.sectionstarttime),
+      sectionendtime: formatDate(obj.sectionendtime),
+    });
+
     this.dialog.open(this.updateDailog);
   }
+
   formatDate(datetime: string): string {
     debugger;
     // Use JavaScript's Date object to format the date
@@ -112,17 +138,43 @@ export class SectionComponent implements OnInit {
     //this.home.uploadAttachment(formData);
     /*
     display_Image :any ; 
-uploadAttachment(file:FormData){
-this.http.post('https://localhost:5000/api/Course/uploadImage',file).subscribe((resp:any)=>{
+  uploadAttachment(file:FormData){
+  this.http.post('https://localhost:5000/api/Course/uploadImage',file).subscribe((resp:any)=>{
   //object course table 
-
-  this.display_Image=resp.imagename;
-},err=>{
-  console.log('Error');
   
-})
-}
+  this.display_Image=resp.imagename;
+  },err=>{
+  console.log('Error');
+   
+  })
+  }
     */
 
+  }
+  openLink(link: string): void {
+    if (link) {
+      window.open(link, '_blank');
+    } else {
+      console.error('Invalid link');
+    }
+  }
+
+
+
+
+  ExecUpdate(): void {
+    debugger
+    if (this.updateCourse.valid) {
+      const formData = this.updateCourse.value;
+      this.sectionService.updateSection(formData).subscribe(
+        (response) => {
+          this.sectionService.getAllTrainerSections();
+        },
+        (error) => {
+        }
+      );
+    } else {
+      console.error('Form is invalid');
+    }
   }
 }

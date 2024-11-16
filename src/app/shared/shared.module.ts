@@ -40,7 +40,8 @@ import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-mat
     MatInputModule,
     MatFormFieldModule,
     NgxMatDatetimePickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    
   ]
 })
 export class SharedModule { }

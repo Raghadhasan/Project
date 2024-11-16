@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
+  constructor(
+    private router: Router,
+  ) { }
   isDropdownOpen = false;
   id: any;
 
@@ -15,7 +18,12 @@ export class SidebarComponent implements OnInit {
     this.id = Number(localStorage.getItem('User_Id'));
   }
   logout() {
-    console.log("logout")
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('User_Id');
+
+    this.router.navigate(['/']).then(() => {
+      window.location.reload();
+    });
   }
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;

@@ -6,3 +6,47 @@
     display: flex;
     flex-direction: column;
 }
+
+.dialog-container {
+    padding: 20px;
+    max-width: 800px;
+    width: 100%;
+    border-radius: 8px;
+    background: #f7f9fc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dialog-title {
+    font-size: 1.5rem;
+    color: #2a3e52;
+    margin-bottom: 1rem;
+}
+
+.form-horizontal {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.form-field {
+    flex: 1;
+}
+
+.full-width {
+    flex: 2;
+}
+
+.dialog-actions {
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    color: #999;
+    border: 1px solid #ccc;
+}

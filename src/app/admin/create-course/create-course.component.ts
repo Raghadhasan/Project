@@ -11,16 +11,27 @@ import { HomeService } from 'src/app/services/home.service';
 export class CreateCourseComponent {
 
   constructor(private home: HomeService) { }
-
+  fileToUpload: any;
   createCourse: FormGroup = new FormGroup({
-    COURSENAME: new FormControl('', Validators.required),
-    COURSEMEETINGLINK: new FormControl(''),
-    COURSESTARTTIME: new FormControl(''),
-    COURSEENDTIME: new FormControl(''),
-    CATEGORYID: new FormControl('')
+    coursename: new FormControl('', Validators.required),
+    coursestartdate: new FormControl(null),
+    courseenddate: new FormControl(null),
+    courseimage: new FormControl('', Validators.required),
   });
 
   save() {
+    debugger;
+    if (this.fileToUpload) {
+      this.createCourse.value.courseimage = this.home.display_Image;
+    }
     this.home.creatCourse(this.createCourse.value)
+  }
+  uploadImage(file: any) {
+    if (file.length == 0)
+      return;
+    this.fileToUpload = <File>file[0];
+    const formData = new FormData();
+    formData.append('file', this.fileToUpload, this.fileToUpload.name);
+    this.home.uploadAttachment(formData);
   }
 }

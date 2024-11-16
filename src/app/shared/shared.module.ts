@@ -9,6 +9,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { FooterComponent } from './footer/footer.component';
     MatDialogModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule
   ],
   exports: [
     NavbarComponent,
@@ -33,7 +38,9 @@ import { FooterComponent } from './footer/footer.component';
     MatDialogModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgxMatDatetimePickerModule,
+    NgxMatNativeDateModule
   ]
 })
 export class SharedModule { }

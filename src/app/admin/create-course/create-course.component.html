@@ -4,7 +4,7 @@
         <div class="example-container">
             <mat-form-field>
                 <mat-label>Course Name</mat-label>
-                <input type="text" matInput formControlName="COURSENAME" required placeholder="Enter Cours Name"
+                <input type="text" matInput formControlName="coursename" required placeholder="Enter Cours Name"
                     required>
                 <!-- <mat-error *ngIf="createCourse.controls['coursename'].hasError('required')">
                     Course name is required
@@ -12,18 +12,11 @@
             </mat-form-field>
         </div>
 
-        <div class="example-container">
-            <mat-form-field>
-                <mat-label>Course Meeting Link</mat-label>
-                <input type="text" matInput formControlName="COURSEMEETINGLINK" placeholder="Enter Meeting link"
-                    required>
-            </mat-form-field>
-        </div>
 
         <div class="example-container">
             <mat-form-field appearance="outline">
                 <mat-label>Course Start Time</mat-label>
-                <input matInput placeholder=" Start Time" type="text" formControlName="COURSESTARTTIME" required>
+                <input matInput placeholder=" Start Time" type="date" formControlName="coursestartdate" required>
             </mat-form-field>
         </div>
 
@@ -31,15 +24,13 @@
         <div class="example-container">
             <mat-form-field>
                 <mat-label>Course End Time</mat-label>
-                <input type="text" matInput formControlName="COURSEENDTIME" required>
+                <input type="date" matInput formControlName="courseenddate" required>
             </mat-form-field>
         </div>
 
         <div class="example-container">
-            <mat-form-field>
-                <mat-label>CATEGORYID</mat-label>
-                <input type="number" matInput formControlName="CATEGORYID" placeholder="Enter Category Id" required>
-            </mat-form-field>
+            <mat-label>Image</mat-label>
+            <input type="file" #file formControleName="courseimage" (change)="uploadImage(file.files)">
         </div>
 
     </form>

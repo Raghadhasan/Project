@@ -2,7 +2,8 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SectionService } from 'src/app/services/section.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { firstValueFrom } from 'rxjs';
+import { CourseService } from 'src/app/trainer/services/course.service';
+import { UserService } from 'src/app/trainer/services/user.service';
 
 @Component({
   selector: 'app-section',
@@ -10,154 +11,118 @@ import { firstValueFrom } from 'rxjs';
   styleUrls: ['./section.component.css']
 })
 export class SectionComponent implements OnInit {
-  @ViewChild('callDeleteDialog') deleteDialog !: TemplateRef<any>;  
-  @ViewChild('callUpdateDialog') updateDialog !: TemplateRef<any>;  
-  @ViewChild('createSectionDialog') createSectionDialog !: TemplateRef<any>;
-  @ViewChild('createCourseDialog') createCourseDialog !: TemplateRef<any>;
-  @ViewChild('sectionsDialog') sectionsDialog!: TemplateRef<any>;
+  @ViewChild('callcreateDailog') createDailog !: TemplateRef<any>;
+  @ViewChild('callupdateDailog') updateDailog !: TemplateRef<any>;
+  @ViewChild('callDeleteDailog') deleteDailog !: TemplateRef<any>;
 
-  _filterText: string = ''; 
+  _filterText: string = '';
   courses: any[] = [];
   trainers: any[] = [];
   selectedCourse: any = {};
   sectionForm: FormGroup;
-  courseForm: FormGroup;
   selectedImage: File | null = null;
 
-  constructor(public sectionService: SectionService, public dialog: MatDialog) {
+  constructor(
+    public sectionService: SectionService,
+    public course: CourseService,
+    public dialog: MatDialog,
+    public user: UserService
+  ) {
     this.sectionForm = new FormGroup({
-      alltraineefile: new FormControl('', Validators.required),
-      sectionlink: new FormControl(''),
+      courseid: new FormControl(0, Validators.required),
+      userid: new FormControl(0, Validators.required),
       sectionstarttime: new FormControl(''),
       sectionendtime: new FormControl(''),
-     
-    });
-
-    this.courseForm = new FormGroup({
-      coursename: new FormControl('', Validators.required),
-      courseimage: new FormControl(''),
-      coursestartdate: new FormControl(''),
-      courseenddate: new FormControl(''),
-     
     });
   }
-
   ngOnInit(): void {
-    this.getCourses();
-    this.getTrainers();
-  }
-
-  // جلب جميع الدورات
-  getCourses() {
-    this.sectionService.getAllCourses().subscribe((data) => {
-      this.courses = data;
+    this.sectionService.getAllTrainerSections();
+    this.course.getAllCourses().subscribe(res => {
+      this.courses = res;
+    });
+    this.user.getAllUsers().subscribe(res => {
+      this.trainers = res;
     });
   }
 
-  // جلب جميع المدربين
-  getTrainers() {
-    this.sectionService.getAllTrainers().subscribe((data) => {
-      this.trainers = data;
+
+  openDeleteDailog(id: any) {
+    console.log(id);
+    const dialogRef = this.dialog.open(this.deleteDailog).afterClosed().subscribe((result) => {
+      if (result != undefined) {
+        if (result == 'yes')
+          this.sectionService.deleteSection(id);
+
+        else if (result == 'No')
+          console.log('thank you')
+      }
+    })
+  }
+
+  openCreateDailog() {
+    const dialogRef = this.dialog.open(this.createDailog).afterClosed().subscribe((result) => {
+
     });
   }
 
-  // فتح نموذج إنشاء دورة جديدة
-  openCreateCourseDialog() {
-    this.dialog.open(this.createCourseDialog);
+  updateCourse: FormGroup = new FormGroup({
+    coursename: new FormControl('', Validators.required),
+    coursestartdate: new FormControl(''),
+    courseenddate: new FormControl(''),
+    courseimage: new FormControl(null, Validators.required),
+    courseid: new FormControl('')
+  });
+
+  pData: any = {};
+  openUpdateDailog(obj: any) {
+    debugger;
+    this.pData = obj;
+    console.log(this.pData);
+    this.pData.coursestartdate = this.formatDate(this.pData.coursestartdate);
+    this.pData.courseenddate = this.formatDate(this.pData.courseenddate);
+    this.updateCourse.controls['courseid'].setValue(this.pData.courseid)
+    this.dialog.open(this.updateDailog);
+  }
+  formatDate(datetime: string): string {
+    debugger;
+    // Use JavaScript's Date object to format the date
+    const date = new Date(datetime);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    let dateOnly = `${year}-${month}-${day}`;
+    return dateOnly;
   }
 
-  // حفظ دورة جديدة
-  saveCourse() {
-    const newCourse = this.courseForm.value;
-    if (this.selectedImage) {
-      this.uploadImage(this.selectedImage).then((imagePath) => {
-        newCourse.imagename = imagePath;
-        this.sectionService.createCourse(newCourse).subscribe(() => {
-          this.getCourses();
-          this.courseForm.reset();
-          this.selectedImage = null;
-        });
-      });
-    } else {
-      this.sectionService.createCourse(newCourse).subscribe(() => {
-        this.getCourses();
-        this.courseForm.reset();
-      });
-    }
+  save() {
+    debugger
+    this.sectionForm.value.courseid = Number(this.sectionForm.value.courseid);
+    this.sectionForm.value.userid = Number(this.sectionForm.value.userid);
+
+    this.sectionService.createSection(this.sectionForm.value);
+    this.sectionForm.reset();
   }
 
-  // دالة رفع الصورة باستخدام firstValueFrom
-  async uploadImage(file: File): Promise<string> {
+  uploadImage(file: any) {
+    if (file.length == 0)
+      return;
+    let fileToUpload = <File>file[0];
     const formData = new FormData();
-    formData.append('file', file, file.name);
+    formData.append('file', fileToUpload, fileToUpload.name);
+    //this.home.uploadAttachment(formData);
+    /*
+    display_Image :any ; 
+uploadAttachment(file:FormData){
+this.http.post('https://localhost:5000/api/Course/uploadImage',file).subscribe((resp:any)=>{
+  //object course table 
 
-    // استخدام firstValueFrom لتحويل Observable إلى Promise
-    const response = await firstValueFrom(this.sectionService.uploadAttachment(formData)) as { filePath: string };
-    return response.filePath;
-     // تأكد من أن هذا يتطابق مع الاستجابة الحقيقية من الخادم
-  }
+  this.display_Image=resp.imagename;
+},err=>{
+  console.log('Error');
+  
+})
+}
+    */
 
-  // التعامل مع تغيير الصورة
-  onImageChange(event: Event) {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.selectedImage = input.files[0];
-    }
-  }
-
-  // فتح نموذج إضافة قسم جديد لدورة معينة
-  openCreateSectionDialog(course: any) {
-    this.selectedCourse = course;
-    this.dialog.open(this.createSectionDialog);
-  }
-
-  // حفظ قسم جديد
-  saveSection() {
-    const newSection = this.sectionForm.value;
-    this.sectionService.createSection(this.selectedCourse.courseId, newSection).subscribe(() => {
-      this.getSections(this.selectedCourse.courseId);
-      this.sectionForm.reset();
-    });
-  }
-
-  // جلب الأقسام لدورة معينة
-  getSections(courseId: number) {
-    this.sectionService.getSections(courseId).subscribe((data) => {
-      this.selectedCourse.sections = data;
-    });
-  }
-
-  // فتح نافذة تعديل قسم
-  openUpdateDialog(section: any) {
-    this.sectionForm.patchValue(section);
-    this.dialog.open(this.updateDialog);
-  }
-
-  // تحديث القسم
-  updateSection() {
-    const updatedSection = this.sectionForm.value;
-    this.sectionService.updateSection(this.selectedCourse.courseId, updatedSection.sectionId, updatedSection).subscribe(() => {
-      this.getSections(this.selectedCourse.courseId);
-    });
-  }
-
-  // حذف القسم
-  deleteSection(sectionId: number) {
-    this.sectionService.deleteSection(this.selectedCourse.courseId, sectionId).subscribe(() => {
-      this.getSections(this.selectedCourse.courseId);
-    });
-  }
-
-  openSectionsDialog(course: any) {
-    this.selectedCourse = course;
-    this.getSections(course.courseId); // جلب الأقسام المرتبطة بالدورة
-    this.dialog.open(this.sectionsDialog); // فتح الحوار لعرض الأقسام
-  }
-
-  get filteredCourses() {
-    if (!this._filterText) return this.courses;
-    return this.courses.filter(course =>
-      course.coursename.toLowerCase().includes(this._filterText.toLowerCase())
-    );
   }
 }

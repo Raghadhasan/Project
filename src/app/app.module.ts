@@ -18,6 +18,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatOptionModule } from '@angular/material/core';
 import { RouterModule } from '@angular/router';
 
+// إضافة الوحدات المطلوبة من Angular Material
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,11 +34,8 @@ import { RouterModule } from '@angular/router';
     ContactComponent,
     ManageAboutComponent,
     ExcelesheetComponent,
-    
-
   ],
   imports: [
-
     BrowserModule,
     AppRoutingModule,
     SharedModule,
@@ -39,14 +44,19 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     trainerRoutingModule,
     MatCardModule,
-    ToastrModule.forRoot(
-
- 
-    ),
+    MatOptionModule,
+    RouterModule,
+    ToastrModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
-
-
+    
+    // الوحدات الجديدة من Angular Material
+    MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

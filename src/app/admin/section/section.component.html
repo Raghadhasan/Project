@@ -1,46 +1,175 @@
-<div class="container">
-    <button mat-button color="primary" (click)="openCreateCourseDialog()">Create New Course</button>
-    <input type="text"  placeholder="Filter Courses"> 
-  
-    <div class="course-list">
-      <h3>All Courses</h3>
-      <ul>
-        <li *ngFor="let course of filteredCourses">
-          {{ course.coursename }}
-          <button mat-button color="primary" (click)="openCreateSectionDialog(course)">Add Section</button>
-          <button mat-button color="accent" (click)="openSectionsDialog(course)">View Sections</button>
-        </li>
-      </ul>
-    </div>
-  
-    <!-- نموذج إنشاء دورة جديدة -->
-    <ng-template #createCourseDialog>
-      <h2 mat-dialog-title>Create New Course</h2>
-      <mat-dialog-content class="mat-typography">
-        <form [formGroup]="courseForm">
-          <mat-form-field>
-            <mat-label>Course Name</mat-label>
-            <input type="text" matInput formControlName="coursename">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Price</mat-label>
-            <input type="number" matInput formControlName="price">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>Start Date</mat-label>
-            <input type="date" matInput formControlName="startDate">
-          </mat-form-field>
-          <mat-form-field>
-            <mat-label>End Date</mat-label>
-            <input type="date" matInput formControlName="endDate">
-          </mat-form-field><input type="file" formControlName="imagename" (change)="onImageChange($event)">
+<app-sidebar></app-sidebar>
 
+
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+            <img src="../../../assets/img/logo.png" alt="">
+            <span class="d-none d-lg-block">NiceAdmin</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <div class="search-bar">
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
+            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
-      </mat-dialog-content>
-      <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button (click)="saveCourse()">Save</button>
-      </mat-dialog-actions>
-    </ng-template>
-  </div>
-  
+    </div><!-- End Search Bar -->
+</header>
+<div id="BodyDashBorad">
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <div class="container-fluid" style="padding-top: 525px;">
+            <div class="row">
+                <div class="col-lg-4 d-flex align-items-stretch">
+                </div>
+
+                <div class="col-lg-8 d-flex align-items-stretch" style="margin-right:200px;">
+                    <div class="card w-100">
+
+                        <div class="card-body p-4">
+                            <h5 class="card-title fw-semibold mb-4">All Trainer Sections</h5>
+                            <div class="table-responsive">
+                                <table class="table text-nowrap mb-0 align-middle">
+                                    <thead class="text-dark fs-4">
+                                        <button mat-button color="primary" (click)="openCreateDailog()">Create
+                                            New</button>
+                                        <tr>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1" style="padding: 20px;">Course Id</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Course Name</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Course StartTime</h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Course EndTime </h2>
+                                            </th>
+                                            <th class="border-bottom-0">
+                                                <h2 class="fw-semibold mb-1">Image</h2>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let obj of sectionService.TrainerSections">
+                                            <td>{{obj.courseid}}"</td>
+                                            <td>{{obj.coursename}}</td>
+                                            <td>{{obj.coursestartdate|date}}</td>
+                                            <td>{{obj.courseenddate|date}}</td>
+                                            <td><img src="../../../assets/Images/{{obj.courseimage}}"
+                                                    alt="{{ obj.courseimage }}" style="width: 100px; height: auto;" />
+                                            </td>
+                                            <td>
+                                                <button mat-button color="warn"
+                                                    (click)="openDeleteDailog(obj.courseid)">Delete</button>
+                                                <button mat-button color="primary"
+                                                    (click)="openUpdateDailog(obj)">Update</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #callcreateDailog>
+                <h2 mat-dialog-title>Create Trainer Section </h2>
+                <mat-dialog-content class="mat-typography">
+                    <form [formGroup]="sectionForm">
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>Course Name</mat-label>
+
+                                <select class="form-control" formControlName="courseid">
+                                    <option *ngFor="let course of courses" [value]="course.courseid">{{
+                                        course.coursename }}</option>
+                                </select>
+                            </mat-form-field>
+                        </div>
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>Trainer Name</mat-label>
+
+                                <select class="form-control" formControlName="userid">
+                                    <option *ngFor="let trainer of trainers" [value]="trainer.userid">{{
+                                        trainer.username }}</option>
+                                </select>
+                            </mat-form-field>
+                        </div>
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>Section Start Time</mat-label>
+                                <input type="date" matInput formControlName="sectionstarttime"
+                                    [(ngModel)]="pData.sectionstarttime">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>Section End Time</mat-label>
+                                <input type="date" matInput formControlName="sectionendtime"
+                                    [(ngModel)]="pData.sectionendtime">
+                            </mat-form-field>
+                        </div>
+                    </form>
+                </mat-dialog-content>
+                <mat-dialog-actions align="end">
+                    <button mat-button mat-dialog-close>Cancel</button>
+                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+                </mat-dialog-actions>
+            </ng-template>
+            <ng-template #callDeleteDailog>
+                <h1 mat-dialog-title>Delete Course</h1>
+                <div mat-dialog-content>Are you sure you went to delete this item ? </div>
+                <div mat-dialog-actions>
+                    <button mat-button mat-dialog-close="yes">Yes</button>
+                    <button mat-button mat-dialog-close="No">No</button>
+                </div>
+            </ng-template>
+            <ng-template #callupdateDailog>
+                <h2 mat-dialog-title>Update Course</h2>
+                <mat-dialog-content class="mat-typography">
+                    <form [formGroup]="updateCourse">
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>Course Name</mat-label>
+                                <input type="text" matInput formControlName="coursename" required
+                                    [(ngModel)]="pData.coursename">
+                                <mat-error *ngIf="updateCourse.controls['coursename'].hasError('required')">
+                                    Course name is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>Course StartTime</mat-label>
+                                <input type="date" matInput formControlName="coursestartdate"
+                                    [(ngModel)]="pData.coursestartdate ">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-container">
+                            <mat-form-field>
+                                <mat-label>Course EndTime</mat-label>
+                                <input type="date" matInput formControlName="courseenddate"
+                                    [(ngModel)]="pData.courseenddate">
+                            </mat-form-field>
+                        </div>
+                        <div class="example-container">
+                            <mat-label>Course Image</mat-label>
+                            <input type="file" #file formControleName="courseimage" (change)="uploadImage(file.files)">
+                        </div>
+                    </form>
+
+                </mat-dialog-content>
+                <mat-dialog-actions align="end">
+                    <button mat-button mat-dialog-close>Cancel</button>
+                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+                </mat-dialog-actions>
+            </ng-template>
+        </div>
+    </div>
+</div>

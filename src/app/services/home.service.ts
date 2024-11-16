@@ -22,7 +22,8 @@ export class HomeService {
 
   // Get All Courses
   getAllCourses() {
-    this.http.get('https://localhost:7276/api/Course/GetAllCourses').subscribe(result => {
+    debugger
+    this.http.get('https://localhost:7276/api/Course/GetAllCourse').subscribe(result => {
       this.Courses = result;
     }, err => {
       console.log(err.message);
@@ -32,11 +33,7 @@ export class HomeService {
   // Delete Course
 
   deleteCourse(id: number) {
-    // Create HttpParams object and set the 'id' query parameter
-    const params = new HttpParams().set('id', id.toString());
-
-    // Pass the params object in the request
-    this.http.delete('https://localhost:7276/api/Course/DeleteCourse', { params }).subscribe(resp => {
+    this.http.delete('https://localhost:7276/api/Course/DeleteCourse/' + id).subscribe(resp => {
       console.log('The course has been deleted');
       window.location.reload();
     }, err => {
@@ -62,4 +59,17 @@ export class HomeService {
       console.log(err.message);
     });
   }
+
+  display_Image: any;
+  uploadAttachment(file: FormData) {
+    debugger;
+    this.http.post('https://localhost:7276/api/Course/uploadImageCourse', file).subscribe((resp: any) => {
+      //object course table 
+      this.display_Image = resp.courseimage;
+    }, err => {
+      console.log('Error');
+
+    })
+  }
+
 }

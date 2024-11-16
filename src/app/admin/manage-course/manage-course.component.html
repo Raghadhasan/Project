@@ -44,34 +44,28 @@
                                                 <h2 class="fw-semibold mb-1">Course Name</h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">Course MeetingLink</h2>
-                                            </th>
-                                            <th class="border-bottom-0">
                                                 <h2 class="fw-semibold mb-1">Course StartTime</h2>
                                             </th>
                                             <th class="border-bottom-0">
                                                 <h2 class="fw-semibold mb-1">Course EndTime </h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">Category ID</h2>
-                                            </th>
-                                            <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1 ">operation </h2>
+                                                <h2 class="fw-semibold mb-1">Image</h2>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let obj of home.Courses">
-                                            <td>{{obj.COURSEID}}"</td>
-                                            <td>{{obj.COURSENAME}}</td>
-                                            <td>{{obj.COURSEMEETINGLINK}}</td>
-                                            <td>{{obj.COURSESTARTTIME|date}}</td>
-                                            <td>{{obj.COURSEENDTIME|date}}</td>
-                                            <td>{{obj.CATEGORYNAME}}</td>
-                                            <td>{{obj.CATEGORYID}}</td>
+                                            <td>{{obj.courseid}}"</td>
+                                            <td>{{obj.coursename}}</td>
+                                            <td>{{obj.coursestartdate|date}}</td>
+                                            <td>{{obj.courseenddate|date}}</td>
+                                            <td><img src="../../../assets/Images/{{obj.courseimage}}"
+                                                    alt="{{ obj.courseimage }}" style="width: 100px; height: auto;" />
+                                            </td>
                                             <td>
                                                 <button mat-button color="warn"
-                                                    (click)="openDeleteDailog(obj.COURSEID)">Delete</button>
+                                                    (click)="openDeleteDailog(obj.courseid)">Delete</button>
                                                 <button mat-button color="primary"
                                                     (click)="openUpdateDailog(obj)">Update</button>
                                             </td>
@@ -98,40 +92,30 @@
                         <div class="example-container">
                             <mat-form-field>
                                 <mat-label>Course Name</mat-label>
-                                <input type="text" matInput formControlName="COURSENAME" required
+                                <input type="text" matInput formControlName="coursename" required
                                     [(ngModel)]="pData.coursename">
-                                <mat-error *ngIf="updateCourse.controls['COURSENAME'].hasError('required')">
+                                <mat-error *ngIf="updateCourse.controls['coursename'].hasError('required')">
                                     Course name is required
                                 </mat-error>
                             </mat-form-field>
                         </div>
                         <div class="example-container">
                             <mat-form-field>
-                                <mat-label>Course MeetingLink</mat-label>
-                                <input type="url" matInput formControlName="COURSEMEETINGLINK"
-                                    placeholder="Enter meeting link" required [(ngModel)]="pData.coursemeetingLink">
-                            </mat-form-field>
-                        </div>
-                        <div class="example-container">
-                            <mat-form-field>
                                 <mat-label>Course StartTime</mat-label>
-                                <input type="time" matInput formControlName="COURSESTARTTIME"
-                                    [(ngModel)]="pData.courseStartTime ">
+                                <input type="date" matInput formControlName="coursestartdate"
+                                    [(ngModel)]="pData.coursestartdate ">
                             </mat-form-field>
                         </div>
                         <div class="example-container">
                             <mat-form-field>
                                 <mat-label>Course EndTime</mat-label>
-                                <input type="time" matInput formControlName="COURSEENDTIME"
-                                    [(ngModel)]="pData.courseEndTime">
+                                <input type="date" matInput formControlName="courseenddate"
+                                    [(ngModel)]="pData.courseenddate">
                             </mat-form-field>
                         </div>
                         <div class="example-container">
-                            <mat-form-field>
-                                <mat-label>CATEGORYID</mat-label>
-                                <input type="number" matInput formControlName="CATEGORYID"
-                                    [(ngModel)]="pData.CATEGORYID">
-                            </mat-form-field>
+                            <mat-label>Course Image</mat-label>
+                            <input type="file" #file formControleName="courseimage" (change)="uploadImage(file.files)">
                         </div>
                     </form>
 

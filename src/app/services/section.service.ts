@@ -6,55 +6,53 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SectionService {
-  uploadAttachment(formData: FormData) {
-    throw new Error('Method not implemented.');
-  }
-  private apiUrl = 'https://localhost:7276/api/Course/GetAllCourse';
+  private apiUrl = 'https://localhost:7276/api/Trainer'; // نقطة النهاية للدورات
+  private uploadUrl = 'https://localhost:7276/api/YourUploadEndpoint'; // نقطة النهاية لرفع الملفات
 
-  constructor(private http: HttpClient) {}
+  TrainerSections: any = [];
 
-  // جلب جميع الدورات
-  getAllCourses(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}`);
+  constructor(private http: HttpClient) { }
+
+  // دالة رفع الملف التي تعيد Observable
+  uploadAttachment(formData: FormData): Observable<{ filePath: string }> {
+    return this.http.post<{ filePath: string }>(this.uploadUrl, formData);
   }
 
   // جلب جميع المدربين
-  getAllTrainers(): Observable<any[]> {
-    return this.http.get<any[]>('https://localhost:7276/api/Trainer/GetAll');
+  getAllTrainerSections() {
+    debugger;
+    this.http.get<any[]>(`${this.apiUrl}/GetAll`).subscribe(res => {
+      this.TrainerSections = res;
+      return res;
+    }, err => {
+      console.log(err.message);
+    });
   }
 
-  // جلب جميع الأقسام الخاصة بدورة معينة
-  getSections(courseId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/${courseId}/sections`);
-  }
+
 
   // إنشاء قسم جديد لدورة معينة
-  createSection(courseId: number, section: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${courseId}/sections`, section);
+  createSection(section: any) {
+    debugger;
+    this.http.post(`${this.apiUrl}/CreateTSection`, section).subscribe(
+      (response) => {
+        return response;
+      }, (error) => {
+        return error;
+        console.log(error)
+      }
+    );
   }
 
-  // إنشاء دورة جديدة
-  createCourse(course: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, course);
-  }
+
 
   // تحديث قسم معين
-  updateSection(courseId: number, sectionId: number, section: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${courseId}/sections/${sectionId}`, section);
+  updateSection(section: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/UpdateTSection`, section);
   }
 
   // حذف قسم معين من دورة
-  deleteSection(courseId: number, sectionId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${courseId}/sections/${sectionId}`);
-  }
-
-  // تحديث دورة معينة
-  updateCourse(courseId: number, course: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${courseId}`, course);
-  }
-
-  // حذف دورة معينة
-  deleteCourse(courseId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${courseId}`);
+  deleteSection(trainerSectionId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/sections/${trainerSectionId}`);
   }
 }

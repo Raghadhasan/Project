@@ -1,104 +1,84 @@
-/* تصميم النافبار */
 .header {
-    background-color: #fdf3e3; /* خلفية كريمية */
-    color: #6d4c41; /* لون النص عسلي */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .logo span {
-    color: #a67c52; /* لون النص للعنوان الرئيسي */
-    font-weight: bold;
-  }
-  
-  .toggle-sidebar-btn {
-    color: #6d4c41; /* لون الزر لتوافق مع الألوان */
-  }
-  
-  .search-bar input[type="text"] {
-    background-color: #f5e4d3; /* خلفية كريمية خفيفة */
-    border: 1px solid #d3c4aa;
-    color: #6d4c41;
-  }
-  
-  .search-bar button {
-    background-color: #a67c52; /* زر البحث بلون عسلي */
-    color: #fff;
-  }
-  
-  .search-bar button:hover {
-    background-color: #8b5e3c; /* لون أغمق عند التمرير */
-  }
-  
-  /* تصميم أيقونات التنبيهات والرسائل */
-  .header-nav .nav-link.nav-icon {
-    color: #6d4c41; /* لون عسلي للأيقونات */
-  }
-  
-  .header-nav .nav-link.nav-icon:hover {
-    color: #a67c52; /* لون أغمق عند التمرير */
-  }
-  
-  .header-nav .badge {
-    background-color: #b58663; /* لون عسلي للبادجات */
-    color: #fff;
-  }
-  
-  /* تصميم القائمة المنسدلة للتنبيهات والرسائل */
-  .dropdown-menu.notifications,
-  .dropdown-menu.messages {
-    background-color: #fdf3e3; /* خلفية كريمية للقائمة */
-    border-color: #d3c4aa;
-    color: #6d4c41;
-  }
-  
-  .dropdown-menu .dropdown-header,
-  .dropdown-menu .dropdown-footer a {
-    color: #a67c52; /* لون النص في العناوين والفوتر */
-  }
-  
-  .dropdown-menu .notification-item i,
-  .dropdown-menu .message-item img {
-    color: #a67c52; /* لون الأيقونات والصور داخل القوائم */
-  }
-  
-  /* تصميم الروابط في القائمة المنسدلة */
-  .dropdown-menu .dropdown-item {
-    color: #6d4c41;
-  }
-  
-  .dropdown-menu .dropdown-item:hover {
-    background-color: #e6d9c3; /* لون كريمي أغمق عند التمرير */
-    color: #a67c52;
-  }
-  
-  /* تصميم زر الملف الشخصي */
-  .nav-profile img {
-    border: 2px solid #a67c52; /* حد للصورة بلون عسلي */
-  }
-  
-  .nav-profile span {
-    color: #6d4c41;
-  }
-  
-  /* تصميم القائمة المنسدلة للملف الشخصي */
-  .profile .dropdown-header {
-    color: #6d4c41;
-  }
-  
-  .profile .dropdown-item i {
-    color: #a67c52;
-  }
-  
-  .profile .dropdown-item:hover {
-    background-color: #e6d9c3;
-    color: #a67c52;
-  }
-  
-  nav.mt-3 {
-    background-color:#fbd9c3; /* خلفية كريمية */
-    color: #6d4c41; /* لون نص عسلي */
-    padding: 1rem;
-    border-radius: 0.5rem; /* يمكنك تعديل الزوايا إذا أردت */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* ظل خفيف لإبراز التصميم */
-  }
-  
+  background-color: #4da6ff;
+  /* تعيين اللون الأزرق كخلفية للنافبار */
+  color: #ffffff;
+  /* تعيين اللون الأبيض للنصوص */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  /* إضافة ظل خفيف للنافبار */
+}
+
+/* تصميم الشعار والروابط داخل النافبار */
+.logo span,
+.nav-link,
+.nav-profile span {
+  color: #ffffff;
+  /* تعيين اللون الأبيض للنصوص */
+}
+
+/* تصميم الأيقونات داخل النافبار */
+.bi {
+  color: #ffffff;
+  /* تعيين اللون الأبيض للأيقونات */
+}
+
+/* تغيير لون الخلفية للوحدات النمطية عند التمرير */
+.nav-link:hover,
+.nav-profile:hover,
+.dropdown-menu {
+  background-color: #357abd;
+  /* لون أزرق أغمق للتأثيرات عند التمرير */
+}
+
+/* تغييرات الأزرار عند التمرير والعناصر النشطة */
+.nav-link.active,
+.nav-link:focus,
+.dropdown-menu.show {
+  background-color: #357abd;
+  /* توحيد اللون الأزرق الغامق للعناصر النشطة وعند التمرير */
+  color: #ffffff;
+  /* تأكيد أن النص بقى أبيض */
+}
+
+/* تعديل خصائص البادج للإشعارات */
+.badge {
+  background-color: #1e90ff;
+  /* لون أزرق فاتح للتباين */
+}
+
+/* ضبط خصائص الرموز */
+.bi-bell,
+.bi-chat-left-text {
+  color: #ffffff;
+  /* تعيين اللون الأبيض للأيقونات */
+}
+
+/* خصائص المنطقة النشطة والدروب داون */
+.dropdown-menu {
+  border-color: #4da6ff;
+  /* تعيين اللون الأزرق للحدود */
+}
+
+.dropdown-item:active,
+.dropdown-item:focus {
+  background-color: #357abd;
+  /* تغيير لون الخلفية للعناصر عند النشاط */
+}
+
+/* تعديل الروابط في النافبار للمساعدة والخروج */
+.nav-profile .dropdown-item {
+  color: #357abd;
+  /* تعيين الأزرق الغامق لنص الروابط في الدروب داون */
+}
+
+/* تغييرات البحث والشريط الجانبي */
+.search-bar,
+.toggle-sidebar-btn {
+  background-color: #4da6ff;
+  /* لون أزرق للبحث وزر تبديل الشريط الجانبي */
+}
+
+.search-form input,
+.search-form button {
+  border-color: #357abd;
+  /* حدود بلون أزرق داكن */
+}

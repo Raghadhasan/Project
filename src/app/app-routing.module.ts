@@ -6,7 +6,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { TrainerModule } from './trainer/trainer.module';
-import { AuthtrainerModule } from './trainer/authtrainer/authtrainer.module';
+
 
 const routes: Routes = [
   {
@@ -38,25 +38,15 @@ const routes: Routes = [
     path: 'trainer',
     loadChildren: () => TrainerModule
   },
-  {
-    path: 'trainer/security',
-    loadChildren: () => AuthtrainerModule
-  },
+ 
   {
     path: 'trainee',
     loadChildren: () => AdminModule
   
   },
-  {
-    path: 'uploadmaterial',
-    loadChildren: () =>TrainerModule
   
-  },
-  {
-    path: 'uploadmaterial',
-    loadChildren: () =>TrainerModule
   
-  },
+ 
 ];
 
 @NgModule({

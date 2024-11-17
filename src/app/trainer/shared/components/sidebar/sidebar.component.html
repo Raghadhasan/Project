@@ -77,13 +77,13 @@
 
 <aside class="main-sidebar custom-sidebar">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link text-center">
+  <!-- <a href="index3.html" class="brand-link text-center">
     <span class="brand-text">Trainer Dashboard</span>
-  </a>
+  </a> -->
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <nav class="mt-3" >
+    <nav class="mt-3">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
         <li class="nav-item">
@@ -94,37 +94,7 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a [routerLink]="['/trainer/dashboard/upload-material']" class="nav-link custom-nav-link"
-            [routerLinkActive]="'active'">
-            <i class="bx bx-upload nav-icon"></i>
-            <span class="links_name">Upload Material</span>
-          </a>
-        </li>
 
-        <li class="nav-item">
-          <a [routerLink]="['/trainer/dashboard/attendance']" class="nav-link custom-nav-link"
-            [routerLinkActive]="'active'">
-            <i class="bx bx-calendar-check nav-icon"></i>
-            <span class="links_name">Attendance</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a [routerLink]="['/trainer/dashboard/assignments']" class="nav-link custom-nav-link"
-            [routerLinkActive]="'active'">
-            <i class="bx bx-task nav-icon"></i>
-            <span class="links_name">Assignments</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a [routerLink]="['/trainer/dashboard/exam-link']" class="nav-link custom-nav-link"
-            [routerLinkActive]="'active'">
-            <i class="bx bx-link nav-icon"></i>
-            <span class="links_name">Exam Link</span>
-          </a>
-        </li>
 
         <li class="nav-item">
           <a *ngIf="id" [routerLink]="['/trainer/dashboard/profile',id]" class="nav-link custom-nav-link"

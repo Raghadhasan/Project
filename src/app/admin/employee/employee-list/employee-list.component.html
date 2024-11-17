@@ -28,39 +28,45 @@
                         <div class="card-body p-4">
                             <h5 class="card-title fw-semibold mb-4">All Employees</h5>
                             <div class="table-responsive">
-                                <button mat-raised-button color="primary"
-                                    (click)="openCreateEmpDialog(callcreateDailog)">
-                                    Add Employee
-                                </button>
+                                <button 
+                                mat-raised-button 
+                                (click)="openCreateEmpDialog(callcreateDailog)" 
+                                style="background-color: #DAA520; color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; margin-right: 10px; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+                                Add Employee
+                              </button>
+                              
+
+                        
                                 <table class="table text-nowrap mb-0 align-middle">
-                                    <thead class="text-dark fs-4">
+                                    <thead class="text-primary fs-5" style="background-color: #eef4fb; text-align: center;">
                                         <tr>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">USERID</h2>
+                                                <h2 class="fw-semibold mb-1" style="color: #007BFF; font-size: 20px; font-family: 'Arial', sans-serif;">USERID</h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">USER NAME</h2>
+                                                <h2 class="fw-semibold mb-1" style="color: #007BFF; font-size: 20px; font-family: 'Arial', sans-serif;">USER NAME</h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">ADDRESS</h2>
+                                                <h2 class="fw-semibold mb-1" style="color: #007BFF; font-size: 20px; font-family: 'Arial', sans-serif;">ADDRESS</h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">GENDER</h2>
+                                                <h2 class="fw-semibold mb-1" style="color: #007BFF; font-size: 20px; font-family: 'Arial', sans-serif;">GENDER</h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">COUNTRY</h2>
+                                                <h2 class="fw-semibold mb-1" style="color: #007BFF; font-size: 20px; font-family: 'Arial', sans-serif;">COUNTRY</h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">PHONE</h2>
+                                                <h2 class="fw-semibold mb-1" style="color: #007BFF; font-size: 20px; font-family: 'Arial', sans-serif;">PHONE</h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">USEREMAIL</h2>
+                                                <h2 class="fw-semibold mb-1" style="color: #007BFF; font-size: 20px; font-family: 'Arial', sans-serif;">USEREMAIL</h2>
                                             </th>
                                             <th class="border-bottom-0">
-                                                <h2 class="fw-semibold mb-1">Action</h2>
+                                                <h2 class="fw-semibold mb-1" style="color: #007BFF; font-size: 20px; font-family: 'Arial', sans-serif;">Action</h2>
                                             </th>
                                         </tr>
                                     </thead>
+                                    
                                     <tbody>
                                         <tr *ngFor="let employee of employees">
                                             <td>{{ employee.userid }}</td>
@@ -70,9 +76,33 @@
                                             <td>{{ employee.country }}</td>
                                             <td>{{ employee.phone }}</td>
                                             <td>{{ employee.useremail }}</td>
-                                            <td> <button
-                                                    (click)="openUpdateEmpDialog(callUpdateDialog, employee)">Update</button>
-                                                <button (click)="deleteEmployee(employee.userid)">Delete</button>
+                                            <td> 
+                                               
+                                                
+<!-- زر Update -->
+<button 
+  (click)="openUpdateEmpDialog(callUpdateDialog, employee)" 
+  style="background-color: #DAA520; color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; margin-right: 10px; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+  Update
+</button>
+
+
+
+
+
+<!-- زر Delete -->
+<button 
+(click)="deleteEmployee(employee.userid)" 
+style="background-color: red; color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+Delete
+</button>
+
+
+
+
+
+
+
                                             </td>
 
                                         </tr>

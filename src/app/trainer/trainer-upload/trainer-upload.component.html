@@ -1,8 +1,0 @@
-<!-- src/app/trainer/trainer-upload/trainer-upload.component.html -->
-<div>
-    <h2>Upload Training Material</h2>
-    <input type="file" (change)="onFileSelect($event)" multiple />
-    <button (click)="onUpload()" [disabled]="!selectedFiles.length">Upload</button>
-  </div>
-  <div *ngIf="uploadMessage">{{ uploadMessage }}</div>
-  

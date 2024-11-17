@@ -1,5 +1,5 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SectionService } from 'src/app/services/section.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from 'src/app/trainer/services/course.service';
@@ -15,6 +15,7 @@ export class SectionComponent implements OnInit {
   @ViewChild('callcreateDailog') createDailog !: TemplateRef<any>;
   @ViewChild('callupdateDailog') updateDailog !: TemplateRef<any>;
   @ViewChild('callDeleteDailog') deleteDailog !: TemplateRef<any>;
+  @ViewChild('TraineesDialog') TraineesDialog !: TemplateRef<any>;
 
   _filterText: string = '';
   courses: any[] = [];
@@ -22,6 +23,11 @@ export class SectionComponent implements OnInit {
   selectedCourse: any = {};
   sectionForm: FormGroup;
   selectedImage: File | null = null;
+  selectedFile: File | null = null;
+  dialogRef: MatDialogRef<any> | null = null;
+  coursesid : any;
+  tsid : any;
+  Trainerid : any;
 
   constructor(
     public sectionService: SectionService,
@@ -48,7 +54,41 @@ export class SectionComponent implements OnInit {
       this.trainers = res;
     });
   }
+  openAddTraineesDialog(tsid: number, courseid: number,Trainerid:number): void {
+    debugger
+    this.coursesid = courseid;
+    this.tsid = tsid;
+    this.Trainerid = Trainerid;
 
+    this.dialog.open(this.TraineesDialog, {
+      width: '400px',
+    });
+  }
+
+
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUpload(tsid: any, courseid: any,Trainerid: any): void {
+    if (this.selectedFile) {
+
+    //   console.log('Uploading file:', this.selectedFile.name);
+    //   console.log('TSID:', tsid);
+    //   console.log('CourseID:', courseid);
+    const file = this.selectedFile;
+    if (file) {
+  
+      this.sectionService.uploadTraineeFile(file, Trainerid ,tsid, courseid).subscribe({
+        next: () => {
+console.log("ok")        },
+        error: (err) => {
+        }
+      });
+    }
+    }
+  }
 
   openDeleteDailog(id: any) {
     console.log(id);
@@ -176,5 +216,21 @@ export class SectionComponent implements OnInit {
     } else {
       console.error('Form is invalid');
     }
+  }
+
+  loadTemplate() {
+    this.sectionService.downloadTemplate().subscribe(
+      (response: Blob) => {
+        const url = window.URL.createObjectURL(response);
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = 'Trainees.xlsx';
+        anchor.click();
+        window.URL.revokeObjectURL(url);
+      },
+      (error) => {
+        console.error('Error downloading the template:', error);
+      }
+    );
   }
 }

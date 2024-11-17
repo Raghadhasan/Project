@@ -12,6 +12,7 @@ import { CourseFilterPipe } from '../Pipe/course-filter-pipe-.pipe';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileComponent } from './profile/profile/profile.component';
+import { ReportsComponent } from './reports/reports.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ProfileComponent } from './profile/profile/profile.component';
     SectionComponent,
     EmployeeListComponent,
     CourseFilterPipe,
-    ProfileComponent
+    ProfileComponent,
+    ReportsComponent
   ],
   imports: [
     CommonModule,

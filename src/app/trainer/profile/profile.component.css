@@ -1,0 +1,90 @@
+/* الخلفية العامة */
+body {
+    background-color: #4da6ff; /* أزرق أغمق */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #ffffff; /* نصوص بيضاء */
+}
+
+/* الحاوية الترحيبية */
+/* الحاوية الترحيبية */
+.welcome-banner {
+    background-color: #ffffff; /* خلفية بيضاء */
+    color: #4da6ff; /* نص أزرق */
+    border: 3px solid #4da6ff; /* إطار أزرق */
+    padding: 20px 30px; /* مسافات داخلية مريحة */
+    border-radius: 25px; /* زوايا مستديرة */
+    text-align: center;
+    font-size: 24px; /* حجم النص */
+    font-weight: bold; /* خط عريض */
+    margin-bottom: 10px; /* تقليل المسافة أسفل الجملة إلى 10 بكسل */
+    box-shadow: 0 8px 15px rgba(77, 166, 255, 0.4); /* ظل أزرق خفيف */
+    transition: all 0.3s ease-in-out; /* تأثير انتقال */
+}
+
+/* الحاوية الرئيسية */
+/* الحاوية الرئيسية */
+.container {
+    background-color: #3388ff; /* خلفية أزرق متوسط */
+    border-radius: 15px; /* زوايا مستديرة */
+    box-shadow: 0px 8px 15px rgba(51, 136, 255, 0.4); /* ظل أزرق متوسط */
+    padding: 10px; /* تقليل التباعد داخل الحاوية */
+    color: #ffffff; /* نصوص بيضاء */
+    margin-top: -10px; /* تقليل المسافة العلوية للحاوية */
+}
+
+.welcome-banner:hover {
+    border: 3px dashed #4da6ff; /* إطار متقطع عند التمرير */
+    transform: scale(1.03); /* تكبير بسيط عند التمرير */
+}
+
+/* الحاوية الرئيسية */
+.container {
+    background-color: #3388ff; /* خلفية أزرق متوسط */
+    border-radius: 15px; /* زوايا مستديرة */
+    box-shadow: 0px 8px 15px rgba(51, 136, 255, 0.4); /* ظل أزرق متوسط */
+    padding: 20px;
+    color: #ffffff; /* نصوص بيضاء */
+}
+
+/* العناوين */
+h4 {
+    color: #ffffff; /* لون النص أبيض */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* الحقول النصية */
+.form-control {
+    background-color: #ffffff; /* خلفية الحقل أبيض */
+    color: #3388ff; /* نص أزرق متوسط */
+    border: 1px solid #4da6ff; /* حدود أزرق أغمق */
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 6px;
+}
+
+/* الأزرار */
+.profile-button {
+    background-color: #ffffff; /* خلفية بيضاء */
+    color: #4da6ff; /* نص بنفس درجة الأزرق */
+    border: 2px solid #4da6ff; /* إطار أزرق أغمق */
+    padding: 10px 20px;
+    border-radius: 25px; /* زوايا مستديرة للأزرار */
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s; /* تأثير انتقال */
+}
+
+.profile-button:hover {
+    background-color: #2d76d9; /* أزرق أغمق عند التمرير */
+    color: #ffffff; /* نص أبيض عند التمرير */
+    transform: scale(1.05); /* تكبير بسيط عند التمرير */
+}
+
+/* الصورة الشخصية */
+.rounded-circle {
+    border: 3px solid #4da6ff; /* إطار أزرق أغمق */
+}

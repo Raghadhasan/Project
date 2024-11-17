@@ -1,77 +1,48 @@
-/* تصميم السايد بار */
-/* تصميم السايد بار */
-.custom-sidebar {
-  background: linear-gradient(135deg, #fdf3e3, #f5e4d3) !important; /* خلفية كريمية متدرجة */
-  color: #6d4c41 !important; /* لون نص عسلي */
-  width: 250px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  border-right: 1px solid #d3c4aa; /* لون كريمي أغمق قليلاً للحدود */
-  padding-top: 1rem;
-  min-height: 100vh; /* لضمان تغطية السايدبار بالكامل */
-}
-
-/* تصميم شعار العلامة */
-.brand-link {
-  background-color: #a67c52; /* لون عسلي غامق */
-  color: #fff;
-  font-size: 1.3rem;
+/* أساسيات التصميم للأزرار */
+.custom-button {
+  background-color: #ffffff;
+  /* خلفية بيضاء */
+  color: #4da6ff;
+  /* نص أزرق */
+  border: 3px solid #4da6ff;
+  /* إطار أزرق */
+  padding: 10px 20px;
+  /* مسافات داخلية مناسبة لزر */
+  border-radius: 25px;
+  /* زوايا مستديرة */
+  text-align: center;
+  font-size: 16px;
+  /* حجم نص مناسب لزر */
   font-weight: bold;
-  padding: 1.2rem 0;
-  text-align: center;
-  letter-spacing: 1px;
-  margin-bottom: -4rem;
+  /* خط عريض */
+  margin: 5px;
+  /* مسافة بين الأزرار */
+  box-shadow: 0 4px 8px rgba(77, 166, 255, 0.4);
+  /* ظل أزرق خفيف */
+  transition: all 0.3s ease-in-out;
+  /* تأثير انتقال سلس */
+  cursor: pointer;
+  /* يدل على إمكانية النقر */
 }
 
-/* تصميم روابط القائمة */
-.custom-nav-link {
-  color: #6d4c41; /* لون نص عسلي */
-  background-color: #f0e2c9; /* لون خلفية كريمية أفتح قليلاً */
-  margin: 0.4rem 0;
-  padding: 0.8rem 1.2rem;
-  border-radius: 0.6rem;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  font-weight: 500;
-}
-
-.custom-nav-link:hover {
-  background-color: #e0d3b8; /* لون كريمي أغمق قليلاً عند التمرير */
-  color: #a67c52; /* لون نص عسلي غامق */
+/* تأثير عند تمرير الماوس فوق الزر */
+.custom-button:hover {
+  background-color: #4da6ff;
+  /* خلفية تتغير إلى الأزرق */
+  color: #ffffff;
+  /* نص يتغير إلى الأبيض */
+  box-shadow: 0 6px 12px rgba(77, 166, 255, 0.5);
+  /* ظل أغمق قليلاً */
   transform: scale(1.05);
+  /* تكبير الزر قليلاً */
 }
 
-/* تصميم الأيقونات */
-.nav-icon {
-  font-size: 1.3rem;
-  margin-right: 0.8rem;
-  color: #a67c52; /* لون عسلي للأيقونات */
-}
-
-/* لون النص داخل الروابط */
-.links_name {
-  font-size: 1.1rem;
-  color: #6d4c41; /* لون نص عسلي */
-}
-
-/* تصميم زر Log Out */
-.logout-link {
-  background: linear-gradient(135deg, #b58663, #c69b76); /* تدرج عسلي فاتح */
-  color: #fff;
-  margin-top: 1rem;
-  padding: 0.8rem 1.2rem;
-  border-radius: 0.6rem;
-  text-align: center;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.logout-link:hover {
-  background: linear-gradient(135deg, #a67c52, #8b5e3c); /* لون عسلي أغمق عند التمرير */
-  box-shadow: 0px 8px 18px rgba(166, 124, 82, 0.5);
-}
-
-/* لون الرابط النشط */
-.custom-nav-link.active {
-  background-color: #e0d3b8; /* لون كريمي أغمق */
-  color: #6d4c41; /* لون نص عسلي غامق */
+/* تطبيق الأنماط على الأزرار المحددة */
+#courseButton,
+#profileButton,
+#logoutButton {
+  display: inline-block;
+  /* لجعل الزر يستجيب للمسافة والتنسيق */
+  width: auto;
+  /* العرض يتكيف حسب المحتوى */
 }

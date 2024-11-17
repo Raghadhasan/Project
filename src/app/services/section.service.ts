@@ -6,19 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SectionService {
-  private apiUrl = 'https://localhost:7276/api/Trainer'; // نقطة النهاية للدورات
-  private uploadUrl = 'https://localhost:7276/api/YourUploadEndpoint'; // نقطة النهاية لرفع الملفات
+  private apiUrl = 'https://localhost:7276/api/Trainer';
 
   TrainerSections: any = [];
 
   constructor(private http: HttpClient) { }
 
-  // دالة رفع الملف التي تعيد Observable
-  uploadAttachment(formData: FormData): Observable<{ filePath: string }> {
-    return this.http.post<{ filePath: string }>(this.uploadUrl, formData);
-  }
 
-  // جلب جميع المدربين
   getAllTrainerSections() {
     debugger;
     this.http.get<any[]>(`${this.apiUrl}/GetAll`).subscribe(res => {
@@ -31,7 +25,6 @@ export class SectionService {
 
 
 
-  // إنشاء قسم جديد لدورة معينة
   createSection(section: any) {
     debugger;
     this.http.post(`${this.apiUrl}/CreateTSection`, section).subscribe(
@@ -47,14 +40,24 @@ export class SectionService {
 
 
 
-  // تحديث قسم معين
   updateSection(section: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/UpdateTSection`, section);
 
   }
 
-  // حذف قسم معين من دورة
   deleteSection(trainerSectionId: number): Observable<any> {
     return this.http.delete(`https://localhost:7276/api/Trainer/DeleteTsection/${trainerSectionId}`);
   }
+  downloadTemplate(): Observable<Blob> {
+    const apiUrl = `${this.apiUrl}/TemplateTrainee`;
+    return this.http.get(apiUrl, { responseType: 'blob' });
+  }
+  uploadTraineeFile(file: File, user_id: any, courseId: number, tsid: number): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file);
+    const url = `https://localhost:7276/api/Trianee/UploadTraineeData?courseid=${courseId}&tsid=${tsid}&user_id=${user_id}`;
+
+    return this.http.post(url, formData);
+  }
+
 }

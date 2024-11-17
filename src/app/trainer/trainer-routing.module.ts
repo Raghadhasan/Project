@@ -3,10 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ManageCourseComponent } from './manage-course/manage-course.component';
 import { CourseComponent } from './course/course.component';
-import { UploadMaterialComponent } from './upload-material/upload-material.component';
-import { UploadAssignmentComponent } from './upload-assignment/upload-assignment.component';
-import { TraineeSolutionsComponent } from './trainee-solutions/trainee-solutions.component';
-import { TraineeMarksComponent } from './trainee-marks/trainee-marks.component';
 import { ProfileComponent } from './profile/profile.component';
 
 
@@ -32,30 +28,12 @@ const routes: Routes = [
         path: 'my-courses',
         component: CourseComponent,
       },
-
-      {
-        path: 'upload-material',
-        component: UploadMaterialComponent,
-      },
-      {
-        path: 'upload-assignment',
-        component: UploadAssignmentComponent,
-
-      },
-      {
-        path: 'trainee-marks',
-        component: TraineeMarksComponent,
-
-      },
+    
       {
         path: 'profile/:id',
         component: ProfileComponent
       },
-      {
-        path: 'trainee-solutions',
-        component: TraineeSolutionsComponent,
-
-      },
+     
 
     ],
   },

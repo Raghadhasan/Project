@@ -7,6 +7,7 @@ import { SectionComponent } from './section/section.component';
 import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { ReportsComponent } from './reports/reports.component';
+import { CreateCourseComponent } from './create-course/create-course.component';
 
 const routes: Routes = [
 
@@ -15,11 +16,12 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashbordComponent
   },
-  // {
-  //   path: 'courses',
-  //   component: CoursesComponent
-  // },
-
+  
+  {
+    path: 'create-course',
+    component: CreateCourseComponent
+  },
+  
   {
     path: 'manageCourse',
     component: ManageCourseComponent

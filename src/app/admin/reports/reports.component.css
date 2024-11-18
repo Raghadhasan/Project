@@ -1,0 +1,14 @@
+#BodyReports {
+    width: 125%;
+    position: relative;
+    left: 18.1rem;
+    bottom: 29.2rem;
+}
+.card-body canvas {
+    display: block;
+    width: 100% !important;
+    height: auto !important;
+  }
+  .card-body {
+    position: relative;
+  }

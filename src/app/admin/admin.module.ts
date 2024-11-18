@@ -32,8 +32,7 @@ import { ReportsComponent } from './reports/reports.component';
     AdminRoutingModule,
     SharedModule,
     FormsModule,
-    MatIconModule, // Add MatIconModule to imports
-
+    MatIconModule, 
 
   ]
 })

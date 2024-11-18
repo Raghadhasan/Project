@@ -1,0 +1,49 @@
+.sidebar {
+    width: 240px; /* يمكنك تقليل القيمة لتناسب احتياجاتك */
+    transition: width 0.5s ease; /* إضافة تأثير انسيابي */
+  }
+
+
+  .sidebar {
+    background-color: #ffffff; /* لون أبيض للـ Sidebar */
+    border-right: 2px solid #ffffff; /* إطار أبيض */
+    color: #007bff; /* النص أزرق */
+    min-height: 100vh; /* لجعل الـ Sidebar يغطي الشاشة كاملة */
+  }
+  
+  .sidebar a {
+    color: #007bff; /* لون النص للأزرار */
+    font-weight: bold; /* لجعل النص واضحًا */
+    border: 1px solid #ffffff; /* إطار أبيض */
+    margin: 5px 10px; /* مسافات بين العناصر */
+    padding: 10px 15px; /* تباعد داخلي */
+    border-radius: 5px; /* حواف مستديرة */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .sidebar a:hover {
+    background-color: #007bff; /* خلفية زرقاء عند التمرير */
+    color: #ffffff; /* النص يصبح أبيض */
+  }
+
+  body {
+    background-color: #007bff; /* خلفية زرقاء */
+    color: #ffffff; /* النص يصبح أبيض افتراضيًا */
+  }
+  
+  .sidebar .nav-link {
+    color: #007bff; /* النص أزرق */
+    font-size: 16px; /* حجم النص */
+    text-decoration: none; /* إزالة التسطير تحت النص */
+  }
+  
+  .sidebar .nav-link:hover {
+    background-color: #ffffff; /* الخلفية تصبح بيضاء عند التمرير */
+    color: #007bff; /* النص يبقى أزرق */
+    border: 1px solid #ffffff; /* الإطار يبقى أبيض */
+  }
+
+  .sidebar a {
+    transition: all 0.3s ease-in-out; /* تأثيرات انتقال */
+  }
+  

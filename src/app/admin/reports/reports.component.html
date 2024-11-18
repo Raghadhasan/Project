@@ -1,24 +1,22 @@
 <app-sidebar></app-sidebar>
 
-
 <header id="header" class="header fixed-top d-flex align-items-center">
-
     <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
             <img src="../../../assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">NiceAdmin</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
-
+    </div>
     <div class="search-bar">
         <form class="search-form d-flex align-items-center" method="POST" action="#">
             <input type="text" name="query" placeholder="Search" title="Enter search keyword">
             <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
-    </div><!-- End Search Bar -->
+    </div>
 </header>
-<div id="BodyDashBorad">
+
+<div id="BodyReports">
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <div class="container-fluid" style="padding-top: 525px;">
@@ -28,18 +26,54 @@
 
                 <div class="col-lg-8 d-flex align-items-stretch" style="margin-right:200px;">
                     <div class="card w-100">
-                        <div class="card-header">
-                            <h5 class="card-title fw-semibold mb-4">All report Sections</h5>
 
-                        </div>
                         <div class="card-body p-4">
                             <div class="row">
-              
+                                <h5 _ngcontent-ng-c631342973="" class="card-title fw-semibold mb-4">Course Reports</h5>
+
+                            </div>
+                            <div *ngIf="isLoading" class="text-center">
+                                <p>Loading...</p>
+                            </div>
+                            <!-- <div class="row" *ngIf="!isLoading && reports.length > 0">
+                                <div *ngFor="let report of reports" class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ report.courseName }}</h5>
+                                            <p class="card-text">
+                                                Trainee Mark: {{ report.traineemark }} <br>
+                                                Course Count: {{ report.coursE_COUNT }}
+                                            </p>
+                                            <p class="card-footer">
+                                                TSID: {{ report.tsid }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div *ngIf="!isLoading && reports.length === 0" class="text-center">
+                                <p>No reports available.</p>
+                            </div> -->
+                            <!-- reports.component.html -->
+
+                            <!-- reports.component.html -->
+                            <div *ngIf="!isLoading && reports.length > 0">
+                                <!-- Bar Chart -->
+                                <div style="position: relative; height:300px;">
+                                    <canvas #barChart></canvas>
+                                </div>
+
+                               
+
+                                <div *ngIf="!isLoading && reports.length === 0" class="text-center">
+                                    <p>No reports available.</p>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

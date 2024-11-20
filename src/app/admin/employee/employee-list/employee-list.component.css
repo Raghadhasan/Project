@@ -27,52 +27,162 @@
     }
 }
 
-/* الحاوية التي تحتوي على الجدول */
-.table-container {
-    background-color: #f7f9fc; /* خلفية خفيفة للحاوية */
-    padding: 20px;
-    border-radius: 15px; /* زوايا مستديرة */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* ظل */
-    margin: 20px 0;
-    margin-right: 20px;
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e8f7f9;
 }
 
-/* تصميم الجدول */
-.custom-table {
+/* Panel Styling */
+.card {
+    background: linear-gradient(to bottom, #39c0ed, #29a1c1);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+.card-title {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+button[mat-raised-button] {
+    background: #ffffff;
+    color: #29a1c1;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+button[mat-raised-button]:hover {
+    background: #29a1c1;
+    color: #ffffff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Table Styling */
+.table-responsive {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.table {
     width: 100%;
     border-collapse: collapse;
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-    color: #333333; /* نص داكن */
-    border: 1px solid #ddd; /* حدود الجدول */
+    margin: 0;
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
 }
 
-/* رأس الجدول */
-.custom-table thead {
-    background-color: #4da6ff; /* خلفية رأس الجدول باللون الأزرق */
-    color: white; /* نص أبيض */
-    font-size: 18px;
-    font-weight: bold;
-}
-
-/* خلايا الجدول */
-.custom-table th,
-.custom-table td {
-    border: 1px solid #ddd; /* حدود داخلية */
-    padding: 10px 15px;
+.table thead th {
+    background: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
     font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 2px solid #29a1c1;
 }
 
-/* صفوف الجدول */
-.custom-table tbody tr:nth-child(even) {
-    background-color: #eaf4ff; /* خلفية فاتحة للصفوف الزوجية */
+.table tbody tr {
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
 }
 
-.custom-table tbody tr:nth-child(odd) {
-    background-color: #ffffff; /* خلفية بيضاء للصفوف الفردية */
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.25);
 }
 
-.custom-table tbody tr:hover {
-    background-color: #cce7ff; /* خلفية عند التمرير */
-    transition: all 0.3s ease-in-out;
+.table tbody td {
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Buttons in Table */
+.table tbody td button:first-child {
+    background: #ffca28;
+    color: #ffffff;
+    margin-right: 10px;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.table tbody td button:first-child:hover {
+    background: #f4b400;
+}
+
+.table tbody td button:last-child {
+    background: #e53935;
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.table tbody td button:last-child:hover {
+    background: #c62828;
+}
+
+/* Pagination */
+.card-footer {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    text-align: right;
+    padding: 10px;
+    border-radius: 0 0 20px 20px;
+}
+
+.pagination {
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+
+.pagination li a {
+    display: block;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.pagination li a:hover {
+    background: #ffffff;
+    color: #29a1c1;
+}
+
+.pagination li.active a {
+    background: #29a1c1;
+    color: #ffffff;
 }

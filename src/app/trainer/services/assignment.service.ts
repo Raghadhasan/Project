@@ -5,8 +5,15 @@ import { Observable } from 'rxjs';
 export interface AssignmentSolution {
   id: number;
   traineeId: number;
-  solution: string; 
-  mark?: any; 
+  solution: string;
+  mark?: any;
+}
+export interface AssignmentDetailsDto {
+  traineeId: number;
+  traineeName: string;
+  assignmentId: number;
+  traineeSolution: string | null;
+  assignmentMark: number;
 }
 export class Assignment {
   asec: number;
@@ -35,18 +42,27 @@ export class AssignmentService {
   private apiUrl = 'https://localhost:7276/api/Assignment';
 
   constructor(private http: HttpClient) { }
-
+  updateMark(payload: any[]): Observable<any> {
+    return this.http.put(`${this.apiUrl}/UpdateMark`, payload);
+  }
   getAssignmentSolutions(): Observable<AssignmentSolution[]> {
     return this.http.get<AssignmentSolution[]>(`${this.apiUrl}/GetAssignmentSolutions`);
   };
-  GetAllAssignmentByCoursid(Trainercourse : number): Observable<AssignmentSolution[]> {
+  GetAllAssignmentByCoursid(Trainercourse: number): Observable<AssignmentSolution[]> {
     return this.http.get<AssignmentSolution[]>(`${this.apiUrl}/GetAllAssignment?Trainercourse=${Trainercourse}`);
   };
 
-
-  updateMark(solutionId: number, mark: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/UpdateMark/${solutionId}`, { mark });
+  getAssignmentDetails(
+    courseId: number,
+    sectionId: number,
+    trainerId: string,
+    assignmentId: number
+  ): Observable<AssignmentDetailsDto[]> {
+    return this.http.get<AssignmentDetailsDto[]>(
+      `${this.apiUrl}/GetAssignmentDetails?courseId=${courseId}&sectionId=${sectionId}&trainerId=${trainerId}&assignmentId=${assignmentId}`
+    );
   }
+
   submitAssignment(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/CreateAssignment`, data);
   }

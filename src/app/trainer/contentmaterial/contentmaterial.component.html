@@ -23,139 +23,138 @@
             </div>
 
             <!-- Uncomment below to activate download link -->
-                <a [href]="getFilePath()" target="_blank" class="btn btn-outline-secondary mt-2"
-                    style="font-size: 1.1rem; font-weight: 600;">
-                    <i class="bi bi-download"></i> Download PDF
-                </a>
+            <a [href]="getFilePath()" target="_blank" class="btn btn-outline-secondary mt-2"
+                style="font-size: 1o.1rem; font-weight: 600;">
+                <i class="bi bi-download"></i> Download PDF
+            </a>
+        </div>
+
+        <div class="mt-4">
+            <label for="courseMaterialUpload" class="form-label fw-semibold"
+                style="color: #6d4c41; font-size: 1.2rem; font-weight: 600;">
+                Upload Course Material (PDF)
+            </label>
+
+            <input type="file" id="courseMaterialUpload" class="form-control" (change)="onCourseMaterialUpload($event)"
+                accept=".pdf" />
+        </div>
+
+
+        <div class="card-footer bg-transparent text-end">
+            <button class="btn btn-success px-4 py-2" (click)="SaveCourseMaterial()">
+                <i class="bi bi-save"></i> Save
+            </button>
+        </div>
+    </div>
+
+
+    <!-- done -->
+
+    <!-- Attendance Section -->
+    <div class="card shadow-lg"
+        style="width: 100%; border: 1px solid #e0e0e0; border-radius: 0.8rem; box-shadow: 0px 8px 15px rgba(40, 167, 69, 0.2); background-color: #fdf3e3;">
+        <div class="card-body" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+            <!-- العنوان بتصميم ترحيبي -->
+            <h5 class="card-title"
+                style="color: #28a745; font-size: 2rem; font-weight: bold; text-align: center; background-color: #e6f9ec; padding: 1rem; border-radius: 1.5rem; box-shadow: 0px 4px 10px rgba(40, 167, 69, 0.3); width: fit-content;">
+                <i class="fas fa-calendar-check" style="color: #28a745; margin-right: 0.5rem;"></i> Attendance
+            </h5>
+
+            <!-- النص بمحاذاة لليسار -->
+            <div style="margin-top: 1.5rem; font-size: 1.3rem; color: #000000; font-weight: 600;">
+                <p style="display: flex; align-items: center; gap: 0.5rem; margin: 0;">
+                    <i class="fas fa-clock" style="color: #28a745;"></i>
+                    The section starts at: {{ course.sectionstarttime | date: 'shortTime' }}
+                </p>
+                <p style="display: flex; align-items: center; gap: 0.5rem; margin: 0; margin-top: 0.5rem;">
+                    <i class="fas fa-clock" style="color: #28a745;"></i>
+                    The section ends at: {{ course.sectionendtime | date: 'shortTime' }}
+                </p>
             </div>
 
-            <div class="mt-4">
-                <label for="courseMaterialUpload" class="form-label fw-semibold"
-                    style="color: #6d4c41; font-size: 1.2rem; font-weight: 600;">
-                    Upload Course Material (PDF)
-                </label>
-
-                <input type="file" id="courseMaterialUpload" class="form-control"
-                    (change)="onCourseMaterialUpload($event)" accept=".pdf" />
-            </div>
 
 
-            <div class="card-footer bg-transparent text-end">
-                <button class="btn btn-success px-4 py-2" (click)="SaveCourseMaterial()">
-                    <i class="bi bi-save"></i> Save
+            <!-- زر الحضور بمحاذاة لليسار -->
+            <div style="text-align: left;">
+                <button class="btn"
+                    style="background-color: #28a745; color: white; border: none; padding: 0.5rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 0.3rem; box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);"
+                    (click)="openTakeAttendanceModal(course.tsid)">
+                    <i class="fas fa-check-circle"></i> Take Attendance
                 </button>
             </div>
         </div>
+    </div>
 
 
-        <!-- done -->
-
-        <!-- Attendance Section -->
-        <div class="card shadow-lg"
-            style="width: 100%; border: 1px solid #e0e0e0; border-radius: 0.8rem; box-shadow: 0px 8px 15px rgba(40, 167, 69, 0.2); background-color: #fdf3e3;">
-            <div class="card-body" style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-                <!-- العنوان بتصميم ترحيبي -->
-                <h5 class="card-title"
-                    style="color: #28a745; font-size: 2rem; font-weight: bold; text-align: center; background-color: #e6f9ec; padding: 1rem; border-radius: 1.5rem; box-shadow: 0px 4px 10px rgba(40, 167, 69, 0.3); width: fit-content;">
-                    <i class="fas fa-calendar-check" style="color: #28a745; margin-right: 0.5rem;"></i> Attendance
-                </h5>
-
-                <!-- النص بمحاذاة لليسار -->
-                <div style="margin-top: 1.5rem; font-size: 1.3rem; color: #000000; font-weight: 600;">
-                    <p style="display: flex; align-items: center; gap: 0.5rem; margin: 0;">
-                        <i class="fas fa-clock" style="color: #28a745;"></i>
-                        The section starts at: {{ course.sectionstarttime | date: 'shortTime' }}
-                    </p>
-                    <p style="display: flex; align-items: center; gap: 0.5rem; margin: 0; margin-top: 0.5rem;">
-                        <i class="fas fa-clock" style="color: #28a745;"></i>
-                        The section ends at: {{ course.sectionendtime | date: 'shortTime' }}
-                    </p>
-                </div>
-
-
-
-                <!-- زر الحضور بمحاذاة لليسار -->
-                <div style="text-align: left;">
-                    <button class="btn"
-                        style="background-color: #28a745; color: white; border: none; padding: 0.5rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 0.3rem; box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2);"
-                        (click)="openTakeAttendanceModal(course.tsid)">
-                        <i class="fas fa-check-circle"></i> Take Attendance
-                    </button>
-                </div>
+    <!-- Assignment  Upload Section -->
+    <div class="card shadow-lg" style="width: 100%; border: 1px solid #e0e0e0; border-radius: 0.5rem;">
+        <div class="card-body" style="display: grid; gap: 1.5rem;">
+            <!-- العنوان بتنسيق مميز بدون خط سفلي -->
+            <h5 class="card-title"
+                style="color: #e91e63; font-size: 1.8rem; font-weight: bold; text-align: center; background-color: #fce4ec; padding: 0.5rem; border-radius: 0.3rem;">
+                <i class="fas fa-tasks"></i> Assignments
+            </h5>
+            <div
+                style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 120%; height: 120%; background: radial-gradient(circle at center, rgba(245, 228, 185, 0.4), transparent); border-radius: 50px; pointer-events: none;">
             </div>
-        </div>
-
-
-        <!-- Assignment  Upload Section -->
-        <div class="card shadow-lg" style="width: 100%; border: 1px solid #e0e0e0; border-radius: 0.5rem;">
-            <div class="card-body" style="display: grid; gap: 1.5rem;">
-                <!-- العنوان بتنسيق مميز بدون خط سفلي -->
-                <h5 class="card-title"
-                    style="color: #e91e63; font-size: 1.8rem; font-weight: bold; text-align: center; background-color: #fce4ec; padding: 0.5rem; border-radius: 0.3rem;">
-                    <i class="fas fa-tasks"></i> Assignments
-                </h5>
-                <div
-                    style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 120%; height: 120%; background: radial-gradient(circle at center, rgba(245, 228, 185, 0.4), transparent); border-radius: 50px; pointer-events: none;">
-                </div>
-                <!-- محتوى الكارد -->
-                <div style="display: flex; flex-direction: column; align-items: start; gap: 0.8rem;">
-                    <label for="assignmentUpload"
-                        style="font-size: 1.2rem; color: #555; font-weight: bold; display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fas fa-file-pdf" style="color: #e91e63;"></i> Upload Assignment (PDF)
-                    </label>
-                    <button (click)="openAssignmentModal()"
-                        style="background-color: #e91e63; color: white; font-size: 1rem; padding: 0.5rem 1.2rem; border: none; border-radius: 0.3rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 8px rgba(233, 30, 99, 0.2); transition: transform 0.2s;">
-                        <i class="fas fa-upload"></i> Add Assignments
-                    </button>
-                </div>
-                <div class="card shadow-lg"
-                    style="background-color: #fdf3e3; border: 1px solid #d3c4aa; border-radius: 0.5rem; padding: 1.5rem;">
-                    <h5
-                        style="color: #e91e63; font-weight: bold; font-size: 1.5rem; text-align: center; margin-bottom: 1rem;">
-                        Assignments</h5>
-                    <ol class="list-group list-group-numbered" style="gap: 1rem;">
-                        <li class="list-group-item" *ngFor="let assignment of assignments"
-                            style="background-color: #fdf3e3; border: 1px solid #d3c4aa; border-radius: 0.5rem; padding: 1rem; box-shadow: 0px 4px 10px rgba(166, 124, 82, 0.1); color: #6d4c41;">
-                            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                                <p style="margin: 0; color: #6d4c41; font-size: 1.1rem;">
-                                    <strong style="color: #e91e63;">Assignment ID:</strong> {{ assignment.asec }}
-                                </p>
-                                <p style="margin: 0; color: #6d4c41; font-size: 1.1rem;">
-                                    <strong style="color: #e91e63;">Trainer Course:</strong> {{ assignment.trainercourse
-                                    }}
-                                </p>
-                                <p style="margin: 0; color: #6d4c41; font-size: 1.1rem;">
-                                    <strong style="color: #e91e63;">File Assignment:</strong>
-                                    <a [href]="replaceFilePath(assignment.assignmentfile)" target="_blank"
-                                        class="btn btn-outline-secondary mt-2"
-                                        style="font-size: 1.1rem; font-weight: 600; color: #e91e63; border-color: #e91e63; padding: 0.3rem 1.rem; display: inline-flex; align-items: center;">
-                                        <i class="bi bi-eye" style="margin-right: 0.3rem;"></i> Show
-                                    </a>
-                                </p>
-                                <p style="margin: 0; color: #6d4c41; font-size: 1.1rem;">
-                                    <strong style="color: #e91e63;">Mark:</strong> {{ assignment.assignmentmark }}
-                                </p>
-                                <p style="margin: 0; color: #6d4c41; font-size: 1.1rem;">
-                                    <strong style="color: #e91e63;">Due Date:</strong> {{ assignment.assignmentduration
-                                    | date:'short' }}
-                                </p>
-                            </div>
-                            <div style="text-align: center; margin-top: 1rem;">
-                                <button (click)="openAssignmentModal()"
-                                    style="background-color: #e91e63; color: white; font-size: 1rem; padding: 0.5rem 1.2rem; border: none; border-radius: 0.3rem; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3); transition: transform 0.2s;">
-                                    <i class="bi bi-eye"></i> Show Solution
-                                </button>
-                            </div>
-                        </li>
-                    </ol>
-                </div>
-
-
-
-
-
-
+            <!-- محتوى الكارد -->
+            <div style="display: flex; flex-direction: column; align-items: start; gap: 0.8rem;">
+                <label for="assignmentUpload"
+                    style="font-size: 1.2rem; color: #555; font-weight: bold; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-file-pdf" style="color: #e91e63;"></i> Upload Assignment (PDF)
+                </label>
+                <button (click)="openAssignmentModal()"
+                    style="background-color: #e91e63; color: white; font-size: 1rem; padding: 0.5rem 1.2rem; border: none; border-radius: 0.3rem; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 8px rgba(233, 30, 99, 0.2); transition: transform 0.2s;">
+                    <i class="fas fa-upload"></i> Add Assignments
+                </button>
             </div>
+            <div class="card shadow-lg"
+                style="background-color: #fdf3e3; border: 1px solid #d3c4aa; border-radius: 0.5rem; padding: 1.5rem;">
+                <h5
+                    style="color: #e91e63; font-weight: bold; font-size: 1.5rem; text-align: center; margin-bottom: 1rem;">
+                    Assignments</h5>
+                <ol class="list-group list-group-numbered" style="gap: 1rem;">
+                    <li class="list-group-item" *ngFor="let assignment of assignments"
+                        style="background-color: #fdf3e3; border: 1px solid #d3c4aa; border-radius: 0.5rem; padding: 1rem; box-shadow: 0px 4px 10px rgba(166, 124, 82, 0.1); color: #6d4c41;">
+                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                            <p style="margin: 0; color: #6d4c41; font-size: 1.1rem;">
+                                <strong style="color: #e91e63;">Assignment ID:</strong> {{ assignment.asec }}
+                            </p>
+                            <p style="margin: 0; color: #6d4c41; font-size: 1.1rem;">
+                                <strong style="color: #e91e63;">Trainer Course:</strong> {{ assignment.trainercourse
+                                }}
+                            </p>
+                            <p style="margin: 0; color: #6d4c41; font-size: 1.1rem;">
+                                <strong style="color: #e91e63;">File Assignment:</strong>
+                                <a [href]="replaceFilePath(assignment.assignmentfile)" target="_blank"
+                                    class="btn btn-outline-secondary mt-2"
+                                    style="font-size: 1.1rem; font-weight: 600; color: #e91e63; border-color: #e91e63; padding: 0.3rem 1.rem; display: inline-flex; align-items: center;">
+                                    <i class="bi bi-eye" style="margin-right: 0.3rem;"></i> Show
+                                </a>
+                            </p>
+                            <p style="margin: 0; color: #6d4c41; font-size: 1.1rem;">
+                                <strong style="color: #e91e63;">Mark:</strong> {{ assignment.assignmentmark }}
+                            </p>
+                            <p style="margin: 0; color: #6d4c41; font-size: 1.1rem;">
+                                <strong style="color: #e91e63;">Due Date:</strong> {{ assignment.assignmentduration
+                                | date:'short' }}
+                            </p>
+                        </div>
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <button (click)="openAssignmentSolutionModal(assignment.asec)"
+                                style="background-color: #e91e63; color: white; font-size: 1rem; padding: 0.5rem 1.2rem; border: none; border-radius: 0.3rem; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3); transition: transform 0.2s;">
+                                <i class="bi bi-eye"></i> Show Solution
+                            </button>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+
+
+
+
+
         </div>
     </div>
 
@@ -172,16 +171,7 @@
                 style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 120%; height: 120%; background: radial-gradient(circle at center, rgba(245, 228, 185, 0.4), transparent); border-radius: 50px; pointer-events: none;">
             </div>
             <!-- قسم رفع الامتحان -->
-            <!-- <div class="text-center">
-                    <label for="examUpload"
-                        style="font-size: 1.1rem; color: #333; font-weight: bold; display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fas fa-file-pdf" style="color: #6f42c1;"></i> Upload Exam (PDF)
-                    </label>
-                    <button (click)="onExamUploadModal()"
-                        style="background-color: #6f42c1; color: white; font-size: 1rem; padding: 0.5rem 1.2rem; border: none; border-radius: 0.3rem; display: flex; align-items: center; gap: 0.5rem;">
-                        <i class="fas fa-upload"></i> Add Exam
-                    </button>
-                </div> -->
+
             <div style="display: flex; flex-direction: column; align-items: start; gap: 0.8rem;">
                 <label for="assignmentUpload"
                     style="font-size: 1.2rem; color: #555; font-weight: bold; display: flex; align-items: center; gap: 0.5rem;">
@@ -229,84 +219,132 @@
 
             </div>
         </div>
+    </div>
 
-        <!-- Modal for uploading multiple assignments -->
-        <div *ngIf="isModalOpen" class="modal">
-            <div class="modal-content">
-                <h2>Upload Assignments</h2>
-                <label for="trainerCourseId">Trainer Course ID</label>
-                <input type="number" [disabled]="true" [(ngModel)]="trainerCourseId" id="trainerCourseId" />
+    <!-- Modal for uploading multiple assignments -->
+    <div *ngIf="isModalOpen" class="modal">
+        <div class="modal-content">
+            <h2>Upload Assignments</h2>
+            <label for="trainerCourseId">Trainer Course ID</label>
+            <input type="number" [disabled]="true" [(ngModel)]="trainerCourseId" id="trainerCourseId" />
 
-                <label for="assignmentMark">Assignment Mark</label>
-                <input type="number" [(ngModel)]="assignmentMark" id="assignmentMark" />
+            <label for="assignmentMark">Assignment Mark</label>
+            <input type="number" [(ngModel)]="assignmentMark" id="assignmentMark" />
 
-                <label for="assignmentDuration">Assignment Duration</label>
-                <input type="date" [(ngModel)]="assignmentDuration" id="assignmentDuration" />
+            <label for="assignmentDuration">Assignment Duration</label>
+            <input type="date" [(ngModel)]="assignmentDuration" id="assignmentDuration" />
 
-                <label for="assignmentUpload">Upload Assignment (PDF)</label>
-                <input type="file" id="assignmentUpload" (change)="onAssignmentUpload($event)" accept=".pdf" multiple />
+            <label for="assignmentUpload">Upload Assignment (PDF)</label>
+            <input type="file" id="assignmentUpload" (change)="onAssignmentUpload($event)" accept=".pdf" multiple />
 
-                <button (click)="submitAssignments()">Upload</button>
-                <button (click)="closeAssignmentModal()">Cancel</button>
+            <button (click)="submitAssignments()">Upload</button>
+            <button (click)="closeAssignmentModal()">Cancel</button>
+        </div>
+    </div>
+    <div *ngIf="isModalExamOpen" class="modal">
+        <div class="modal-content">
+            <h2>ُExam </h2>
+            <label for="trainerCourseId">Trainer Course ID</label>
+            <input type="text" [disabled]="true" [(ngModel)]="trainerCourseId" id="trainerCourseId" />
+
+            <label for="ExamMark">Exam link</label>
+            <input type="text" [(ngModel)]="Examlink" id="Examlink" />
+
+            <label for="Exammark">Exam mark</label>
+            <input type="number" [(ngModel)]="Exammark" id="Exammark" />
+            <label for="Examstarttime">Exam start time</label>
+            <input type="datetime-local" [(ngModel)]="Examstarttime" id="Examstarttime" />
+            <label for="Examendtime">Exam end time</label>
+            <input type="datetime-local" [(ngModel)]="Examendtime" id="Examendtime" />
+
+            <button (click)="submitExam()">Upload</button>
+            <button (click)="closeModalExamModal()">Cancel</button>
+        </div>
+    </div>
+
+    <div *ngIf="isModalAttendanceOpen" class="modal">
+        <div class="modal-content-Attendance">
+            <h2>Upload Attendance</h2>
+
+            <div class="container mt-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>UserId</th>
+                            <th>Name</th>
+                            <th hidden></th>
+                            <th>Attend</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of sectionAttendance">
+                            <td>{{ user.userId }}</td>
+                            <td>{{ user.userName }}</td>
+                            <td hidden>
+                                <input type="hidden" [value]="user.seat">
+                            </td>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" [ngModel]="isUserPresent(user)"
+                                        (ngModelChange)="updateStatus(user, $event)" />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-end">
+                <button (click)="saveAttendance()">Submit Attendance</button>
+                <button (click)="closeModalAttendanceModal()">Cancel</button>
+
             </div>
         </div>
-        <div *ngIf="isModalExamOpen" class="modal">
-            <div class="modal-content">
-                <h2>ُExam </h2>
-                <label for="trainerCourseId">Trainer Course ID</label>
-                <input type="text" [disabled]="true" [(ngModel)]="trainerCourseId" id="trainerCourseId" />
+    </div>
+    <div *ngIf="isModalShowSolutionOpen" class="modal">
+        <div class="modal-content-ShowSolution">
+            <h2>Show Solution assignment</h2>
 
-                <label for="ExamMark">Exam link</label>
-                <input type="text" [(ngModel)]="Examlink" id="Examlink" />
+            <div class="container mt-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>UserId</th>
+                            <th>Name</th>
+                            <th>Solution</th>
+                            <th>Mark</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let solution of solutionDetails">
+                            <td>{{ solution.traineeId }}</td>
+                            <td>{{ solution.traineeName }}</td>
+                        <button *ngIf="isPdf1(solution.traineeSolution)" (click)="openFile1(solution.traineeSolution)"
+                                class="btn btn-outline-primary">
+                                Open PDF
+                            </button>
+                            <button *ngIf="!isPdf1(solution.traineeSolution)" (click)="downloadFile1(solution.traineeSolution)"
+                                class="btn btn-outline-secondary">
+                                Download
+                            </button>
 
-                <label for="Exammark">Exam mark</label>
-                <input type="number" [(ngModel)]="Exammark" id="Exammark" />
-                <label for="Examstarttime">Exam start time</label>
-                <input type="datetime-local" [(ngModel)]="Examstarttime" id="Examstarttime" />
-                <label for="Examendtime">Exam end time</label>
-                <input type="datetime-local" [(ngModel)]="Examendtime" id="Examendtime" />
+                            <td>   <input type="number" [(ngModel)]="solution.assignmentMark" 
+                                class="form-control" 
+                                min="0" 
+                                max="100" 
+                                step="1" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-                <button (click)="submitExam()">Upload</button>
-                <button (click)="closeModalExamModal()">Cancel</button>
+            <div class="text-end">
+                <button (click)="submitMarks()">Submit </button>
+                <button (click)="isModalShowSolutionOpen = false">Cancel</button>
+
             </div>
         </div>
+       
+    </div>
 
-        <div *ngIf="isModalAttendanceOpen" class="modal">
-            <div class="modal-content-Attendance">
-                <h2>Upload Attendance</h2>
-
-                <div class="container mt-3">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>UserId</th>
-                                <th>Name</th>
-                                <th hidden></th>
-                                <th>Attend</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let user of sectionAttendance">
-                                <td>{{ user.userId }}</td>
-                                <td>{{ user.userName }}</td>
-                                <td hidden>
-                                    <input type="hidden" [value]="user.seat">
-                                </td>
-                                <td>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" [ngModel]="isUserPresent(user)"
-                                            (ngModelChange)="updateStatus(user, $event)" />
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="text-end">
-                    <button (click)="saveAttendance()">Submit Attendance</button>
-                    <button (click)="closeModalAttendanceModal()">Cancel</button>
-
-                </div>
-            </div>
-        </div>
+</div>

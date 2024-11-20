@@ -5,7 +5,9 @@ import { HomeService } from 'src/app/services/home.service';
 import { CreateCourseComponent } from '../create-course/create-course.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SidebarComponent } from "../sidebar/sidebar.component";
-
+import { ReportsService } from 'src/app/services/report.service';
+import * as saveAs from 'file-saver';
+import { CerficationService, TraineecertificateDto } from 'src/app/services/certificate.service';
 
 @Component({
   selector: 'app-manage-course',
@@ -14,14 +16,20 @@ import { SidebarComponent } from "../sidebar/sidebar.component";
   // imports: [SidebarComponent]
 })
 export class ManageCourseComponent implements OnInit {
-  @ViewChild('callDeleteDailog') deleteDailog !: TemplateRef<any>;
-  @ViewChild('callupdateDailog') updateDailog !: TemplateRef<any>;
-  courseid: number | undefined;
-  sortBy: string = 'courseid'; 
-  sortOrder: 'asc' | 'desc' = 'asc'; 
-  searchTerm: string = '';
+  @ViewChild('callDeleteDailog') deleteDailog!: TemplateRef<any>;
+  @ViewChild('callupdateDailog') updateDailog!: TemplateRef<any>;
+  @ViewChild('IssueCertificatesDialog') issueCertificatesDialog!: TemplateRef<any>;
+  @ViewChild('inquiryDialog') inquiryDialog!: TemplateRef<any>;
 
-  constructor(public home: HomeService, public dialog: MatDialog) {}
+  courseid: number | undefined;
+  sortBy: string = 'courseid';
+  sortOrder: 'asc' | 'desc' = 'asc';
+  searchTerm: string = '';
+  selectedcourseid: number | undefined;
+  certificates: TraineecertificateDto[] = [];
+
+
+  constructor(public home: HomeService, private reportsService: ReportsService, private cerficationService: CerficationService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.home.getAllCourses();
@@ -40,16 +48,14 @@ export class ManageCourseComponent implements OnInit {
     console.log(id);
     const dialogRef = this.dialog.open(this.deleteDailog).afterClosed().subscribe((result) => {
       if (result != undefined) {
-        if (result == 'yes')
-          this.home.deleteCourse(id);
-
-        else if (result == 'No')
-          console.log('thank you')
+        if (result == 'yes') this.home.deleteCourse(id);
+        else if (result == 'No') console.log('thank you');
       }
-    })
+    });
   }
+
   openCreateDailog() {
-    this.dialog.open(CreateCourseComponent)
+    this.dialog.open(CreateCourseComponent);
   }
 
   updateCourse: FormGroup = new FormGroup({
@@ -67,12 +73,12 @@ export class ManageCourseComponent implements OnInit {
     console.log(this.pData);
     this.pData.coursestartdate = this.formatDate(this.pData.coursestartdate);
     this.pData.courseenddate = this.formatDate(this.pData.courseenddate);
-    this.updateCourse.controls['courseid'].setValue(this.pData.courseid)
+    this.updateCourse.controls['courseid'].setValue(this.pData.courseid);
     this.dialog.open(this.updateDailog);
   }
+
   formatDate(datetime: string): string {
     debugger;
-    // Use JavaScript's Date object to format the date
     const date = new Date(datetime);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -82,36 +88,75 @@ export class ManageCourseComponent implements OnInit {
   }
 
   save() {
-
-    this.home.updateCourse(this.updateCourse.value)
+    this.home.updateCourse(this.updateCourse.value);
   }
+
   uploadImage(file: any) {
     debugger;
-    if (file.length == 0)
-      return;
+    if (file.length == 0) return;
     let fileToUpload = <File>file[0];
     const formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
-    //this.home.uploadAttachment(formData);
-    /*
-    display_Image :any ; 
-uploadAttachment(file:FormData){
-this.http.post('https://localhost:5000/api/Course/uploadImage',file).subscribe((resp:any)=>{
-  //object course table 
+  }
 
-  this.display_Image=resp.imagename;
-},err=>{
-  console.log('Error');
-  
-})
-}
-    */
+  // Added method for Inquiry Dialog
+  openInquiryDailog(courseId: number) {
+    this.selectedcourseid = courseId;
+    const dialogRef = this.dialog.open(this.inquiryDialog, {
+      width: '400px',
+    });
 
+    dialogRef.afterClosed().subscribe((action: string) => {
+      if (action === 'issueCertificates') {
+        console.log(`Issuing certificates for Course ID: ${courseId}`);
+        // Add logic for issuing certificates
+      } else if (action === 'extractStudents') {
+        console.log(`Extracting successful students for Course ID: ${courseId}`);
+        // Add logic for extracting successful students
+      }
+    });
+  }
+  ExportPassedTrainees(courseId: number): void {
+    this.reportsService.exportPassedTrainees(courseId).subscribe({
+      next: (blob) => {
+        saveAs(blob, `PassedTrainees Course_${courseId}.xlsx`);
+      },
+      error: (error) => {
+        console.error('Error exporting passed trainees:', error);
+      }
+    });
+  }
+  issueCertificates(courseId: number) {
+    this.cerficationService.getCertification(courseId).subscribe(
+      (data: TraineecertificateDto[]) => {
+        debugger
+
+        this.certificates = data;
+        this.dialog.open(this.issueCertificatesDialog, {
+          width: '600px',
+        });
+      },
+      (error) => {
+        console.error('Error fetching certification data', error);
+      }
+    );
+  }
+  issueCertificate(courseId: number, traineeId: number): void {
+    this.cerficationService.issueCertificate(courseId, traineeId).subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Certificate_${traineeId}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      },
+      error: (error) => {
+        console.error('Error downloading the certificate:', error);
+      }
+    });
   }
 }
-
-
-
-
 
 

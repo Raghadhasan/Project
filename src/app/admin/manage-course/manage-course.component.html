@@ -33,7 +33,6 @@
                             <h5 class="card-title fw-semibold mb-4">All Course</h5>
                             <div class="table-responsive">
                                 <input type="text" [(ngModel)]="searchTerm" placeholder="Search courses..." />
-
                                 <table class="table text-nowrap mb-0 align-middle">
                                     <thead class="text-dark fs-4">
                                         <button mat-button color="primary" (click)="openCreateDailog()">Create
@@ -90,6 +89,12 @@
                                                     alt="{{ obj.courseimage }}" width="50" height="50" loading="lazy" />
                                             </td>
                                             <td>
+                                                <!-- Inquiry Button -->
+                                                <button mat-button color="primary"
+                                                    (click)="openInquiryDailog(obj.courseid)">
+                                                    Inquiry
+                                                </button>
+
                                                 <button mat-button color="warn"
                                                     (click)="openDeleteDailog(obj.courseid)">Delete</button>
                                                 <button mat-button color="primary"
@@ -153,5 +158,50 @@
                 </mat-dialog-actions>
             </ng-template>
         </div>
+
+        <ng-template #inquiryDialog let-dialogRef="dialogRef" let-data="data">
+            <h2 mat-dialog-title>Course Inquiry</h2>
+            <p>Choose an action for Course ID: {{ this.selectedcourseid }}</p>
+
+            <div mat-dialog-content>
+                <button mat-button color="accent" (click)="issueCertificates(this.selectedcourseid!)">
+                    Issue Certificates
+                </button>
+                <button mat-button color="primary" (click)="ExportPassedTrainees(this.selectedcourseid!)">
+                    Extract Successful Students
+                </button>
+            </div>
+
+        </ng-template>
+        <ng-template #IssueCertificatesDialog let-data="data">
+            <h2 mat-dialog-title>Issue Certificates</h2>
+            <div mat-dialog-content>
+                <table class="table text-nowrap mb-0 align-middle">
+                    <thead class="text-dark fs-4">
+                        <tr>
+                            <th>Trianeeid</th>
+                            <th>TrianeeName</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let certificate of certificates">
+                            <td>{{ certificate.trianeeid }}</td>
+                            <td>{{ certificate.trianeeName }}</td>
+                            <td>
+                                <!-- Add your action buttons or links here -->
+                                <button mat-button
+                                    (click)="issueCertificate(this.selectedcourseid!,certificate.trianeeid!)">Issue</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div mat-dialog-actions>
+                <button mat-button>Close</button>
+            </div>
+        </ng-template>
+
     </div>
 </div>

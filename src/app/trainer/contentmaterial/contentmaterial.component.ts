@@ -1,11 +1,12 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { CourseService, UserCourses } from '../services/course.service';
 import { HttpClient } from '@angular/common/http';
-import { Assignment, AssignmentService } from '../services/assignment.service';
+import { Assignment, AssignmentDetailsDto, AssignmentService } from '../services/assignment.service';
 import { saveAs } from 'file-saver';
 import { Exam, ExamsectionService } from '../services/examsection.service';
 import { AttendanceService, UserAttendanceDTO } from '../services/attendance.service';
 import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-contentmaterial',
@@ -36,6 +37,9 @@ export class ContentmaterialComponent implements OnInit {
 
 
   isModalAttendanceOpen: boolean = false;
+  isModalShowSolutionOpen: boolean = false;
+  solutionDetails: AssignmentDetailsDto[] = [];
+  selectedAssignmentId: number | null = null;
   sectionAttendance: UserAttendanceDTO[] = [];
   exams: Exam[] = [];
 
@@ -184,8 +188,85 @@ export class ContentmaterialComponent implements OnInit {
 
   //#region Assignment
   openAssignmentModal() {
+    debugger
     this.isModalOpen = true;
+
   }
+  openAssignmentSolutionModal(assignmentId: number) {
+    debugger
+    this.isModalShowSolutionOpen = true;
+    this.fetchAssignmentDetails(assignmentId);
+
+  }
+  fetchAssignmentDetails(assignmentId: number): void {
+    let User_Id = localStorage.getItem('User_Id')
+
+    const courseId = this.course?.courseid || 0;
+    const sectionId = this.course?.tsid || 0;
+    const trainerId = User_Id || "0";
+
+    this.assignmentService
+      .getAssignmentDetails(courseId, sectionId, trainerId, assignmentId)
+      .subscribe(
+        (data) => {
+          this.solutionDetails = data;
+          this.isModalShowSolutionOpen = true;
+        },
+        (error) => {
+          this.toastr.error('Failed to load assignment details.', 'Error');
+          console.error(error);
+        }
+      );
+  }
+  isPdf(fileName: string | null): boolean {
+    return fileName ? fileName.toLowerCase().endsWith('.pdf') : false;
+  }
+
+  openFile(filePath: string | null): void {
+    if (filePath) {
+      const cleanedPath = this.cleanFilePath(filePath);
+      window.open(cleanedPath, '_blank');
+    } else {
+      this.toastr.warning('File not available.', 'Warning');
+    }
+  }
+
+  downloadFile(filePath: string | null): void {
+    if (filePath) {
+      const cleanedPath = this.cleanFilePath(filePath);
+      const link = document.createElement('a');
+      link.href = cleanedPath;
+      link.download = cleanedPath.split('/').pop() || 'file';
+      link.click();
+    } else {
+      this.toastr.warning('File not available.', 'Warning');
+    }
+  }
+  submitMarks(): void {
+    const payload = this.solutionDetails.map(solution => ({
+      traineeid: solution.traineeId,
+      assignmentid: solution.assignmentId,
+      mark: solution.assignmentMark
+    }));
+
+    this.assignmentService.updateMark(payload).subscribe({
+      next: () => {
+        alert('Marks updated successfully');
+        this.isModalShowSolutionOpen = false;
+      },
+      error: (err) => {
+        console.error('Error updating marks:', err);
+        alert('Failed to update marks. Please try again.');
+      }
+    });
+  }
+  cleanFilePath(filePath: string): string {
+    // Define the prefix to remove
+    const prefix = 'file:///D:/Project/';
+    // Replace the prefix with a relative path or return as is
+    return filePath.startsWith(prefix) ? filePath.replace(prefix, '/assets/') : filePath;
+  }
+
   closeAssignmentModal() {
     this.isModalOpen = false;
     this.selectedFiles = [];
@@ -242,7 +323,7 @@ export class ContentmaterialComponent implements OnInit {
   }
   //#endregion
 
-  //#region
+ 
   onExamUpload(event: any) {
     const file = event.target.files[0];
     if (file && file.type === 'application/pdf') {
@@ -283,13 +364,48 @@ export class ContentmaterialComponent implements OnInit {
     );
   }
 
+ 
+  openFile1(file: string | null): void {
+    if (file) {
+      console.log('Opening file:', file); 
+      window.open(file, '_blank');
+    } else {
+      console.error('File path or URL is null or invalid.');
+    }
+  }
+
+  //#region
+
+  downloadFile1(fileUrl: string | null): void {
+    if (fileUrl) {
+      console.log('Downloading file:', fileUrl); 
+      const anchor = document.createElement('a');
+      anchor.href = fileUrl;
+      anchor.download = fileUrl.split('/').pop() || 'file';
+      anchor.click();
+    } else {
+      console.error('File URL is null or invalid.');
+    }
+  }
+
+  isPdf1(fileUrl: string | null): boolean {
+    if (!fileUrl) {
+      console.error('File URL is null');
+      return false;
+    }
+    const fileExtension = fileUrl.split('.').pop()?.toLowerCase();
+    return fileExtension === 'pdf';
+  }
+
+
   //#endregion
 
-
- 
-
-
-
 }
+
+
+
+
+
+
 
 

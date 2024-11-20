@@ -1,14 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MentorService } from './mentor.service';
+import { CertificateService } from './certificate.service';
 
-describe('MentorService', () => {
-  let service: MentorService;
-
+describe('CertificateService', () => {
+  let service: CertificateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MentorService);
+    service = TestBed.inject(CertificateService);
   });
 
   it('should be created', () => {

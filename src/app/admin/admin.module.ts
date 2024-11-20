@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { ReportsComponent } from './reports/reports.component';
+import { TableComponent } from './table/table.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ReportsComponent } from './reports/reports.component';
     EmployeeListComponent,
     CourseFilterPipe,
     ProfileComponent,
-    ReportsComponent
+    ReportsComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,

@@ -115,10 +115,7 @@ export class ReportsComponent implements OnInit, OnDestroy {
       console.error('Could not get canvas context.');
     }
   }
-
-
-
-
+  
   ngOnDestroy(): void {
     if (this.chart) {
       this.chart.destroy();

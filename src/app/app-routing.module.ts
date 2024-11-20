@@ -8,6 +8,7 @@ import { AdminModule } from './admin/admin.module';
 import { TrainerModule } from './trainer/trainer.module';
 
 
+
 const routes: Routes = [
   {
     path: '',
@@ -39,11 +40,8 @@ const routes: Routes = [
     loadChildren: () => TrainerModule
   },
  
-  {
-    path: 'trainee',
-    loadChildren: () => AdminModule
   
-  },
+ 
   
   
  

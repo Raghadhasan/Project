@@ -28,6 +28,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { MatIconModule } from '@angular/material/icon';
     ContactComponent,
     ManageAboutComponent,
     ExcelesheetComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ import { MatIconModule } from '@angular/material/icon';
     ToastrModule.forRoot(),
     ReactiveFormsModule,
     FormsModule,
-    
+
     // الوحدات الجديدة من Angular Material
     MatTableModule,
     MatDialogModule,
@@ -62,7 +64,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSortModule,
     MatTableModule,
     MatIconModule, // Add MatIconModule to imports
- 
+
 
   ],
   providers: [],

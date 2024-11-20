@@ -6,11 +6,28 @@ import { HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HomeService {
+  extractSuccessfulStudents(courseId: number) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(public http: HttpClient) { }
   Abouts: any = [];
   Courses: any = [];
+  display_EmpImage: any;
 
+
+  
+  CreateTrainee(body: any) {
+    debugger;
+    body.u_image = this.display_EmpImage;
+    this.http.post('https://localhost:7276/api/Register/Register', body).subscribe((resp) => {
+      console.log('the emp created', resp);
+    }, err => {
+      console.log('Error');
+    })
+
+    window.location.reload();
+  }
 
   GetAllAbout() {
     this.http.get('https://localhost:7276/api/About/GetAllAbout').subscribe(result => {

@@ -4,3 +4,12 @@
     left: 18.1rem;
     bottom: 29.2rem;
 }
+
+.mat-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+#BodyDashBorad .search-form {
+    width: 100%;
+}

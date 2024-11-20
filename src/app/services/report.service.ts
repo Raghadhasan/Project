@@ -18,11 +18,16 @@ export interface IReport {
   providedIn: 'root',
 })
 export class ReportsService {
-  private apiUrl = 'https://localhost:7276/api/Report/GetCourseDetails'; 
+  private apiUrl = 'https://localhost:7276/api/Report';
+  private baseUrl = 'https://localhost:7276/api/Trianee';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getCourseDetails(): Observable<IReport[]> {
-    return this.http.get<IReport[]>(this.apiUrl);
+    return this.http.get<IReport[]>(`${this.apiUrl}/GetCourseDetails`);
+  }
+  exportPassedTrainees(courseId: number): Observable<Blob> {
+    const url = `${this.baseUrl}/ExportPassedTrainees?courseId=${courseId}`;
+    return this.http.get(url, { responseType: 'blob' });
   }
 }

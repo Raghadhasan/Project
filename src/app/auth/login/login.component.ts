@@ -25,11 +25,9 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(loginForm: FormGroup) {
-    debugger
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (token: string) => {
-          debugger
           try {
             const decodedToken: any = jwtDecode(token);
             localStorage.setItem('authToken', token);

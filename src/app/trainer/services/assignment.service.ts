@@ -14,6 +14,8 @@ export interface AssignmentDetailsDto {
   assignmentId: number;
   traineeSolution: string | null;
   assignmentMark: number;
+  traineE_ID: number;
+
 }
 export class Assignment {
   asec: number;

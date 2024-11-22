@@ -7,46 +7,234 @@
     flex-direction: column;
 }
 
-.dialog-container {
-    padding: 20px;
-    max-width: 800px;
+/* زر Open Link */
+button[mat-button][color="accent"] {
+    background-color: #413afb;
+    /* لون أزرق مميز */
+    color: white;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[mat-button][color="accent"]:hover {
+    background-color: #138496;
+    /* لون أغمق عند التمرير */
+    transform: scale(1.05);
+    /* تأثير التكبير عند التمرير */
+}
+
+/* زر Add Trainees */
+button[mat-button][color="warn"] {
+    background-color: #24b446;
+    /* لون أصفر */
+    color: black;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[mat-button][color="warn"]:hover {
+    background-color: #e0a800;
+    /* لون أغمق عند التمرير */
+    transform: scale(1.05);
+    /* تأثير التكبير عند التمرير */
+}
+
+/* زر All Trainees */
+button[mat-button][color="accent"].all-trainees-btn {
+    background-color: #28a745;
+    /* لون أخضر */
+    color: white;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[mat-button][color="accent"].all-trainees-btn:hover {
+    background-color: #218838;
+    /* لون أغمق عند التمرير */
+    transform: scale(1.05);
+    /* تأثير التكبير عند التمرير */
+}
+
+/* زر Create */
+button[mat-button][color="primary"] {
+    background-color: #af3d91;
+    /* لون بنفسجي */
+    color: white;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[mat-button][color="primary"]:hover {
+    background-color: #520dc2;
+    /* لون أغمق عند التمرير */
+    transform: scale(1.05);
+    /* تأثير التكبير عند التمرير */
+}
+
+
+
+/* //name coulome */
+
+/* Table Styling */
+.table {
     width: 100%;
-    border-radius: 8px;
-    background: #f7f9fc;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-collapse: separate;
+    /* Allow spacing between columns */
+    border-spacing: 0 10px;
+    /* Adds vertical spacing between rows */
+    background-color: #ffffff;
+    /* Clean white background */
+    text-align: center;
+    /* Center-align table content */
 }
 
-.dialog-title {
-    font-size: 1.5rem;
-    color: #2a3e52;
-    margin-bottom: 1rem;
+/* Table Header */
+.table thead th {
+    background: #29a1c1;
+    /* Blue header background */
+    color: white;
+    /* White text */
+    font-size: 18px;
+    /* Slightly larger font for headers */
+    font-weight: bold;
+    /* Bold text */
+    padding: 15px 10px;
+    /* Padding for spacing */
+    border-bottom: 3px solid #007bff;
+    /* Blue underline */
+    text-transform: uppercase;
+    /* Capitalize all header text */
 }
 
-.form-horizontal {
+/* Table Rows */
+.table tbody tr {
+    background: #f9f9f9;
+    /* Light gray rows */
+    transition: background-color 0.3s ease;
+    /* Smooth hover effect */
+}
+
+.table tbody tr:hover {
+    background: rgba(41, 161, 193, 0.1);
+    /* Light blue hover effect */
+}
+
+.table tbody td {
+    padding: 12px 8px;
+    /* Adjust padding for clean spacing */
+    font-size: 16px;
+    /* Readable text size */
+    color: #333333;
+    /* Dark text for contrast */
+    border-bottom: 1px solid #ddd;
+    /* Subtle bottom border for separation */
+}
+
+/* Action Buttons in a Column */
+.table tbody td .actions {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: space-around;
+    /* Equal spacing between buttons */
+    align-items: center;
+    /* Align buttons vertically */
+    gap: 10px;
+    /* Add spacing between buttons */
 }
 
-.form-row {
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
+/* Buttons Styling */
+button {
+    border: none;
+    border-radius: 25px;
+    /* Rounded corners */
+    padding: 8px 15px;
+    /* Spacing inside buttons */
+    font-size: 14px;
+    /* Button text size */
+    font-weight: bold;
+    transition: all 0.3s ease;
+    /* Smooth hover effect */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    /* Slight elevation */
+    cursor: pointer;
+    /* Pointer on hover */
 }
 
-.form-field {
-    flex: 1;
+/* Specific Button Colors */
+button.open-link {
+    background-color: #00aeff;
+    /* Blue background */
+    color: white;
+    /* White text */
 }
 
-.full-width {
-    flex: 2;
+button.open-link:hover {
+    background-color: white;
+    /* Darker blue on hover */
 }
 
-.dialog-actions {
-    margin-top: 20px;
+button.add-trainees {
+    background-color: #4caf50;
+    /* Green background */
+    color: white;
+    /* White text */
 }
 
-.btn-cancel {
-    color: #999;
-    border: 1px solid #ccc;
+button.add-trainees:hover {
+    background-color: #388e3c;
+    /* Darker green on hover */
+}
+
+button.delete {
+    background-color: #e53935;
+    /* Red background */
+    color: white;
+    /* White text */
+}
+
+button.delete:hover {
+    background-color: #c62828;
+    /* Darker red on hover */
+}
+
+button.update {
+    background-color: #9c27b0;
+    /* Purple background */
+    color: white;
+    /* White text */
+}
+
+button.update:hover {
+    background-color: #7b1fa2;
+    /* Darker purple on hover */
+}
+
+.card {
+    margin-left: 0;
+    /* Set this to 0 or a negative value to shift the card to the left */
+    float: left;
+    /* Align the card to the left */
+    position: relative;
+    /* Ensure it respects its parent container */
+    left: -40px;
+    /* Adjust the value to move the card left */
+}
+
+.card {
+    background: linear-gradient(to bottom, #63c6e7, #20afd6);
+    /* Blue gradient */
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
 }

@@ -213,6 +213,7 @@ export class ContentmaterialComponent implements OnInit {
           this.isModalShowSolutionOpen = true;
         },
         (error) => {
+          this.solutionDetails = [];
           this.toastr.error('Failed to load assignment details.', 'Error');
           console.error(error);
         }
@@ -244,7 +245,7 @@ export class ContentmaterialComponent implements OnInit {
   }
   submitMarks(): void {
     const payload = this.solutionDetails.map(solution => ({
-      traineeid: solution.traineeId,
+      traineeid: solution.traineE_ID,
       assignmentid: solution.assignmentId,
       mark: solution.assignmentMark
     }));
@@ -282,7 +283,7 @@ export class ContentmaterialComponent implements OnInit {
       const file = files[i];
       if (file.type === 'application/pdf') {
         this.selectedFiles.push(file);
-        this.selectedFilePaths.push(`D:\\FinalProject_(0)\\FinalProject\\src\\assets\\AssignmentFile\\assignmentFile${i}.pdf`);
+        this.selectedFilePaths.push(`D:\\Project\\src\\assets\\AssignmentFile\\assignmentFile${i}.pdf`);
       } else {
         this.toastr.error('Please upload valid PDF files only.', 'Error');
 
@@ -323,7 +324,7 @@ export class ContentmaterialComponent implements OnInit {
   }
   //#endregion
 
- 
+
   onExamUpload(event: any) {
     const file = event.target.files[0];
     if (file && file.type === 'application/pdf') {
@@ -364,11 +365,14 @@ export class ContentmaterialComponent implements OnInit {
     );
   }
 
- 
+
   openFile1(file: string | null): void {
+    debugger
     if (file) {
-      console.log('Opening file:', file); 
-      window.open(file, '_blank');
+      const basePath = 'D:\\Project\\src\\';
+      const relativePath = file.replace(basePath, '');
+      console.log('Opening file:', relativePath);
+      window.open(relativePath, '_blank');
     } else {
       console.error('File path or URL is null or invalid.');
     }
@@ -378,7 +382,7 @@ export class ContentmaterialComponent implements OnInit {
 
   downloadFile1(fileUrl: string | null): void {
     if (fileUrl) {
-      console.log('Downloading file:', fileUrl); 
+      console.log('Downloading file:', fileUrl);
       const anchor = document.createElement('a');
       anchor.href = fileUrl;
       anchor.download = fileUrl.split('/').pop() || 'file';

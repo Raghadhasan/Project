@@ -30,12 +30,14 @@
                     <div class="card w-100">
 
                         <div class="card-body p-4">
-                            <h5 class="card-title fw-semibold mb-4">All Course</h5>
+                            <h5 class="card-title fw-semibold mb-20">All Course</h5>
                             <div class="table-responsive">
                                 <input type="text" [(ngModel)]="searchTerm" placeholder="Search courses..." />
                                 <table class="table text-nowrap mb-0 align-middle">
                                     <thead class="text-dark fs-4">
-                                        <button mat-button color="primary" (click)="openCreateDailog()">Create
+                                        <button mat-button color="primary" (click)="openCreateDailog()"
+                                            style="background-color: hwb(56 7% 23% / 0.921); color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                                            Create
                                             New</button>
                                         <tr>
                                             <th class="border-bottom-0" (click)="onSortChange('courseid')">
@@ -91,14 +93,16 @@
                                             <td>
                                                 <!-- Inquiry Button -->
                                                 <button mat-button color="primary"
-                                                    (click)="openInquiryDailog(obj.courseid)">
+                                                    (click)="openInquiryDailog(obj.courseid)"
+                                                    style="background-color: #DAA520; color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; margin-right: 10px; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
                                                     Inquiry
                                                 </button>
 
-                                                <button mat-button color="warn"
-                                                    (click)="openDeleteDailog(obj.courseid)">Delete</button>
-                                                <button mat-button color="primary"
-                                                    (click)="openUpdateDailog(obj)">Update</button>
+                                                <button mat-button color="warn" (click)="openDeleteDailog(obj.courseid)"
+                                                    style="background-color: red; color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                                                    Delete</button>
+                                                <button mat-button color="primary" (click)="openUpdateDailog(obj)"
+                                                    style="background-color: hsla(121, 96%, 38%, 0.789); color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; margin-right: 10px; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">Update</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -106,6 +110,7 @@
 
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -113,8 +118,12 @@
                 <h1 mat-dialog-title>Delete Course</h1>
                 <div mat-dialog-content>Are you sure you went to delete this item ? </div>
                 <div mat-dialog-actions>
-                    <button mat-button mat-dialog-close="yes">Yes</button>
-                    <button mat-button mat-dialog-close="No">No</button>
+                    <button mat-button mat-dialog-close="yes"
+                        style="background-color:#03ae17;  color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; margin-right: 10px; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+                        Yes</button>
+                    <button mat-button mat-dialog-close="No"
+                        style="background-color:red; color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; margin-right: 10px; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+                        No</button>
                 </div>
             </ng-template>
             <ng-template #callupdateDailog>
@@ -153,21 +162,30 @@
 
                 </mat-dialog-content>
                 <mat-dialog-actions align="end">
-                    <button mat-button mat-dialog-close>Cancel</button>
-                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+                    <button mat-button mat-dialog-close
+                        style="background-color: rgb(21, 0, 255); color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+                        Cancel</button>
+                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()"
+                        style="background-color: #03ae17; color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; margin-right: 10px; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+                        Save</button>
                 </mat-dialog-actions>
             </ng-template>
         </div>
 
         <ng-template #inquiryDialog let-dialogRef="dialogRef" let-data="data">
             <h2 mat-dialog-title>Course Inquiry</h2>
-            <p>Choose an action for Course ID: {{ this.selectedcourseid }}</p>
+            <p class="stylish-text">Choose an action for Course ID: {{ this.selectedcourseid }}</p>
+
 
             <div mat-dialog-content>
-                <button mat-button color="accent" (click)="issueCertificates(this.selectedcourseid!)">
+                <button mat-button color="accent" (click)="issueCertificates(this.selectedcourseid!)"
+                    style="background-color: #DAA520; color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; margin-right: 10px; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+
                     Issue Certificates
                 </button>
-                <button mat-button color="primary" (click)="ExportPassedTrainees(this.selectedcourseid!)">
+                <button mat-button color="primary" (click)="ExportPassedTrainees(this.selectedcourseid!)"
+                    style="background-color: #03ae17; color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; margin-right: 10px; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+
                     Extract Successful Students
                 </button>
             </div>
@@ -191,7 +209,9 @@
                             <td>
                                 <!-- Add your action buttons or links here -->
                                 <button mat-button
-                                    (click)="issueCertificate(this.selectedcourseid!,certificate.trianeeid!)">Issue</button>
+                                    (click)="issueCertificate(this.selectedcourseid!,certificate.trianeeid!)"
+                                    style="background-color: #DAA520; color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; margin-right: 10px; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+                                    Issue</button>
                             </td>
                         </tr>
                     </tbody>
@@ -199,7 +219,9 @@
             </div>
 
             <div mat-dialog-actions>
-                <button mat-button>Close</button>
+                <button mat-button mat-dialog-close
+                    style="background-color: #DAA520; color: white; border-radius: 25px; padding: 10px 20px; font-size: 16px; font-weight: bold; margin-right: 10px; border: none; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+                    Close</button>
             </div>
         </ng-template>
 

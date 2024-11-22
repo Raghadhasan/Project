@@ -186,3 +186,15 @@ button[mat-raised-button]:hover {
     background: #29a1c1;
     color: #ffffff;
 }
+
+
+.card {
+    margin-left: 0;
+    /* Set this to 0 or a negative value to shift the card to the left */
+    float: left;
+    /* Align the card to the left */
+    position: relative;
+    /* Ensure it respects its parent container */
+    left: -45px;
+    /* Adjust the value to move the card left */
+}
